@@ -91,8 +91,9 @@ sap.ui.define([
             },
             //get others data
             getOthers:function(){
-                //debugger
+                debugger
                   var that = this;
+                  
               var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
 
              var oJModel =  new sap.ui.model.odata.ODataModel(serviceurl);
@@ -102,6 +103,8 @@ sap.ui.define([
                     // debugger;
                     
                      console.log(data.results)
+                     that.getDataT(data);
+                    
                                    
                 },
                 error:function(){
@@ -109,6 +112,18 @@ sap.ui.define([
                 }
             });
 
+            },
+
+            getDataT:function(data){
+                debugger;
+                var oJSONModel = new JSONModel();
+                this.getOwnerComponent().setModel(oJSONModel, "myModel");
+                oJSONModel.setData({
+                   RequestSet: data.results
+                 });
+
+
+              
             },
             //profile data
               getProfile:function(){

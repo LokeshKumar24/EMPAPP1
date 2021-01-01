@@ -19,7 +19,8 @@
 								<Title text="{i18n>EmployeeApp}" titleStyle="H2"/>
 							</contentMiddle>
 							<contentRight>
-								<Button text="{i18n>Logout}"  icon="sap-icon://log" press="onLogout"></Button>
+                                 <Button   icon="sap-icon://bell" press="onOpenNoti"></Button>
+								<Button   icon="sap-icon://log" press="onLogout"></Button>
 							</contentRight>
 						</Bar>
 					</tnt:ToolHeader>
@@ -41,7 +42,7 @@
                         <content>
                             <ToolbarSpacer/>
                            
-                        <Button text="Request" press="onRequest"></Button>
+                        <Button text="Request" press="onRequest" type="Emphasized"></Button>
                         </content>
                     </Toolbar>
                 </footer>
@@ -79,7 +80,7 @@
 
 
                     <Button id="edit" text="Edit" enabled="true"  press="onOpenEdit"  />
-					<Button id="save" text="Save" type="Emphasized" visible="false" press="handleSavePress" />
+					<Button id="save" text="Save" type="Emphasized" visible="false" press="handleSavePress" /> 
 					<Button id="cancel" text="Cancel" visible="false" press="handleCancelPress" />
 				</uxap:actions>
 			</uxap:ObjectPageDynamicHeaderTitle>
@@ -229,8 +230,10 @@
 		<uxap:footer>
 			<OverflowToolbar>
 				<ToolbarSpacer/>
-				<Button type="Emphasized" text="Send" icon="sap-icon://email" press="onRequest"/>
-				<Button type="Default" visible="false"/>
+                <!-- <Button id="save" text="Save" type="Emphasized" visible="false" press="handleSavePress" />
+				<Button id="cancel" text="Cancel" visible="false" press="handleCancelPress" /> -->
+				<!-- <Button type="Emphasized" text="Send" icon="sap-icon://email" press="onRequest"/>
+				<Button type="Default" visible="false"/> -->
 			</OverflowToolbar>
 		</uxap:footer>
 	</uxap:ObjectPageLayout>

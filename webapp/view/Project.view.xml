@@ -6,28 +6,62 @@
 			<pages>
 				<Page id="page" title="{i18n>project}" showHeader="false">
 					<content>
-                    <Text text="Project"></Text>
-                  	<sf:SimpleForm editable="true">
-				<Label text=""></Label>
-				<Input id="InputId" placeholder="Enter Emp Id"></Input>
-				<Label text=""></Label>
-				<Input id="InputName" type="Text" placeholder="Enter Emp Name "></Input>
-                <Label text="Enter Date" labelFor="DP1"/>
+                    
+                     <VBox class="sapUiSmallMargin">
+		<sf:SimpleForm id="SimpleFormChange353"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			title="Create New Project "
+			labelSpanXL="3"
+			labelSpanL="3"
+			labelSpanM="3"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="4"
+			emptySpanL="4"
+			emptySpanM="4"
+			emptySpanS="0"
+			columnsXL="1"
+			columnsL="1"
+			columnsM="1"
+			singleContainerFullSize="false" >
+			<sf:content>
+				<Label text=""/> 
+				<Input id="Pid" value=""  placeholder="Enter Searial Number"  />
+                <Label text=""/> 
+				<Input id="eid" value=""  placeholder="Enter Emp ID"  />
+                <Label text="" />
+				<Input id="Pname" value=""  placeholder="Enter your Projectname"/>
+                <Label text=""/>
+				<Input value="" placeholder="Projectdetails"/>
+                <Label text=""/>
+                
 		<DatePicker
-			id="DP1"
-			placeholder="Enter Date"
+			id="PSDP"
+			placeholder="Enter StartDate"
+			change="handleChange"
+			class="sapUiSmallMarginBottom" />
+				
+                <Label text=""/>
+                <DatePicker
+			id="PEDP"
+			placeholder="Enter EndDate"
 			change="handleChange"
 			class="sapUiSmallMarginBottom"/>
 				
 				
-				<Label text=""></Label>
-				<Input id="InputReason" type="Number" placeholder="Enter Reason "></Input>
+				<Label text=""/>
+				<Input value="" placeholder="Status"/>
 				
-				<Label></Label>
+                <Label></Label>
 				<Button text="Submit" type="Emphasized" press="onLeave"></Button>
                  <Button text="close" icon="sap-icon://decline" press="onClose" type="Reject"></Button>
-			</sf:SimpleForm>
-            <smartTable:SmartTable entitySet=""
+                 </sf:content>
+		</sf:SimpleForm>
+	</VBox>
+
+                  
+            <smartTable:SmartTable entitySet="PROJECTSet" initiallyVisibleFields="Pid,Eid,Name,Projectname,Projectdetails,Startdate,Enddate,Status"
 			tableType="ResponsiveTable" useExportToExcel="true" beforeExport="onBeforeExport"
 			useVariantManagement="false" useTablePersonalisation="true" header="Line Items"
 			showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true"

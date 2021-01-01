@@ -11,15 +11,55 @@ sap.ui.define([
 
 		return BaseController.extend("EA.EmployeeApp2.controller.SplitApp", {
 			onInit: function () {
+                debugger;
                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                 this.getView().setModel(new JSONModel(), "Rqst");
+                 this.getView().setModel(new JSONModel(), "Asst");
 
             oRouter.attachRoutePatternMatched(this.getId, this);
             //  this.getProfile();
+            // this.getOthers();
+
+            var that = this;
+                  
+              var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
+
+             var oJModel =  new sap.ui.model.odata.ODataModel(serviceurl);
+      
+            var data=oJModel.read("/REQUESTSet", {
+                success:function(data){
+                    // debugger;
+                    
+                     console.log(data.results)
+                     that.getDataT(data);
+                    
+                                   
+                },
+                error:function(){
+                    alert("Request data is not received");
+                }
+            });
+
+
+
 
             
             
         },
-        // to get the profile id
+        getDataT:function(data){
+                debugger;
+                var oJSONModel = new JSONModel();
+                this.getOwnerComponent().setModel(oJSONModel, "myModel");
+                oJSONModel.setData({
+                   RequestSet: data.results
+                 });
+               
+                 this.getView().byId("idProductsTable").setModel("myModel");
+
+              
+            },
+
+        //to get the profile id
         getId: function (oEvent) {
             // debugger
             var path = oEvent.getParameter("arguments").ID;
@@ -50,13 +90,135 @@ sap.ui.define([
 			this.byId("SplitApp").toDetail(this.createId(sToPageId));
         },
 
+        notif:null,
+            onOpenNoti:function(){
+                debugger;
+                if(!this.notif){
+                    this.notif = new sap.ui.xmlfragment("EA.EmployeeApp2.view.Notification",this);
+                    this.getView().addDependent(this.notif);
+                }
+                this.notif.open();
+
+            },
+
+            
+            onCloseN:function(){
+                this.notif.close();
+            },
+           
+
         //logout
          onLogout:function(){
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
                         oRouter.navTo("RouteLogin");
            
             },
+                 onLeave:function(){
+                     debugger;
 
+                var Lid = this.getView().getModel("Rqst").getProperty("/RId");
+                var Lname = this.getView().getModel("Rqst").getProperty("/name");
+                var Ldate =  this.getView().getModel("Rqst").getProperty("/RDate");
+                
+                var Lreason = this.getView().getModel("Rqst").getProperty("/RLeave");
+                var Lassets = "No";
+                var ltype = "LEAVE";
+
+
+                var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
+
+                 var oLModel =  new sap.ui.model.odata.ODataModel(serviceurl);
+
+               
+
+                    
+       
+                
+
+             var Payload = {};
+
+             Payload.Rid = Lid;
+             Payload.Rdate = Ldate;
+             Payload.Name = Lname;
+             Payload.Reason = Lreason;
+             Payload.Assets = Lassets;
+             Payload.Type = ltype 
+            
+
+              oLModel .create("/REQUESTSet", Payload, {
+                     method: "POST",
+                     success: function(data) {
+                     alert("success");
+                    sap.m.MessageToast.show("Request Send Succesfully");
+                    },
+                     error: function(e) {
+                      alert("error");
+                    }
+                });
+
+
+                this.getView().getModel("Rqst").setProperty("/RId","");
+                this.getView().getModel("Rqst").setProperty("/name", "");
+                this.getView().getModel("Rqst").setProperty("/RDate","");
+                this.getView().getModel("Rqst").setProperty("/RLeave", "");
+                
+                 
+
+               },
+
+                 onAssets:function(){
+                     debugger;
+
+                var Aid = this.getView().getModel("Asst").getProperty("/AEid");
+                var Aname = this.getView().getModel("Asst").getProperty("/AName");
+                var Adate =  this.getView().getModel("Asst").getProperty("/ADate");
+                
+                var Areason = this.getView().getModel("Asst").getProperty("/AReason");
+                var Aassets = this.getView().getModel("Asst").getProperty("/AAst");
+                var ltype = "Assets";
+
+
+                var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
+
+                 var oLModel =  new sap.ui.model.odata.ODataModel(serviceurl);
+
+               
+
+                    
+       
+                
+
+             var Payload = {};
+
+             Payload.Rid = Aid;
+             Payload.Rdate = Adate;
+             Payload.Name = Aname ;
+             Payload.Reason = Areason;
+             Payload.Assets = Aassets ;
+             Payload.Type = ltype 
+            
+
+              oLModel .create("/REQUESTSet", Payload, {
+                     method: "POST",
+                     success: function(data) {
+                     alert("success");
+                    sap.m.MessageToast.show("Assets Request Send Succesfully");
+                    },
+                     error: function(e) {
+                      alert("error");
+                    }
+                });
+
+
+                this.getView().getModel("Asst").setProperty("/AEid","");
+                this.getView().getModel("Asst").setProperty("/AName", "");
+                this.getView().getModel("Asst").setProperty("/ADate","");
+                 this.getView().getModel("Asst").setProperty("/AAst","");
+                this.getView().getModel("Asst").setProperty("/AReason", "");
+               
+                
+
+                 },
 
             //profile changes
             
@@ -95,6 +257,8 @@ sap.ui.define([
 
                 this.getView().byId("save").setVisible(true);
                 this.getView().byId("cancel").setVisible(true);
+            //     var oObjectPageLayout = this.byId("ObjectPageLayout");
+			//    oObjectPageLayout.setShowFooter(!oObjectPageLayout.getShowFooter());
            },
 
            handleCancelPress:function(){
@@ -140,12 +304,26 @@ sap.ui.define([
                Payload.Address = IntAdress;
                Payload.City = IntCity ;
                
-               this.profileUpdate(Payload)
+            //    this.profileUpdate(Payload)
+
+                 var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
+  
+               var oPModel =  new sap.ui.model.odata.ODataModel(serviceurl);
+              oPModel .update("/PROFILESet('"+Payload.Eid+"')", Payload, {
+                     method: "PUT",
+                     success: function(data) {
+                    //   alert("success");
+                    sap.m.MessageToast.show("Updated Succesfully");
+                    },
+                     error: function(e) {
+                      alert("error");
+                    }
+                });
               
                 this.getView().byId("SmForm1").setVisible(true);
 
-                var form = this.getView().byId("SimpleFormChange354");
-                form.setVisible(false);
+                this.getView().byId("SimpleFormChange354").setVisible(false);
+                
 
                  this.getView().byId("SmForm6").setVisible(true);
 

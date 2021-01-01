@@ -1,3 +1,7 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+<Dialog  title="Notification"  >
+	<Text text="Hi You Have Requsted For Leave Request!!!"></Text>
+    <Button press="onCloseN" text="Close" ></Button>
+    </Dialog>
 	
 </core:FragmentDefinition>
