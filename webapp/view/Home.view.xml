@@ -1,0 +1,117 @@
+ <mvc:View controllerName="EA.EmployeeApp2.controller.Home" xmlns:mvc="sap.ui.core.mvc" 
+xmlns:f="sap.f" 	xmlns:card="sap.f.cards"
+displayBlock="true" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:sf="sap.ui.layout.form">
+	
+		<App >
+			<pages>
+				<Page  title="Home View" showHeader="false">
+					
+                   <content>
+                   <Text text="Home"></Text>
+                   	<f:Card class="sapUiMediumMargin" width="300px">
+		<f:header>
+			<card:Header title="Project Cloud Transformation" subtitle="Revenue per Product | EUR" />
+		</f:header>
+		<f:content>
+			<List
+				showSeparators="None"
+				items="{
+					path: 'products>/productItems'
+				}">
+				<CustomListItem>
+					<HBox alignItems="Center" justifyContent="SpaceBetween">
+						<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
+							<Title level="H3" text="{products>title}" />
+							<Text text="{products>subtitle}" />
+						</VBox>
+						<ObjectStatus
+							class="sapUiTinyMargin sapUiSmallMarginEnd"
+							text="{products>revenue}"
+							state="{products>statusSchema}" />
+					</HBox>
+				</CustomListItem>
+			</List>
+		</f:content>
+	</f:Card>
+    	<f:Card class="sapUiMediumMargin" width="300px">
+		<f:header>
+			<card:Header title="Project Cloud Transformation" subtitle="Revenue per Product | EUR" />
+		</f:header>
+		<f:content>
+			<List
+				showSeparators="None"
+				items="{
+					path: 'products>/productItems'
+				}">
+				<CustomListItem>
+					<HBox alignItems="Center" justifyContent="SpaceBetween">
+						<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
+							<Title level="H3" text="{products>title}" />
+							<Text text="{products>subtitle}" />
+						</VBox>
+						<ObjectStatus
+							class="sapUiTinyMargin sapUiSmallMarginEnd"
+							text="{products>revenue}"
+							state="{products>statusSchema}" />
+					</HBox>
+				</CustomListItem>
+			</List>
+		</f:content>
+	</f:Card>
+    	<f:Card class="sapUiMediumMargin" width="300px">
+		<f:header>
+			<card:Header title="Project Cloud Transformation" subtitle="Revenue per Product | EUR" />
+		</f:header>
+		<f:content>
+			<List
+				showSeparators="None"
+				items="{
+					path: 'products>/productItems'
+				}">
+				<CustomListItem>
+					<HBox alignItems="Center" justifyContent="SpaceBetween">
+						<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
+							<Title level="H3" text="{products>title}" />
+							<Text text="{products>subtitle}" />
+						</VBox>
+						<ObjectStatus
+							class="sapUiTinyMargin sapUiSmallMarginEnd"
+							text="{products>revenue}"
+							state="{products>statusSchema}" />
+					</HBox>
+				</CustomListItem>
+			</List>
+		</f:content>
+	</f:Card>
+    	<f:Card class="sapUiMediumMargin" width="300px">
+		<f:header>
+			<card:Header title="Project Cloud Transformation" subtitle="Revenue per Product | EUR" />
+		</f:header>
+		<f:content>
+			<List
+				showSeparators="None"
+				items="{
+					path: 'products>/productItems'
+				}">
+				<CustomListItem>
+					<HBox alignItems="Center" justifyContent="SpaceBetween">
+						<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
+							<Title level="H3" text="{products>title}" />
+							<Text text="{products>subtitle}" />
+						</VBox>
+						<ObjectStatus
+							class="sapUiTinyMargin sapUiSmallMarginEnd"
+							text="{products>revenue}"
+							state="{products>statusSchema}" />
+					</HBox>
+				</CustomListItem>
+			</List>
+		</f:content>
+	</f:Card>
+                   </content>
+                   
+				</Page>
+			</pages>
+		</App>
+	
+</mvc:View>

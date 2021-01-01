@@ -1,0 +1,62 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" 
+xmlns:sf="sap.ui.layout.form" 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable">
+    <Dialog  title="Request" >
+<IconTabBar
+		id="idIconTabBarNoIcons"
+		
+		class="sapUiResponsiveContentPadding">
+		<items>
+			<IconTabFilter text="Log" key="Log">
+					 <Button text="close" icon="sap-icon://decline" press="onClose" type="Reject"></Button>
+		<!-- <smartTable:SmartTable entitySet=""
+			tableType="ResponsiveTable" useExportToExcel="true" beforeExport="onBeforeExport"
+			useVariantManagement="false" useTablePersonalisation="true" header="Line Items"
+			showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true"
+			demandPopin="true" class="sapUiResponsiveContentPadding"/> -->
+			</IconTabFilter>
+			<IconTabFilter text="Leave Request" key="Leave Request">
+				<sf:SimpleForm editable="true">
+				<Label text=""></Label>
+				<Input id="InputId" placeholder="Enter Emp Id"></Input>
+				<Label text=""></Label>
+				<Input id="InputName" type="Text" placeholder="Enter Emp Name "></Input>
+                <Label text="Enter Date" labelFor="DP1"/>
+		<DatePicker
+			id="DP1"
+			placeholder="Enter Date"
+			change="handleChange"
+			class="sapUiSmallMarginBottom"/>
+				
+				
+				<Label text=""></Label>
+				<Input id="InputReason" type="Number" placeholder="Enter Reason "></Input>
+				
+				<Label></Label>
+				<Button text="Submit" type="Emphasized" press="onLeave"></Button>
+                 <Button text="close" icon="sap-icon://decline" press="onClose" type="Reject"></Button>
+			</sf:SimpleForm>
+			</IconTabFilter>
+			<IconTabFilter text="Assets Request" key="Assets Request">
+            <sf:SimpleForm>
+            <Label text=""></Label>
+            <Input id="InputId1" placeholder="Enter Your Id"></Input>
+            <Label text=""></Label>
+            <Input id="InputName2" placeholder="Enter Your Name"></Input>
+            <Label text="" ></Label>
+            <Label text=""></Label>
+            <DatePicker id="date3" ></DatePicker>
+            <Label text=""></Label>
+				<Input id="InputAssets" type="Number" placeholder="Enter Assets "></Input>
+                <Label></Label>
+				<Button text="Submit" type="Emphasized" press="onAssets"></Button>
+                 <Button text="close" icon="sap-icon://decline" press="onClose" type="Reject"></Button>
+
+            </sf:SimpleForm>
+				
+			</IconTabFilter>
+			
+		</items>
+	</IconTabBar>
+	</Dialog>
+</core:FragmentDefinition>

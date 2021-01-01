@@ -1,0 +1,124 @@
+<!-- <mvc:View controllerName="EA.EmployeeApp1.controller.Profile" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+
+		<App >
+			<pages>
+				<Page id="page" title="{i18n>profile}" showHeader="false">
+					<content>
+                    <Text text="Profile"></Text>
+                    <Button text="A" ></Button>
+                    </content>
+				</Page>
+			</pages>
+		</App>
+	
+</mvc:View> -->
+
+<mvc:View xmlns:core="sap.ui.core" xmlns="sap.uxap" xmlns:layout="sap.ui.layout" xmlns:f="sap.f" xmlns:form="sap.ui.layout.form"
+	xmlns:m="sap.m" controllerName="EA.EmployeeApp2.controller.Profile" height="100%">
+	<ObjectPageLayout id="ObjectPageLayout" useIconTabBar="true" enableLazyLoading="true" showTitleInHeaderContent="true"
+		showEditHeaderButton="true">
+		<headerTitle >
+			<ObjectPageDynamicHeaderTitle>
+				<expandedHeading>
+					<m:Title text="{profileModel>Fullname}" wrapping="true" level="H1" textAlign="Center"/>
+				</expandedHeading>
+				<snappedHeading>
+					<m:FlexBox fitContainer="true" alignItems="Center">
+						<!-- <m:Avatar src="{profileModel>Picture}"  id ="ImageBackend" class="sapUiTinyMarginEnd"/> -->
+						<m:Title  id="textId" text="{profileModel>Fullname}" wrapping="true"/>
+					</m:FlexBox>
+				</snappedHeading>
+				<actions>
+					<!-- <m:Button icon="sap-icon://edit" text=" Passsword Change" press="onOpenP" tooltip="Password Chage" type="Emphasized"/> -->
+					<!-- <m:Button press="onOpenFrag" icon="sap-icon://notification" type="Emphasized"/> -->
+					<m:Button icon="sap-icon://edit" text="Edit" press="onOpenEdit" tooltip="Edit Details" type="Emphasized"/>
+					<m:Button text="Toggle Footer" icon="sap-icon://pull-down" press="toggleFooter"/>
+					<!-- <m:Button icon="sap-icon://log" text="Logout" tooltip="Logout" press="onNext" type="Emphasized"/> -->
+				</actions>
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+		<headerContent>
+			<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
+				<f:Avatar class="sapUiTinyMarginEnd" src="{profileModel>Picture}" displaySize="L"/>
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<m:Link text="{profileModel>Fullname}"/>
+					<m:Link text="{profileModel>Phoneno}"/>
+				</layout:VerticalLayout>
+				<layout:HorizontalLayout class="sapUiSmallMarginBeginEnd">
+					<!-- <m:Image src="{profileModel>Picture}" class="sapUiSmallMarginBegin"/> -->
+				</layout:HorizontalLayout>
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd"></layout:VerticalLayout>
+			</m:FlexBox>
+		</headerContent>
+		<sections>
+			<ObjectPageSection title="About Me" importance="Medium">
+				<subSections>
+					<ObjectPageSubSection title="About Me">
+						<blocks>
+							<form:SimpleForm  id="SmForm1" layout="ColumnLayout" width="100%" labelSpanL="3" labelSpanM="3" labelSpanS="3" emptySpanL="0" emptySpanM="0"
+								emptySpanS="0" maxContainerCols="2">
+								<core:Title text=""/>
+								<m:Label text="Employee Id"/>
+								<m:Text text="{profileModel>Eid}"/>
+                                <!-- <m:Input value="SW001"/> -->
+                                
+								<m:Label text="Employee Name"/>
+								<m:Text text="{profileModel>Fullname}"/>
+								<m:Label text="Employee Qualification"/>
+								<m:Text text="{profileModel>Qualification}"/>
+								<m:Label text="Employee No"/>
+								<m:Text text="{profileModel>Phoneno}"/>
+								<m:Label text="Age"/>
+								<m:Text text="{profileModel>Age}"/>
+								<m:Label text="Date Of Birth"/>
+								<m:Text text="{profileModel>Dob}"/>
+							</form:SimpleForm>
+						</blocks>
+					</ObjectPageSubSection>
+					
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection title="Work Details">
+				<subSections>
+					<ObjectPageSubSection title=" Work Details">
+						<blocks>
+							<form:SimpleForm labelSpanL="4" labelSpanM="4" editable="false" labelSpanS="4" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+								maxContainerCols="2" layout="ResponsiveGridLayout" width="100%">
+								<m:Label text="Emp ID"/>
+								<m:Text text="{profileModel>Eid}"/>
+								<m:Text text=" "/>
+								<m:Label text="FullName"/>
+								<m:Text text="{profileModel>Fullname}"/>
+								<m:Text text=" "/>
+								<m:Label text="Company Name"/>
+								<m:Text text="{profileModel>Companyname}"/>
+								<m:Text text=""/>
+								<m:Label text="Job Designation"/>
+								<m:Text text="{profileModel>Designation}"/>
+								<m:Text text=" "/>
+								<m:Label text=""/>
+								<m:Label text="Payment"/>
+                                <m:Text text="{profileModel>Salary}"/>
+								<m:Label text=""/>
+								<m:Label text="Company Adress"/>
+                                <m:Text text="{profileModel>Complocation}"/>
+								<m:Label text=""/>
+								<m:Label text="Project"/>
+                                <m:Text text="{profileModel>Project}"/>
+							</form:SimpleForm>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			
+
+		</sections>
+		<footer>
+			<m:OverflowToolbar>
+				<m:ToolbarSpacer/>
+				<m:Button type="Emphasized" text="Send" icon="sap-icon://email" press="onRequest"/>
+				<m:Button type="Default" visible="false"/>
+			</m:OverflowToolbar>
+		</footer>
+	</ObjectPageLayout>
+</mvc:View>

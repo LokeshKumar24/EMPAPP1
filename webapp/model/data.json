@@ -1,0 +1,23 @@
+	{
+        "views":[
+		{
+            "name":"Home"
+        },
+        {
+            "name":"Profile"
+        },
+        {
+            "name":"Project"
+        },
+        {
+            "name":"Others"
+        }
+       
+        ],
+        	"logo":[
+			{
+				"image":"http://www.signiwis.com/images/margo.png"
+			}
+			]
+		
+    }
