@@ -1,6 +1,6 @@
 <mvc:View controllerName="EA.EmployeeApp2.controller.Others"
  xmlns:mvc="sap.ui.core.mvc" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
-	xmlns:sf="sap.ui.layout.form" 
+	xmlns:sf="sap.ui.layout.form" xmlns:ui="sap.ui.unified"
     xmlns:smartTable="sap.ui.comp.smarttable" displayBlock="true" xmlns="sap.m">
 
 		<App >
@@ -14,24 +14,24 @@
 		<items>
 			<IconTabFilter  icon="sap-icon://upload" text="Time Sheet Upload" key="Time Sheet Upload">
             <sf:SimpleForm >
-				<Label text=""></Label>
-				<Input  placeholder="Enter Emp Id"></Input>
-				<Label text=""></Label>
-				<Input type="Text" placeholder="Enter Emp Name "></Input>
+				<Label text="Employee Id"></Label>
+				<Input  placeholder="Enter Emp Id" value="{Login>/id}"></Input>
+				<Label text="Employee Name"></Label>
+				<Input type="Text" placeholder="Enter Emp Name " value="{}"></Input>
                 <Label text="Enter Date" labelFor="DP1"/>
-		<DatePicker
+		<!-- <DatePicker
 			
 			placeholder="Enter Date"
 			change="handleChange"
-			class="sapUiSmallMarginBottom"/>
+			class="sapUiSmallMarginBottom"/> -->
 				
 				
-				<Label text=""></Label>
-				<Input  type="Number" placeholder="Enter Time Sheet Name "></Input>
-				
-                <Button text="Time Sheet Upload" press="TimeSheetUpload" ></Button>
+				<Label text="File Name"></Label>
+				<!-- <Input  type="Number" placeholder="Enter Time Sheet Name "></Input> -->
+				<ui:FileUploader id="timesheet" placeholder="Enter Time Sheet Name "/>
+                
 				<Label></Label>
-				<Button text="Submit" type="Emphasized" press="onTimeSheet"></Button>
+				<Button text="Submit" type="Emphasized" press="onTimeSheetSubmit"></Button>
                 
 			</sf:SimpleForm>
 				
@@ -66,11 +66,13 @@
             <IconTabFilter text="Files Data" icon="sap-icon://table-view" key="Files">
 				
                 	
-		<!-- <smartTable:SmartTable entitySet="LineItemsSet" 
+		<smartTable:SmartTable entitySet="REQUESTSet" 
+        initiallyVisibleFields="Name,Rdate,Reason"
+                         requestAtLeastFields="Name,Rdate,Reason"
 			tableType="ResponsiveTable" useExportToExcel="true" beforeExport="onBeforeExport"
 			useVariantManagement="false" useTablePersonalisation="true" header="Line Items"
 			showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true"
-			demandPopin="true" class="sapUiResponsiveContentPadding"/> -->
+			demandPopin="true" class="sapUiResponsiveContentPadding"/>
 
 			</IconTabFilter>
 			

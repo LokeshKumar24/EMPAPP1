@@ -8,64 +8,17 @@ xmlns:sf="sap.ui.layout.form" 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 		class="sapUiResponsiveContentPadding">
 		<items>
 			<IconTabFilter text="Log" key="Log">
-            	<Table id="idProductsTable"
-	
-		items="{myModel>/RequestSet}" width="50rem">
-		
-		
-		<columns>
-			<Column
-				>
-				<Text text="EID" />
-			</Column>
-			<Column>
-				<Text text="Name" />
-			</Column>
-			<Column
-				
-				>
-				<Text text="Type" />
-			</Column>
-			<Column
-				
-				>
-				<Text text="Assets" />
-			</Column>
-			
-            <Column
-				>
-				<Text text="Reason" />
-			</Column>
-            <Column
-				>
-				<Text text="Date" />
-			</Column>
-		</columns>
-		<items>
-			<ColumnListItem>
-				<cells>
-					<ColumnListItem>
-					<cells>
-						<Text text="{myModel>Rid}"></Text>
-						<Text text="{myModel>Name}"></Text>
-						<Text text="{myModel>Type}"></Text>
-						<Text text="{myModel>Assets}"></Text>
-                        <Text text="{myModel>Reason}"></Text>
-						<Text text="{myModel>Rdate}"></Text>
-						
-					</cells>
-				</ColumnListItem>
-					
-				</cells>
-			</ColumnListItem>
-		</items>
-	</Table>
+            	
 					 <Button text="close" icon="sap-icon://decline" press="onClose" type="Reject"></Button>
-		<!-- <smartTable:SmartTable entitySet=""
+		
+        <smartTable:SmartTable entitySet="REQUESTSet"
+                         initiallyVisibleFields="Name,Rdate,Reason"
+                         requestAtLeastFields="Name,Rdate,Reason"
 			tableType="ResponsiveTable" useExportToExcel="true" beforeExport="onBeforeExport"
 			useVariantManagement="false" useTablePersonalisation="true" header="Line Items"
 			showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true"
-			demandPopin="true" class="sapUiResponsiveContentPadding"/> -->
+			demandPopin="true" class="sapUiResponsiveContentPadding"/>
+            
 			</IconTabFilter>
 			<IconTabFilter text="Leave Request" key="Leave Request">
                   <sf:SimpleForm editable="true">

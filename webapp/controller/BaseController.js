@@ -59,7 +59,7 @@ sap.ui.define([
                    // debugger;
                     
                      console.log(data.results)
-                                   
+                that.getOwnerComponent().setModel(new JSONModel({home:data.results}),"homeModel");            
                 },
                 error:function(){
                     alert("Home data is not received");
@@ -81,7 +81,7 @@ sap.ui.define([
                    //  debugger;
                     
                      console.log(data.results)
-                                   
+                that.getOwnerComponent().setModel(new JSONModel({project:data.results}),"projectModel");                    
                 },
                 error:function(){
                     alert("Project data is not received");
@@ -91,7 +91,7 @@ sap.ui.define([
             },
             //get others data
             getOthers:function(){
-                debugger
+               // debugger
                   var that = this;
                   
               var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
@@ -100,10 +100,11 @@ sap.ui.define([
       
             var data=oJModel.read("/REQUESTSet", {
                 success:function(data){
-                    // debugger;
+                     debugger;
                     
                      console.log(data.results)
-                     that.getDataT(data);
+              that.getOwnerComponent().setModel(new JSONModel({request:data.results}),"requestModel");
+                    // that.getDataT(data);
                     
                                    
                 },
@@ -114,17 +115,17 @@ sap.ui.define([
 
             },
 
-            getDataT:function(data){
-                debugger;
-                var oJSONModel = new JSONModel();
-                this.getOwnerComponent().setModel(oJSONModel, "myModel");
-                oJSONModel.setData({
-                   RequestSet: data.results
-                 });
+            // getDataT:function(data){
+            //     debugger;
+            //     var oJSONModel = new JSONModel();
+            //     this.getOwnerComponent().setModel(oJSONModel, "myModel");
+            //     oJSONModel.setData({
+            //        RequestSet: data.results
+            //      });
 
 
               
-            },
+            // },
             //profile data
               getProfile:function(){
                 // debugger
@@ -156,13 +157,30 @@ sap.ui.define([
                      method: "PUT",
                      success: function(data) {
                     //   alert("success");
-                    sap.m.MessageToast.show("Updated Succesfully");
+                    sap.m.MessageToast.show("Profile Updated Succesfully");
                     },
                      error: function(e) {
                       alert("error");
                     }
                 });
 
+            },
+            //request update
+            updateRequest:function(Payload){
+                
+                var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
+                
+                var oLModel =  new sap.ui.model.odata.ODataModel(serviceurl);
+                 oLModel .create("/REQUESTSet", Payload, {
+                     method: "POST",
+                     success: function(data) {
+                     alert("success");
+                    sap.m.MessageToast.show("Request Send Succesfully");
+                    },
+                     error: function(e) {
+                      alert("error");
+                    }
+                });
             }
 		});
 	});

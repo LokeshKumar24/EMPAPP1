@@ -1,5 +1,7 @@
-<mvc:View controllerName="EA.EmployeeApp2.controller.Project" xmlns:sf="sap.ui.layout.form" 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+<mvc:View controllerName="EA.EmployeeApp2.controller.Project" xmlns:sf="sap.ui.layout.form" 
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 	xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:core="sap.ui.core"
  xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
 
 		<App >
@@ -59,13 +61,16 @@
                  </sf:content>
 		</sf:SimpleForm>
 	</VBox>
-
                   
-            <smartTable:SmartTable entitySet="PROJECTSet" initiallyVisibleFields="Pid,Eid,Name,Projectname,Projectdetails,Startdate,Enddate,Status"
-			tableType="ResponsiveTable" useExportToExcel="true" beforeExport="onBeforeExport"
-			useVariantManagement="false" useTablePersonalisation="true" header="Line Items"
-			showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true"
-			demandPopin="true" class="sapUiResponsiveContentPadding"/>
+            <smartTable:SmartTable id="SmartTable" entitySet="PROJECTSet"
+                          tableType="ResponsiveTable" 
+                         initiallyVisibleFields="Eid,Name,Projectname,Status"
+                         requestAtLeastFields="Pid,Eid,Name,Projectname,Status"
+                            useTablePersonalisation="true" 
+                          header="EMPLOYEE DETAILS" showRowCount="true" 
+                          persistencyKey="SmartTableAnalytical_Explored" 
+                          enableAutoBinding="true" class="sapUiResponsiveContentPadding" >
+                          </smartTable:SmartTable>
                     </content>
 				</Page>
 			</pages>

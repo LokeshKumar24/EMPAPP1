@@ -10,6 +10,13 @@ sap.ui.define([
 		return BaseController.extend("EA.EmployeeApp2.controller.Project", {
 			onInit: function () {
               
-			}
+            },
+            	onBeforeExport: function (oEvt) {
+			var mExcelSettings = oEvt.getParameter("exportSettings");
+
+			// Disable Worker as Mockserver is used in Demokit sample
+			mExcelSettings.worker = false;
+		},
+
 		});
 	});
