@@ -27,7 +27,7 @@
 
                     <SplitApp id="SplitApp" initialDetail="Home">
                      <masterPages >
-                  <Page visible="true" showFooter="true">
+                  <Page visible="true" showFooter="true" showHeader="false">
                 
                   
 
@@ -52,7 +52,7 @@
 
                      <detailPages>
 
-                     <Page id="Home">
+                     <Page id="Home" showHeader="false">
                      
                      <mvc:XMLView viewName="EA.EmployeeApp2.view.Home"></mvc:XMLView>
                      </Page>
@@ -240,10 +240,10 @@
                    
                      </Page>
 
-                     <Page id="Project">
+                     <Page id="Project" showHeader="false">
                      <mvc:XMLView viewName="EA.EmployeeApp2.view.Project"></mvc:XMLView>
                      </Page>
-                     <Page id="Others" >
+                     <Page id="Others" showHeader="false" >
                      <mvc:XMLView viewName="EA.EmployeeApp2.view.Others"></mvc:XMLView>
                      </Page>
 

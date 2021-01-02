@@ -12,18 +12,25 @@ sap.ui.define([
                
             },
             
-             TSheet:null,
-             TimeSheetUpload:function(){
-               debugger;
-                if(!this.TSheet){
-                    this.TSheet = new sap.ui.xmlfragment("EA.EmployeeApp1.view.TimeSheet",this);
-                    this.getView().addDependent(this.TSheet);
-                }
-                this.changePass.open();
+           
+             TimeSheetUpload:function(oEvent){
+                 debugger
+              var oFileUpload = this.getView().byId("timesheet");
+                // var domRef = oFileUpload.getFocusDomRef();
+                // var file = domRef.files[0];
+                // var that = this;
+                // this.fileName = file.name;
+                // this.fileType = file.type;
+                // var reader = new FileReader();
+                // reader.onload = function (e) {var vContent = e.currentTarget.result.replace(“data:” + file.type + “;base64,”, “”);
+                // that.postFileToBackend(workorderId, that.fileName, that.fileType, vContent);
 
             },
-            onClose:function(){
-                this.TSheet.close();
-            },
+            
+
+            onTimeSheetSubmit:function(oEvent){
+                debugger
+  var oFileUpload = this.getView().byId("timesheet");
+            }
 		});
 	});

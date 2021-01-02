@@ -12,7 +12,7 @@ sap.ui.define([
 
 		return BaseController.extend("EA.EmployeeApp2.controller.SplitApp", {
 			onInit: function () {
-                debugger;
+               // debugger;
                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
                 // this.getView().byId("idProductsTable").bindElement("/REQUESTSet");
 
@@ -20,31 +20,6 @@ sap.ui.define([
                  this.getView().setModel(new JSONModel(), "Asst");
 
             oRouter.attachRoutePatternMatched(this.getId, this);
-            //  this.getProfile();
-            // this.getOthers();
-
-            var that = this;
-                  
-              var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
-
-             var oJModel =  new sap.ui.model.odata.ODataModel(serviceurl);
-      
-            var data=oJModel.read("/REQUESTSet", {
-                success:function(data){
-                    // debugger;
-                    
-                     console.log(data.results)
-                     that.getDataT(data);
-                    
-                                   
-                },
-                error:function(){
-                    alert("Request data is not received");
-                }
-            });
-
-
-
 
             
             
@@ -165,40 +140,18 @@ sap.ui.define([
                 var Lreason = this.getView().getModel("Rqst").getProperty("/RLeave");
                 var Lassets = "No";
                 var ltype = "LEAVE";
-
-
-                var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
-
-                 var oLModel =  new sap.ui.model.odata.ODataModel(serviceurl);
-
-               
-
-                    
-       
+   
+                var Payload = {};
                 
-
-             var Payload = {};
-
-             Payload.Rid = Lid;
-             Payload.Rdate = Ldate;
-             Payload.Name = Lname;
-             Payload.Reason = Lreason;
-             Payload.Assets = Lassets;
-             Payload.Type = ltype 
-            
-
-              oLModel .create("/REQUESTSet", Payload, {
-                     method: "POST",
-                     success: function(data) {
-                     alert("success");
-                    sap.m.MessageToast.show("Request Send Succesfully");
-                    },
-                     error: function(e) {
-                      alert("error");
-                    }
-                });
-
-
+                Payload.Rid = Lid;
+                Payload.Rdate = Ldate;
+                Payload.Name = Lname;
+                Payload.Reason = Lreason;
+                Payload.Assets = Lassets;
+                Payload.Type = ltype 
+                
+                
+                this.updateRequest(Payload);
                 this.getView().getModel("Rqst").setProperty("/RId","");
                 this.getView().getModel("Rqst").setProperty("/name", "");
                 this.getView().getModel("Rqst").setProperty("/RDate","");
@@ -219,17 +172,6 @@ sap.ui.define([
                 var Aassets = this.getView().getModel("Asst").getProperty("/AAst");
                 var ltype = "Assets";
 
-
-                var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
-
-                 var oLModel =  new sap.ui.model.odata.ODataModel(serviceurl);
-
-               
-
-                    
-       
-                
-
              var Payload = {};
 
              Payload.Rid = Aid;
@@ -238,19 +180,8 @@ sap.ui.define([
              Payload.Reason = Areason;
              Payload.Assets = Aassets ;
              Payload.Type = ltype 
-            
 
-              oLModel .create("/REQUESTSet", Payload, {
-                     method: "POST",
-                     success: function(data) {
-                     alert("success");
-                    sap.m.MessageToast.show("Assets Request Send Succesfully");
-                    },
-                     error: function(e) {
-                      alert("error");
-                    }
-                });
-
+                    this.updateRequest(Payload);
 
                 this.getView().getModel("Asst").setProperty("/AEid","");
                 this.getView().getModel("Asst").setProperty("/AName", "");
@@ -346,21 +277,21 @@ sap.ui.define([
                Payload.Address = IntAdress;
                Payload.City = IntCity ;
                
-            //    this.profileUpdate(Payload)
+            this.profileUpdate(Payload)
 
-                 var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
+            //      var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
   
-               var oPModel =  new sap.ui.model.odata.ODataModel(serviceurl);
-              oPModel .update("/PROFILESet('"+Payload.Eid+"')", Payload, {
-                     method: "PUT",
-                     success: function(data) {
-                    //   alert("success");
-                    sap.m.MessageToast.show("Updated Succesfully");
-                    },
-                     error: function(e) {
-                      alert("error");
-                    }
-                });
+            //    var oPModel =  new sap.ui.model.odata.ODataModel(serviceurl);
+            //   oPModel .update("/PROFILESet('"+Payload.Eid+"')", Payload, {
+            //          method: "PUT",
+            //          success: function(data) {
+            //         //   alert("success");
+            //         sap.m.MessageToast.show("Updated Succesfully");
+            //         },
+            //          error: function(e) {
+            //           alert("error");
+            //         }
+            //     });
               
                 this.getView().byId("SmForm1").setVisible(true);
 

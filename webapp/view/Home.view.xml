@@ -10,24 +10,22 @@ displayBlock="true" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:sf="sap.ui.layout.fo
                    <Text text="Home"></Text>
                    	<f:Card class="sapUiMediumMargin" width="300px">
 		<f:header>
-			<card:Header title="Project Cloud Transformation" subtitle="Revenue per Product | EUR" />
+			<card:Header title="BIRTHDAY'S" subtitle="Wishing a happy and prousporus year a head" />
 		</f:header>
 		<f:content>
-			<List
-				showSeparators="None"
-				items="{
-					path: 'products>/productItems'
-				}">
+			<List>
 				<CustomListItem>
 					<HBox alignItems="Center" justifyContent="SpaceBetween">
 						<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
-							<Title level="H3" text="{products>title}" />
-							<Text text="{products>subtitle}" />
+							<Title level="H3" text="{}" />
+							<Text text="{}" />
+       <Image width="300px"
+       src="https://www.readersdigest.ca/wp-content/uploads/2019/02/hilarious-birthday-jokes.jpg"/>
 						</VBox>
 						<ObjectStatus
 							class="sapUiTinyMargin sapUiSmallMarginEnd"
-							text="{products>revenue}"
-							state="{products>statusSchema}" />
+							text="{}"
+							state="{}" />
 					</HBox>
 				</CustomListItem>
 			</List>
@@ -35,24 +33,24 @@ displayBlock="true" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:sf="sap.ui.layout.fo
 	</f:Card>
     	<f:Card class="sapUiMediumMargin" width="300px">
 		<f:header>
-			<card:Header title="Project Cloud Transformation" subtitle="Revenue per Product | EUR" />
+			<card:Header title="NEW HIRES" subtitle="Welcome to the Company" />
 		</f:header>
 		<f:content>
 			<List
 				showSeparators="None"
 				items="{
-					path: 'products>/productItems'
+					path: 'homeModel>/home'
 				}">
 				<CustomListItem>
 					<HBox alignItems="Center" justifyContent="SpaceBetween">
 						<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
-							<Title level="H3" text="{products>title}" />
-							<Text text="{products>subtitle}" />
+							<Title level="H3" text="{}" />
+							<Text text="{homeModel>Newhires}" />
 						</VBox>
 						<ObjectStatus
 							class="sapUiTinyMargin sapUiSmallMarginEnd"
-							text="{products>revenue}"
-							state="{products>statusSchema}" />
+							text="{}"
+							state="{}" />
 					</HBox>
 				</CustomListItem>
 			</List>
@@ -60,24 +58,26 @@ displayBlock="true" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:sf="sap.ui.layout.fo
 	</f:Card>
     	<f:Card class="sapUiMediumMargin" width="300px">
 		<f:header>
-			<card:Header title="Project Cloud Transformation" subtitle="Revenue per Product | EUR" />
+			<card:Header title="QUICK LINKS" subtitle="Please refer this links for any quries" />
 		</f:header>
 		<f:content>
 			<List
 				showSeparators="None"
 				items="{
-					path: 'products>/productItems'
+					path: 'homeModel>/home'
 				}">
 				<CustomListItem>
 					<HBox alignItems="Center" justifyContent="SpaceBetween">
 						<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
-							<Title level="H3" text="{products>title}" />
-							<Text text="{products>subtitle}" />
+							<Title level="H3" text="{}" />
+                            <Link href="{homeModel>Quicklinks}" 	target="_blank"
+                            text="{homeModel>Quicklinks}"></Link>
+							
 						</VBox>
-						<ObjectStatus
+						<!-- <ObjectStatus
 							class="sapUiTinyMargin sapUiSmallMarginEnd"
-							text="{products>revenue}"
-							state="{products>statusSchema}" />
+							text="{}"
+							state="{}" /> -->
 					</HBox>
 				</CustomListItem>
 			</List>
@@ -85,24 +85,25 @@ displayBlock="true" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:sf="sap.ui.layout.fo
 	</f:Card>
     	<f:Card class="sapUiMediumMargin" width="300px">
 		<f:header>
-			<card:Header title="Project Cloud Transformation" subtitle="Revenue per Product | EUR" />
+			<card:Header title="NEWS FEED" subtitle="check in the below data for new updates" />
 		</f:header>
 		<f:content>
 			<List
 				showSeparators="None"
 				items="{
-					path: 'products>/productItems'
+					path: 'homeModel>/home'
 				}">
 				<CustomListItem>
 					<HBox alignItems="Center" justifyContent="SpaceBetween">
 						<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
-							<Title level="H3" text="{products>title}" />
-							<Text text="{products>subtitle}" />
+							<Title level="H3" text="{}" />
+                          
+							<Text text="{homeModel>Newsfeed}" />
 						</VBox>
 						<ObjectStatus
 							class="sapUiTinyMargin sapUiSmallMarginEnd"
-							text="{products>revenue}"
-							state="{products>statusSchema}" />
+							text="{}"
+							state="{}" />
 					</HBox>
 				</CustomListItem>
 			</List>
