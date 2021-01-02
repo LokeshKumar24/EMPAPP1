@@ -1,18 +1,21 @@
 sap.ui.define([
          "EA/EmployeeApp2/controller/BaseController",
         "sap/ui/model/json/JSONModel",
-        "sap/base/Log"
+        "sap/base/Log",
+        "sap/ui/core/Fragment"
 	],
 	/**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-	function (BaseController,JSONModel,Log) {
+	function (BaseController,JSONModel,Log,Fragment) {
 		"use strict";
 
 		return BaseController.extend("EA.EmployeeApp2.controller.SplitApp", {
 			onInit: function () {
                 debugger;
                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                // this.getView().byId("idProductsTable").bindElement("/REQUESTSet");
+
                  this.getView().setModel(new JSONModel(), "Rqst");
                  this.getView().setModel(new JSONModel(), "Asst");
 
@@ -46,6 +49,11 @@ sap.ui.define([
             
             
         },
+        onAfterRendering: function () {
+ 	debugger;
+        //   this.getOwnerComponent().getModel("myModel").getProperty("/RequestSet");
+        //   this.getView().byId("idProductsTable").bindItems("myModel>/RequestSet");
+},
         getDataT:function(data){
                 debugger;
                 var oJSONModel = new JSONModel();
@@ -54,7 +62,7 @@ sap.ui.define([
                    RequestSet: data.results
                  });
                
-                 this.getView().byId("idProductsTable").setModel("myModel");
+                //  this.getView().byId("idProductsTable").setModel("myModel");
 
               
             },
@@ -68,20 +76,54 @@ sap.ui.define([
              console.log(path)
         },
         // leave and asset request fragment
-            request:null,
-            onRequest:function(){
-                debugger
-                if(!this.request){
-                    this.request = new sap.ui.xmlfragment("EA.EmployeeApp2.view.Request",this);
-                    this.getView().addDependent(this.request);
-                }
-                this.request.open();
+            // request:null,
+            // onRequest:function(){
+            //     debugger
+            //     if(!this.request){
+            //         this.request = new sap.ui.xmlfragment("EA.EmployeeApp2.view.Request",this);
+            //         this.getView().addDependent(this.request);
+            //     }
+            //      this.getOwnerComponent().getModel("myModel").getProperty("/RequestSet");
+            //      var oTable = this.getView().byId("idProductsTable");
 
-            },
+            //     this.request.open();
+
+            // },
             // close the leave request fragment
-            onClose:function(){
-                this.request.close();
-            },
+            // onClose:function(){
+            //     this.request.close();
+            // },
+
+             onRequest: function () {
+			debugger;
+			var oView = this.getView();
+
+			if (!this.byId("helloDialog")) {
+				Fragment.load({
+                    id: oView.getId(),
+                    
+					name: "EA.EmployeeApp2.view.Request",
+					controller: this
+
+				}).then(function (oDialog) {
+					oView.addDependent(oDialog);
+                    oDialog.open();
+                    var oTable = this.getView().byId("idProductsTable");
+                    this.getOwnerComponent().getModel("myModel").getProperty("/RequestSet");
+                    oTable.bindItems("myModel>/RequestSet");
+                    
+				});
+			} else {
+				this.byId("helloDialog").open();
+			}
+
+        },
+        
+        onClose: function () {
+			debugger;
+			this.getView().byId("helloDialog").close();
+
+        },
 
             	onListItemPress: function (oEvent) {
                 //  debugger

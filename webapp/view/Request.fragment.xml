@@ -1,65 +1,69 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" 
 xmlns:sf="sap.ui.layout.form" 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 	xmlns:smartTable="sap.ui.comp.smarttable">
-    <Dialog  title="Request" >
+    <Dialog  title="Request" id="helloDialog" >
 <IconTabBar
 		id="idIconTabBarNoIcons"
 		
 		class="sapUiResponsiveContentPadding">
 		<items>
 			<IconTabFilter text="Log" key="Log">
-            	<Table id="idProductsTable"
-	
-		items="{myModel>/RequestSet}" width="50rem">
-		
-		
-		<columns>
-			<Column
-				>
-				<Text text="EID" />
-			</Column>
-			<Column>
-				<Text text="Name" />
-			</Column>
-			<Column
-				
-				>
-				<Text text="Type" />
-			</Column>
-			<Column
-				
-				>
-				<Text text="Assets" />
-			</Column>
-			
-            <Column
-				>
-				<Text text="Reason" />
-			</Column>
-            <Column
-				>
-				<Text text="Date" />
-			</Column>
-		</columns>
-		<items>
-			<ColumnListItem>
-				<cells>
-					<ColumnListItem>
+
+            <Table id="myTableId" width="50rem" visible="true" items="{myModel>/RequestSet}" alternateRowColors="true">
+          <headerToolbar>
+              <OverflowToolbar>
+               <Title text="Log Details " level="H1"  textAlign="Center" />
+               <ToolbarSpacer></ToolbarSpacer>
+               
+               
+                 </OverflowToolbar>
+                </headerToolbar>
+                 <columns>
+                  <Column>
+                        <Text text="S.No" />
+                  </Column>
+                  <Column >
+                        <Text text="FirstName" />
+                  </Column>
+                  <Column >
+                        <Text text="Type" />
+                  </Column>
+                  <Column >
+                        <Text text="Reason" />
+                  </Column>
+                  <Column >
+                        <Text text="Assets" />
+                  </Column>
+                  <Column>
+                        <Text text="Date" />
+                  </Column>
+
+
+                   </columns>
+
+                   <items>
+				<ColumnListItem>
 					<cells>
-						<Text text="{myModel>Rid}"></Text>
-						<Text text="{myModel>Name}"></Text>
-						<Text text="{myModel>Type}"></Text>
-						<Text text="{myModel>Assets}"></Text>
-                        <Text text="{myModel>Reason}"></Text>
-						<Text text="{myModel>Rdate}"></Text>
+
+                          
+						
+                        <!-- <CheckBox text="" select="onSelect"/> -->
+						<Text text="{myModel>Rid}" />
+                        <Text text ="{myModel>Name}"/>
+                        <Text text ="{myModel>Type}"/>
+                        <Text text ="{myModel>Assets}"/>
+                        <Text text ="{myModel>Reason}"/>
+                        <Text text ="{myModel>Rdate}" />
+                       
+                        
+						
 						
 					</cells>
 				</ColumnListItem>
-					
-				</cells>
-			</ColumnListItem>
-		</items>
-	</Table>
+			</items>
+                </Table>
+
+          
 					 <Button text="close" icon="sap-icon://decline" press="onClose" type="Reject"></Button>
 		<!-- <smartTable:SmartTable entitySet=""
 			tableType="ResponsiveTable" useExportToExcel="true" beforeExport="onBeforeExport"

@@ -61,10 +61,10 @@
 	</VBox>
 
                   
-            <smartTable:SmartTable entitySet="PROJECTSet" initiallyVisibleFields="Pid,Eid,Name,Projectname,Projectdetails,Startdate,Enddate,Status"
+            <smartTable:SmartTable id="SmTable" entitySet="PROJECTSet" initiallyVisibleFields="Pid,Eid,Name,Projectname,Projectdetails,Startdate,Enddate,Status"
 			tableType="ResponsiveTable" useExportToExcel="true" beforeExport="onBeforeExport"
 			useVariantManagement="false" useTablePersonalisation="true" header="Line Items"
-			showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true"
+			showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="false"
 			demandPopin="true" class="sapUiResponsiveContentPadding"/>
                     </content>
 				</Page>

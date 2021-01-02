@@ -9,7 +9,7 @@ sap.ui.define([
 
 		return BaseController.extend("EA.EmployeeApp2.controller.Project", {
 			onInit: function () {
-              
+             this.getView().byId("SmTable").bindElement("/PROJECTSet('101')"); 
 			}
 		});
 	});
