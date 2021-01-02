@@ -68,7 +68,7 @@
                 	
 		<smartTable:SmartTable entitySet="REQUESTSet" 
         initiallyVisibleFields="Name,Rdate,Reason"
-                         requestAtLeastFields="Name,Rdate,Reason"
+        requestAtLeastFields="Name,Rdate,Reason"
 			tableType="ResponsiveTable" useExportToExcel="true" beforeExport="onBeforeExport"
 			useVariantManagement="false" useTablePersonalisation="true" header="Line Items"
 			showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true"

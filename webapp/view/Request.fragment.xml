@@ -8,64 +8,10 @@ xmlns:sf="sap.ui.layout.form" 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 		class="sapUiResponsiveContentPadding">
 		<items>
 			<IconTabFilter text="Log" key="Log">
-
-            <Table id="myTableId" width="50rem" visible="true" items="{myModel>/RequestSet}" alternateRowColors="true">
-          <headerToolbar>
-              <OverflowToolbar>
-               <Title text="Log Details " level="H1"  textAlign="Center" />
-               <ToolbarSpacer></ToolbarSpacer>
-               
-               
-                 </OverflowToolbar>
-                </headerToolbar>
-                 <columns>
-                  <Column>
-                        <Text text="S.No" />
-                  </Column>
-                  <Column >
-                        <Text text="FirstName" />
-                  </Column>
-                  <Column >
-                        <Text text="Type" />
-                  </Column>
-                  <Column >
-                        <Text text="Reason" />
-                  </Column>
-                  <Column >
-                        <Text text="Assets" />
-                  </Column>
-                  <Column>
-                        <Text text="Date" />
-                  </Column>
-
-
-                   </columns>
-
-                   <items>
-				<ColumnListItem>
-					<cells>
-
-                          
-						
-                        <!-- <CheckBox text="" select="onSelect"/> -->
-						<Text text="{myModel>Rid}" />
-                        <Text text ="{myModel>Name}"/>
-                        <Text text ="{myModel>Type}"/>
-                        <Text text ="{myModel>Assets}"/>
-                        <Text text ="{myModel>Reason}"/>
-                        <Text text ="{myModel>Rdate}" />
-                       
-                        
-						
-						
-					</cells>
-				</ColumnListItem>
-			</items>
-                </Table>
-
-          
-            	
-					 <Button text="close" icon="sap-icon://decline" press="onClose" type="Reject"></Button>
+            <VBox alignItems="End">
+		<Button  icon="sap-icon://decline" press="onClose" type="Reject"></Button>
+            </VBox>
+	
 		
         <smartTable:SmartTable entitySet="REQUESTSet"
                          initiallyVisibleFields="Name,Rdate,Reason"

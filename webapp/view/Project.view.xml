@@ -62,11 +62,6 @@
 		</sf:SimpleForm>
 	</VBox>
                   
-            <smartTable:SmartTable id="SmTable" entitySet="PROJECTSet" initiallyVisibleFields="Pid,Eid,Name,Projectname,Projectdetails,Startdate,Enddate,Status"
-			tableType="ResponsiveTable" useExportToExcel="true" beforeExport="onBeforeExport"
-			useVariantManagement="false" useTablePersonalisation="true" header="Line Items"
-			showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="false"
-			demandPopin="true" class="sapUiResponsiveContentPadding"/>
             <smartTable:SmartTable id="SmartTable" entitySet="PROJECTSet"
                           tableType="ResponsiveTable" 
                          initiallyVisibleFields="Eid,Name,Projectname,Status"
