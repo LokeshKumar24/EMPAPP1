@@ -14,7 +14,6 @@ sap.ui.define([
 			onInit: function () {
                // debugger;
                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-                // this.getView().byId("idProductsTable").bindElement("/REQUESTSet");
 
                  this.getView().setModel(new JSONModel(), "Rqst");
                  this.getView().setModel(new JSONModel(), "Asst");
@@ -24,53 +23,20 @@ sap.ui.define([
             
             
         },
-        onAfterRendering: function () {
- 	debugger;
-        //   this.getOwnerComponent().getModel("myModel").getProperty("/RequestSet");
-        //   this.getView().byId("idProductsTable").bindItems("myModel>/RequestSet");
-},
-        getDataT:function(data){
-                debugger;
-                var oJSONModel = new JSONModel();
-                this.getOwnerComponent().setModel(oJSONModel, "myModel");
-                oJSONModel.setData({
-                   RequestSet: data.results
-                 });
-               
-                //  this.getView().byId("idProductsTable").setModel("myModel");
-
-              
-            },
-
+    
         //to get the profile id
         getId: function (oEvent) {
             // debugger
             var path = oEvent.getParameter("arguments").ID;
             this.Id=path
-            this.addProfileData();
+            // this.addProfileData();
              console.log(path)
         },
-        // leave and asset request fragment
-            // request:null,
-            // onRequest:function(){
-            //     debugger
-            //     if(!this.request){
-            //         this.request = new sap.ui.xmlfragment("EA.EmployeeApp2.view.Request",this);
-            //         this.getView().addDependent(this.request);
-            //     }
-            //      this.getOwnerComponent().getModel("myModel").getProperty("/RequestSet");
-            //      var oTable = this.getView().byId("idProductsTable");
 
-            //     this.request.open();
-
-            // },
-            // close the leave request fragment
-            // onClose:function(){
-            //     this.request.close();
-            // },
+        
 
              onRequest: function () {
-			debugger;
+		//	debugger;
 			var oView = this.getView();
 
 			if (!this.byId("helloDialog")) {
@@ -83,9 +49,6 @@ sap.ui.define([
 				}).then(function (oDialog) {
 					oView.addDependent(oDialog);
                     oDialog.open();
-                    var oTable = this.getView().byId("idProductsTable");
-                    this.getOwnerComponent().getModel("myModel").getProperty("/RequestSet");
-                    oTable.bindItems("myModel>/RequestSet");
                     
 				});
 			} else {
@@ -95,7 +58,7 @@ sap.ui.define([
         },
         
         onClose: function () {
-			debugger;
+			//debugger;
 			this.getView().byId("helloDialog").close();
 
         },
@@ -109,7 +72,7 @@ sap.ui.define([
 
         notif:null,
             onOpenNoti:function(){
-                debugger;
+               // debugger;
                 if(!this.notif){
                     this.notif = new sap.ui.xmlfragment("EA.EmployeeApp2.view.Notification",this);
                     this.getView().addDependent(this.notif);
@@ -195,24 +158,24 @@ sap.ui.define([
 
             //profile changes
             
-        addProfileData:function(){
-         //   debugger
-         if(this.getOwnerComponent().getModel("profileModel")){
-            var id=this.Id;
-            var path=null
-                  var detail = this.getOwnerComponent().getModel("profileModel").getProperty("/profile");
-                 // console.log(detail)
-                  detail.map((element,index)=>{
-                      if(element.Eid===id){
-                         // debugger
-                        path = index;
-                    }
-                    detail[index].Picture = element.Picture.toLowerCase()
-                  })
-                  this.getOwnerComponent().setModel(new JSONModel({profile:detail}),"profileModel")
-                    this.getView().byId("ObjectPageLayout").bindElement("profileModel>/profile/"+path);
-                }
-            },
+        // addProfileData:function(){
+        //  //   debugger
+        //  if(this.getOwnerComponent().getModel("profileModel")){
+        //     var id=this.Id;
+        //     var path=null
+        //           var detail = this.getOwnerComponent().getModel("profileModel").getProperty("/profile");
+        //          // console.log(detail)
+        //           detail.map((element,index)=>{
+        //               if(element.Eid===id){
+        //                  // debugger
+        //                 path = index;
+        //             }
+        //             detail[index].Picture = element.Picture.toLowerCase()
+        //           })
+        //           this.getOwnerComponent().setModel(new JSONModel({profile:detail}),"profileModel")
+        //             this.getView().byId("ObjectPageLayout").bindElement("profileModel>/profile/"+path);
+        //         }
+        //     },
 
             onOpenEdit:function(){
                 debugger;
@@ -230,8 +193,7 @@ sap.ui.define([
 
                 this.getView().byId("save").setVisible(true);
                 this.getView().byId("cancel").setVisible(true);
-            //     var oObjectPageLayout = this.byId("ObjectPageLayout");
-			//    oObjectPageLayout.setShowFooter(!oObjectPageLayout.getShowFooter());
+           
            },
 
            handleCancelPress:function(){
@@ -250,10 +212,6 @@ sap.ui.define([
                 this.getView().byId("cancel").setVisible(false);
 
                  this.getView().byId("SmForm6").setVisible(true);
-
-               
-
-
 
            },
            handleSavePress:function(){
@@ -279,19 +237,6 @@ sap.ui.define([
                
             this.profileUpdate(Payload)
 
-            //      var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
-  
-            //    var oPModel =  new sap.ui.model.odata.ODataModel(serviceurl);
-            //   oPModel .update("/PROFILESet('"+Payload.Eid+"')", Payload, {
-            //          method: "PUT",
-            //          success: function(data) {
-            //         //   alert("success");
-            //         sap.m.MessageToast.show("Updated Succesfully");
-            //         },
-            //          error: function(e) {
-            //           alert("error");
-            //         }
-            //     });
               
                 this.getView().byId("SmForm1").setVisible(true);
 
@@ -304,12 +249,7 @@ sap.ui.define([
                   this.getView().byId("edit").setVisible(true);
                  this.getView().byId("save").setVisible(false);
                  this.getView().byId("cancel").setVisible(false);
-
-
-
-
-          
-               
+    
            }
 
             

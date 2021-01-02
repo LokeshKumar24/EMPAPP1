@@ -12,6 +12,19 @@
 		
 		class="sapUiResponsiveContentPadding">
 		<items>
+           <IconTabFilter text="Files Data" icon="sap-icon://table-view" key="Files">
+				
+                	
+		<smartTable:SmartTable entitySet="REQUESTSet" 
+        initiallyVisibleFields="Name,Rdate,Reason"
+        requestAtLeastFields="Name,Rdate,Reason"
+			tableType="ResponsiveTable" useExportToExcel="true" beforeExport="onBeforeExport"
+			useVariantManagement="false" useTablePersonalisation="true" header="Line Items"
+			showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true"
+			demandPopin="true" class="sapUiResponsiveContentPadding"/>
+
+			</IconTabFilter>
+            
 			<IconTabFilter  icon="sap-icon://upload" text="Time Sheet Upload" key="Time Sheet Upload">
             <sf:SimpleForm >
 				<Label text="Employee Id"></Label>
@@ -61,19 +74,6 @@
                 
 			</sf:SimpleForm>
 				
-			</IconTabFilter>
-
-            <IconTabFilter text="Files Data" icon="sap-icon://table-view" key="Files">
-				
-                	
-		<smartTable:SmartTable entitySet="REQUESTSet" 
-        initiallyVisibleFields="Name,Rdate,Reason"
-        requestAtLeastFields="Name,Rdate,Reason"
-			tableType="ResponsiveTable" useExportToExcel="true" beforeExport="onBeforeExport"
-			useVariantManagement="false" useTablePersonalisation="true" header="Line Items"
-			showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true"
-			demandPopin="true" class="sapUiResponsiveContentPadding"/>
-
 			</IconTabFilter>
 			
 		</items>

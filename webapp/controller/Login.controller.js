@@ -16,7 +16,7 @@ sap.ui.define([
                 this.getView().setModel(new JSONModel(), "Login");
                   this.getView().setModel(new JSONModel(), "ch");
                  this.oRouter =  sap.ui.core.UIComponent.getRouterFor(this);
-                  this.getProfile();
+                 // this.getProfile();
                  this.getLogin();
                     this.getOthers();
                       this.getProject();

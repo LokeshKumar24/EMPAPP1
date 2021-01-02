@@ -17,6 +17,7 @@ sap.ui.define([
 			onInit: function () {
                 
             },
+
             //login data and validations
             getLogin:function(){
                 var that = this;
@@ -37,6 +38,7 @@ sap.ui.define([
             });
 
             },
+
             checkLogin:function(id,password){
                // debugger
                 this.loginDetails.forEach(element => {
@@ -46,6 +48,7 @@ sap.ui.define([
                 });
 
             },
+
             //home data
             getHome:function(){
                 // debugger
@@ -89,6 +92,7 @@ sap.ui.define([
             });
 
             },
+
             //get others data
             getOthers:function(){
                // debugger
@@ -100,7 +104,7 @@ sap.ui.define([
       
             var data=oJModel.read("/REQUESTSet", {
                 success:function(data){
-                     debugger;
+                    // debugger;
                     
                      console.log(data.results)
               that.getOwnerComponent().setModel(new JSONModel({request:data.results}),"requestModel");
@@ -115,39 +119,7 @@ sap.ui.define([
 
             },
 
-            // getDataT:function(data){
-            //     debugger;
-            //     var oJSONModel = new JSONModel();
-            //     this.getOwnerComponent().setModel(oJSONModel, "myModel");
-            //     oJSONModel.setData({
-            //        RequestSet: data.results
-            //      });
-
-
-              
-            // },
-            //profile data
-              getProfile:function(){
-                // debugger
-                  var that = this;
-                //  var id= this.Eid;
-              var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
-
-             var oJModel =  new sap.ui.model.odata.ODataModel(serviceurl);
-      
-            var data=oJModel.read("/PROFILESet", {
-                success:function(data){
-                    //  debugger;
-                     console.log(data.results)
-                    that.getOwnerComponent().setModel(new JSONModel({profile:data.results}),"profileModel");
-                    //   that.addProfileData()             
-                },
-                error:function(){
-                    alert("Profile data is not received");
-                }
-            });
-
-            },
+             
             //profile update
             profileUpdate(Payload){
                  var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
@@ -165,6 +137,7 @@ sap.ui.define([
                 });
 
             },
+
             //request update
             updateRequest:function(Payload){
                 

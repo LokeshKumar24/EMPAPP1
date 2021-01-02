@@ -1,32 +1,25 @@
 sap.ui.define([
-         "EA/EmployeeApp2/controller/BaseController",
-        "sap/ui/model/json/JSONModel"
+         "EA/EmployeeApp2/controller/SplitApp.controller",
+        "sap/ui/model/json/JSONModel",
+        
         
 	],
 	/**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-	function (BaseController,JSONModel) {
+	function (SplitAppController,JSONModel) {
 		"use strict";
 
-		return BaseController.extend("EA.EmployeeApp2.controller.Profile", {
+		return SplitAppController.extend("EA.EmployeeApp2.controller.Profile", {
 			onInit: function () {
                 // debugger;
-                 this.getProfile();
                   var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
                 oRouter.attachRoutePatternMatched(this.getProfileId, this);
-               // this.addProfileData();
-
+                this.getProfile();
 
             },
-            Path:null,
-            getProfileId:function(oEvent){
-
-                var id = oEvent.getParameter("arguments").ID;
-                console.log(id)
-                this.Path=id;
-            },
-             getProfile:function(){
+               //profile data
+              getProfile:function(){
                 // debugger
                   var that = this;
                 //  var id= this.Eid;
@@ -39,7 +32,7 @@ sap.ui.define([
                     //  debugger;
                      console.log(data.results)
                     that.getOwnerComponent().setModel(new JSONModel({profile:data.results}),"profileModel");
-                      that.addProfileData()             
+                       that.addProfileData()             
                 },
                 error:function(){
                     alert("Profile data is not received");
@@ -47,10 +40,17 @@ sap.ui.define([
             });
 
             },
+            Path:null,
+            getProfileId:function(oEvent){
 
+                var id = oEvent.getParameter("arguments").ID;
+                console.log(id)
+                this.Path=id;
+                 this.addProfileData();
+            },
 
         addProfileData:function(){
-         //   debugger
+          // debugger
          if(this.getOwnerComponent().getModel("profileModel")){
             var id=this.Path;
             var path=null
