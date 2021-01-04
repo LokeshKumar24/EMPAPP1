@@ -9,7 +9,7 @@
 					<content>
                    	<tnt:ToolHeader >
 						<Bar>
-							<contentLeft width="3rem">
+							<contentLeft>
 								<Image src="{empData>/logo/0/image}" alt="LOGO" height="3rem"/>
 							</contentLeft>
 							<contentMiddle>

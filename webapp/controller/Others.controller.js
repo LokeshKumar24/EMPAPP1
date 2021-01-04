@@ -50,6 +50,10 @@ sap.ui.define([
                     var vContent = e.currentTarget.result.replace( file.type );
                 that.updateFile(that.Eid, that.fileName, that.fileType, vContent);
                 }
-            }
-		});
+            
+	
+            
+    }	
+        
+        });
 	});

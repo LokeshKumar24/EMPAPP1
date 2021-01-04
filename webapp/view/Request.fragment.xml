@@ -12,14 +12,48 @@ xmlns:sf="sap.ui.layout.form" 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 		<Button  icon="sap-icon://decline" press="onClose" type="Reject"></Button>
             </VBox>
 	
-		
-        <smartTable:SmartTable entitySet="REQUESTSet"
+		<Table items="{/REQUESTSet}" id="idListItem" width="50rem">
+			<columns>
+				<Column width="10em" minScreenWidth="Small">
+					<Label text="S.No"></Label>
+				</Column>
+				<Column>
+					<Label text="Name"></Label>
+				</Column>
+				<Column>
+					<Label text="Date"></Label>
+				</Column>
+				<Column>
+					<Label text="Type"></Label>
+				</Column>
+				<Column width="8em">
+					<Label text="Assets"></Label>
+				</Column>
+				<Column>
+					<Label text="Reason"></Label>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{Rid}"></Text>
+						<Text text="{Name}"></Text>
+						<Text text="{Rdate}"></Text>
+						<Text text="{Type}"></Text>
+                        <Text text="{Assets}"></Text>
+						<Text text="{Reason}"></Text>
+						
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+         <!-- <smartTable:SmartTable entitySet="REQUESTSet"
                          initiallyVisibleFields="Name,Rdate,Reason"
                          requestAtLeastFields="Name,Rdate,Reason"
 			tableType="ResponsiveTable" useExportToExcel="true" beforeExport="onBeforeExport"
 			useVariantManagement="false" useTablePersonalisation="true" header="Line Items"
 			showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true"
-			demandPopin="true" class="sapUiResponsiveContentPadding"/>
+			demandPopin="true" class="sapUiResponsiveContentPadding"/> -->
             
 			</IconTabFilter>
 			<IconTabFilter text="Leave Request" key="Leave Request">

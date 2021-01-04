@@ -84,7 +84,7 @@ sap.ui.define([
                    //  debugger;
                     
                      console.log(data.results)
-                that.getOwnerComponent().setModel(new JSONModel({project:data.results}),"projectModel");                    
+                // that.getOwnerComponent().setModel(new JSONModel({project:data.results}),"projectModel");                    
                 },
                 error:function(){
                     alert("Project data is not received");
@@ -107,7 +107,7 @@ sap.ui.define([
                     // debugger;
                     
                      console.log(data.results)
-              that.getOwnerComponent().setModel(new JSONModel({request:data.results}),"requestModel");
+            //   that.getOwnerComponent().setModel(new JSONModel({request:data.results}),"requestModel");
                     // that.getDataT(data);
                     
                                    
@@ -198,11 +198,25 @@ sap.ui.define([
                      success: function(data) {
                      alert("success");
                     sap.m.MessageToast.show("FILE UPDATED Succesfully");
+
+            CreateProject:function(Payload){
+                debugger;
+                var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
+                
+                var oPRModel =  new sap.ui.model.odata.ODataModel(serviceurl);
+                 oPRModel .create("/PROJECTSet", Payload, {
+                     method: "POST",
+                     success: function(data) {
+                     alert("success");
+                    sap.m.MessageToast.show("New Project Added Succesfully!!!");
                     },
                      error: function(e) {
                       alert("error");
                     }
                  })
+                });
+
+
             }
 		});
 	});

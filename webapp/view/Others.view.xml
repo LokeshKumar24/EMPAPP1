@@ -27,6 +27,7 @@
             
 			<IconTabFilter  icon="sap-icon://upload" text="Time Sheet Upload" key="Time Sheet Upload">
          <core:Fragment fragmentName="EA.EmployeeApp2.view.TimeSheet" type="XML"/>
+           
 			</IconTabFilter>
 
 			<IconTabFilter text="Files" icon="sap-icon://attachment" key="Files">
