@@ -94,7 +94,7 @@ sap.ui.define([
             },
 
             //get others data
-            getOthers:function(){
+            getRequest:function(){
                // debugger
                   var that = this;
                   
@@ -114,6 +114,31 @@ sap.ui.define([
                 },
                 error:function(){
                     alert("Request data is not received");
+                }
+            });
+
+            },
+              //get others data
+            getOthers:function(){
+               // debugger
+                  var that = this;
+                  
+              var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
+
+             var oJModel =  new sap.ui.model.odata.ODataModel(serviceurl);
+      
+            var data=oJModel.read("/FILESet", {
+                success:function(data){
+                    // debugger;
+                    
+                     console.log(data.results)
+              that.getOwnerComponent().setModel(new JSONModel({request:data.results}),"fileModel");
+                    // that.getDataT(data);
+                    
+                                   
+                },
+                error:function(){
+                    alert("files data is not received");
                 }
             });
 
@@ -154,6 +179,30 @@ sap.ui.define([
                       alert("error");
                     }
                 });
+            },
+            updateFile:function(eid,fileName, fileType, vContent){
+                debugger
+                var payLoad={
+                    Eid:eid,
+                    Filename:fileName,
+                    Filetype:fileType,
+                    Filecontent:vContent
+
+                }
+
+                  var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
+                
+                var oModel =  new sap.ui.model.odata.ODataModel(serviceurl);
+                 oModel .update("/FILESet('"+payLoad.Filename+"')/$value", payLoad,{
+                     method: "PUT",
+                     success: function(data) {
+                     alert("success");
+                    sap.m.MessageToast.show("FILE UPDATED Succesfully");
+                    },
+                     error: function(e) {
+                      alert("error");
+                    }
+                 })
             }
 		});
 	});

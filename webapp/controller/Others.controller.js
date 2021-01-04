@@ -8,29 +8,48 @@ sap.ui.define([
 		"use strict";
 
 		return BaseController.extend("EA.EmployeeApp2.controller.Others", {
+            Eid:null,
 			onInit: function () {
-               
+                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                oRouter.attachRoutePatternMatched(this.getProfileId, this);
+            },
+             getProfileId:function(oEvent){
+
+                var id = oEvent.getParameter("arguments").ID;
+                console.log(id)
+                this.Eid=id;
+                 
             },
             
            
-             TimeSheetUpload:function(oEvent){
+             onUploaderTS:function(oEvent){
                  debugger
-              var oFileUpload = this.getView().byId("timesheet");
-                // var domRef = oFileUpload.getFocusDomRef();
-                // var file = domRef.files[0];
-                // var that = this;
-                // this.fileName = file.name;
-                // this.fileType = file.type;
-                // var reader = new FileReader();
-                // reader.onload = function (e) {var vContent = e.currentTarget.result.replace(“data:” + file.type + “;base64,”, “”);
-                // that.postFileToBackend(workorderId, that.fileName, that.fileType, vContent);
-
+              var oFileUpload = this.getView().byId("fileUploaderTS");
+                var domRef = oFileUpload.getFocusDomRef();
+                var file = domRef.files[0];
+                var that = this;
+                this.fileName = file.name;
+                this.fileType = file.type;
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var vContent = e.currentTarget.result.replace("data:"+ file.type+";base64," );
+                that.updateFile(that.Eid, that.fileName, that.fileType, vContent);
+                }
+                reader.readAsDataURL(file);
             },
-            
-
-            onTimeSheetSubmit:function(oEvent){
-                debugger
-  var oFileUpload = this.getView().byId("timesheet");
+            onUploadFile:function(oEvent){
+                 debugger
+              var oFileUpload = this.getView().byId("fileUploaderFS");
+                var domRef = oFileUpload.getFocusDomRef();
+                var file = domRef.files[0];
+                var that = this;
+                this.fileName = file.name;
+                this.fileType = file.type;
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var vContent = e.currentTarget.result.replace( file.type );
+                that.updateFile(that.Eid, that.fileName, that.fileType, vContent);
+                }
             }
 		});
 	});

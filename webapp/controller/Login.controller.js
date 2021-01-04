@@ -18,6 +18,7 @@ sap.ui.define([
                  this.oRouter =  sap.ui.core.UIComponent.getRouterFor(this);
                  // this.getProfile();
                  this.getLogin();
+                 this.getRequest();
                     this.getOthers();
                       this.getProject();
                         this.getHome();

@@ -130,7 +130,7 @@
         },
         { 
            "name": "Others",
-          "pattern": "Others",
+          "pattern": "Others/{ID}",
           "target": [
             "Others"
           ]

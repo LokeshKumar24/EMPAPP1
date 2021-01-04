@@ -1,5 +1,5 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
-<Dialog  title="TimeSheet Upload"  >
+<core:FragmentDefinition xmlns="sap.m" xmlns:sf="sap.ui.layout.form"  xmlns:ui="sap.ui.unified" 
+xmlns:core="sap.ui.core">
 <sf:SimpleForm editable="true">
 				<Label text=""></Label>
 				<Input id="InputIdTS" placeholder="Enter Emp Id"></Input>
@@ -14,16 +14,8 @@
 			class="sapUiSmallMarginBottom"/>
                 <Label text=""></Label>
                 <Label text="File Uploader"></Label>
-				<u:FileUploader id="fileUploaderTS"/>
-				<Button text="Upload" type="Accept" press="onUploadFile"/>
-				<Label></Label>
+				<ui:FileUploader id="fileUploaderTS"/>
+				<Button text="Upload" type="Accept" press="onUploaderTS"/>
 				
-				
-				
-				<Label></Label>
-				<Button text="Submit" type="Emphasized" press="onUploadTS"></Button>
-                <Button text="close" icon="sap-icon://decline" press="onClose" type="Reject"></Button>
 			</sf:SimpleForm>
-            </Dialog>
-	
 </core:FragmentDefinition>
