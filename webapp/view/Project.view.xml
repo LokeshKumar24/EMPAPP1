@@ -9,7 +9,7 @@
 				<Page id="page" title="{i18n>project}" showHeader="false">
 					<content>
                     
-                     
+<!--                      
               <Table items="{/PROJECTSet}" id="idListItem" width="100%" mode="MultiSelect">
               <headerToolbar>
 					<OverflowToolbar id="otbSubheader">
@@ -69,16 +69,73 @@
 					</cells>
 				</ColumnListItem>
 			</items>
-		</Table>    
-            <!-- <smartTable:SmartTable id="SmartTable" entitySet="PROJECTSet"
+		</Table>     -->
+            <smartTable:SmartTable id="SmartTable" entitySet="PROJECTSet"
                           tableType="ResponsiveTable" 
-                         initiallyVisibleFields="Pid,Eid,Name,Projectname,Status"
-                         requestAtLeastFields="Pid,Eid,Name,Projectname,Status"
+                          
+                        requestAtLeastFields="Pid,Eid,Name,Projectname,Projectdetails,Status,Startdate,Enddate"
                             useTablePersonalisation="true" 
                           header="EMPLOYEE DETAILS" showRowCount="true" 
                           persistencyKey="SmartTableAnalytical_Explored" 
                           enableAutoBinding="true" class="sapUiResponsiveContentPadding" >
-                          </smartTable:SmartTable> -->
+                          	<smartTable:customToolbar>
+			<OverflowToolbar design="Transparent">
+				<ToolbarSpacer/>
+				<!-- <OverflowToolbarButton text="Test"/> -->
+				<OverflowToolbarButton icon="sap-icon://create" tooltip="Create" text="Create" press="onProjectOpen"/>
+				<OverflowToolbarButton icon="sap-icon://edit" tooltip="Edit" text="Edit" press="onEdit"/>
+				<OverflowToolbarButton icon="sap-icon://delete" tooltip="Delete" text="Delete" press="onDelete"/>
+				<!-- <OverflowToolbarButton icon="sap-icon://action-settings" tooltip="Column Settings" text="Column Settings" press="onColumns"/> -->
+			</OverflowToolbar>
+		</smartTable:customToolbar>
+
+                          <!--  Table integration -->
+    <Table mode="MultiSelect" growingThreshold="100" growing="true" id="idListItem"
+     growingScrollToLoad="true">
+        <columns>
+        <Column  minScreenWidth="Small">
+					<Label text="S.No"></Label>
+				</Column>
+				<Column>
+					<Label text="EID"></Label>
+				</Column>
+				<Column>
+					<Label text="Name"></Label>
+				</Column>
+				<Column>
+					<Label text="Projectname"></Label>
+				</Column>
+				<Column >
+					<Label text="ProjectDetails"></Label>
+				</Column>
+				<Column>
+					<Label text="StartDate"></Label>
+				</Column>
+                <Column width="8em">
+					<Label text="EndDate"></Label>
+				</Column>
+				<Column>
+					<Label text="Status"></Label>
+				</Column>
+        </columns>
+        <items>
+        <ColumnListItem>
+					<cells>
+						<Input value="{Pid}" editable="false"/>
+						<Input value="{Eid}" editable="false"/>
+						<Input value="{Name}" editable="false"/>
+						<Input value="{Projectname}" editable="false"/>
+                        <Input value="{Projectdetails}" editable="false"/>
+						<Input value="{Startdate}" editable="false" />
+                        <Input value="{Enddate}" editable="false" />
+                        <Input value="{Status}" editable="false" />
+						
+					</cells>
+				</ColumnListItem> 
+        </items>
+     </Table>
+<!--  EndTable integration -->
+                          </smartTable:SmartTable>
                     </content>
                     <footer>
 			<OverflowToolbar id="otbFooter">

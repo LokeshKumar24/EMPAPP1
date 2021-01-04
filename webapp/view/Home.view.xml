@@ -7,7 +7,7 @@ displayBlock="true" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:sf="sap.ui.layout.fo
 				<Page  title="Home View" showHeader="false">
 					
                    <content>
-                   <Text text="Home"></Text>
+                   <!-- <Text text="Home"></Text> -->
                    	<f:Card class="sapUiMediumMargin" width="300px">
 		<f:header>
 			<card:Header title="BIRTHDAY'S" subtitle="Wishing a happy and prousporus year a head" />
