@@ -9,68 +9,88 @@
 				<Page id="page" title="{i18n>project}" showHeader="false">
 					<content>
                     
-                     <VBox class="sapUiSmallMargin">
-		<sf:SimpleForm id="SimpleFormChange353"
-			editable="true"
-			layout="ResponsiveGridLayout"
-			title="Create New Project "
-			labelSpanXL="3"
-			labelSpanL="3"
-			labelSpanM="3"
-			labelSpanS="12"
-			adjustLabelSpan="false"
-			emptySpanXL="4"
-			emptySpanL="4"
-			emptySpanM="4"
-			emptySpanS="0"
-			columnsXL="1"
-			columnsL="1"
-			columnsM="1"
-			singleContainerFullSize="false" >
-			<sf:content>
-				<Label text=""/> 
-				<Input id="Pid" value=""  placeholder="Enter Searial Number"  />
-                <Label text=""/> 
-				<Input id="eid" value=""  placeholder="Enter Emp ID"  />
-                <Label text="" />
-				<Input id="Pname" value=""  placeholder="Enter your Projectname"/>
-                <Label text=""/>
-				<Input value="" placeholder="Projectdetails"/>
-                <Label text=""/>
-                
-		<DatePicker
-			id="PSDP"
-			placeholder="Enter StartDate"
-			change="handleChange"
-			class="sapUiSmallMarginBottom" />
-				
-                <Label text=""/>
-                <DatePicker
-			id="PEDP"
-			placeholder="Enter EndDate"
-			change="handleChange"
-			class="sapUiSmallMarginBottom"/>
-				
-				
-				<Label text=""/>
-				<Input value="" placeholder="Status"/>
-				
-                <Label></Label>
-				<Button text="Submit" type="Emphasized" press="onLeave"></Button>
-                 </sf:content>
-		</sf:SimpleForm>
-	</VBox>
-                  
-            <smartTable:SmartTable id="SmartTable" entitySet="PROJECTSet"
+                     
+              <Table items="{/PROJECTSet}" id="idListItem" width="100%" mode="MultiSelect">
+              <headerToolbar>
+					<OverflowToolbar id="otbSubheader">
+						<Title text="Project Details" level="H2" />
+						<ToolbarSpacer />
+                        <Button id="createButton" text="Create" type="Transparent"
+							press="onProjectOpen" />
+						<Button id="editButton" text="Edit" type="Transparent"
+							press="onEdit" />
+                        
+                        <Button id="deleteButton" text="Delete" type="Transparent"
+							press="onDelete" />        
+						<Button id="saveButton" text="Save" type="Transparent"
+							press="onSave" visible="false" />
+						<Button id="cancelButton" text="Cancel" type="Transparent"
+							press="onCancel" visible="false" />
+					</OverflowToolbar>
+				</headerToolbar>
+			<columns>
+				<Column  minScreenWidth="Small">
+					<Label text="S.No"></Label>
+				</Column>
+				<Column>
+					<Label text="EID"></Label>
+				</Column>
+				<Column>
+					<Label text="Name"></Label>
+				</Column>
+				<Column>
+					<Label text="Projectname"></Label>
+				</Column>
+				<Column >
+					<Label text="ProjectDetails"></Label>
+				</Column>
+				<Column>
+					<Label text="StartDate"></Label>
+				</Column>
+                <Column width="8em">
+					<Label text="EndDate"></Label>
+				</Column>
+				<Column>
+					<Label text="Status"></Label>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Input value="{Pid}" editable="false"/>
+						<Input value="{Eid}" editable="false"/>
+						<Input value="{Name}" editable="false"/>
+						<Input value="{Projectname}" editable="false"/>
+                        <Input value="{Projectdetails}" editable="false"/>
+						<Input value="{Startdate}" editable="false" />
+                        <Input value="{Enddate}" editable="false" />
+                        <Input value="{Status}" editable="false" />
+						
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>    
+            <!-- <smartTable:SmartTable id="SmartTable" entitySet="PROJECTSet"
                           tableType="ResponsiveTable" 
-                         initiallyVisibleFields="Eid,Name,Projectname,Status"
+                         initiallyVisibleFields="Pid,Eid,Name,Projectname,Status"
                          requestAtLeastFields="Pid,Eid,Name,Projectname,Status"
                             useTablePersonalisation="true" 
                           header="EMPLOYEE DETAILS" showRowCount="true" 
                           persistencyKey="SmartTableAnalytical_Explored" 
                           enableAutoBinding="true" class="sapUiResponsiveContentPadding" >
-                          </smartTable:SmartTable>
+                          </smartTable:SmartTable> -->
                     </content>
+                    <footer>
+			<OverflowToolbar id="otbFooter">
+				<ToolbarSpacer />
+				<Button text="Save" press="onSaveP" type="Emphasized" visible="false" id="saveid">
+					<!-- <layoutData>
+						<OverflowToolbarLayoutData
+							moveToOverflow="false" />
+					</layoutData> -->
+				</Button>
+			</OverflowToolbar>
+		</footer>
 				</Page>
 			</pages>
 		</App>

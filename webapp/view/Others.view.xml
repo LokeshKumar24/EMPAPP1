@@ -42,7 +42,7 @@
 				<Label text="File Name"></Label>
 				<!-- <Input  type="Number" placeholder="Enter Time Sheet Name "></Input> -->
 				<ui:FileUploader id="timesheet" placeholder="Enter Time Sheet Name "/>
-                
+                <Button press="onUpload" text="onUpLoad"/>
 				<Label></Label>
 				<Button text="Submit" type="Emphasized" press="onTimeSheetSubmit"></Button>
                 

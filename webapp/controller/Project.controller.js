@@ -1,16 +1,288 @@
 sap.ui.define([    
-         "EA/EmployeeApp2/controller/BaseController"
+         "EA/EmployeeApp2/controller/BaseController",
+          "sap/ui/core/Fragment"
+         
 	],
 	/**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-	function (BaseController) {
+	function (BaseController,Fragment) {
 		"use strict";
 
 		return BaseController.extend("EA.EmployeeApp2.controller.Project", {
 			onInit: function () {
             
+            },
+            
+             // open Fragment for creating new project
+              onProjectOpen: function () {
+		//	debugger;
+			var oView = this.getView();
+
+			if (!this.byId("DialogCreateProject")) {
+				Fragment.load({
+                    id: oView.getId(),
+                    
+					name: "EA.EmployeeApp2.view.create",
+					controller: this
+
+				}).then(function (oDialog) {
+					oView.addDependent(oDialog);
+                    oDialog.open();
+                    
+				});
+			} else {
+				this.byId("DialogCreateProject").open();
 			}
+
+        },
+        
+        onClose: function () {
+			//debugger;
+			this.getView().byId("DialogCreateProject").close();
+
+        },
+         
+
+        //Create new Data for Project
+        onCreate:function(){
+            debugger;
+            var pid = this.getView().byId("Pid").getValue();
+            var eid = this.getView().byId("eid").getValue();
+            var name = this.getView().byId("name").getValue();
+            var pname = this.getView().byId("Pname").getValue();
+            var pdetails = this.getView().byId("pdetails").getValue();
+            var sdate = this.getView().byId("PSDP").getValue();
+            var edate = this.getView().byId("PEDP").getValue();
+            var status = this.getView().byId("pstatus").getValue();
+          
+            if(pid==""||undefined && eid==""||undefined && name==""||undefined && pname==""||undefined &&pdetails==""||undefined &&
+            sdate==""||undefined && edate==""||undefined && status==""||undefined ){
+                sap.m.MessageToast.show("Please Enter All the Fields");
+            }else{
+               
+                var Payload = {};
+                
+                Payload.Pid = pid;
+                Payload.Eid = eid;
+                Payload.Name = name;
+                Payload.Projectname = pname;
+                Payload.Projectdetails = pdetails; 
+                Payload.Startdate = sdate;
+                Payload.Enddate = edate;
+                Payload.Status = status;
+                
+                
+                this.CreateProject(Payload);
+
+                this.getView().byId("Pid").setValue("");
+                 this.getView().byId("eid").setValue("");
+                  this.getView().byId("name").setValue("");
+                  this.getView().byId("Pname").setValue("");
+            this.getView().byId("pdetails").setValue("");
+            this.getView().byId("PSDP").setValue("");
+            this.getView().byId("PEDP").setValue("");
+            this.getView().byId("pstatus").setValue("");
+
+
+
+                sap.m.MessageToast.show("New Project Added Succesfully!!!"); 
+            }
+
+
+
+        },
+        // edit project details
+        onEdit:function(){
+            debugger;
+            
+                         var oTable1 = this.byId("idListItem");
+                         var oView = this.getView();
+                        
+                
+                          var aArray = [];
+                        
+                        // var  idx = oTable1.getSelectedIndices();
+                         var aItems = oTable1.getSelectedItems();
+                          for(var i = 0; i < aItems.length; i++){
+                    var edit = aItems[i].getAggregation("cells")[0].getProperty("editable");
+                     if(aItems[i].getAggregation("cells")[0].getProperty("editable")==edit){
+                        // aItems[i].getAggregation("cells")[0].setEditable(true);
+                        aItems[i].getAggregation("cells")[1].setEditable(true);;
+                       aItems[i].getAggregation("cells")[2].setEditable(true);
+                       aItems[i].getAggregation("cells")[3].setEditable(true);
+                      aItems[i].getAggregation("cells")[4].setEditable(true);
+                      aItems[i].getAggregation("cells")[5].setEditable(true);
+                      aItems[i].getAggregation("cells")[6].setEditable(true);
+                      aItems[i].getAggregation("cells")[7].setEditable(true);
+
+                     }
+
+                     this.getView().byId("saveid").setVisible(true);
+
+                     }
+
+
+        },
+
+
+                  // On Save Edit details of Project
+                  onSaveP:function(){
+                     debugger;
+                     var oTable1 = this.byId("idListItem");
+                         var oView = this.getView();
+                        
+                
+                          var aArray = [];
+                        
+                        
+                         var aItems = oTable1.getSelectedItems();
+                          for(var i = 0; i < aItems.length; i++){
+                    var edit = aItems[i].getAggregation("cells")[0].getProperty("editable");
+                     if(aItems[i].getAggregation("cells")[0].getProperty("editable")==edit){
+                        var sid = aItems[i].getAggregation("cells")[0].getProperty("value");
+                        var eid =aItems[i].getAggregation("cells")[1].getProperty("value");
+                         var name = aItems[i].getAggregation("cells")[2].getProperty("value");
+                       var pname = aItems[i].getAggregation("cells")[3].getProperty("value");
+                     var pdeta =  aItems[i].getAggregation("cells")[4].getProperty("value");
+                      var sdate1 = aItems[i].getAggregation("cells")[5].getProperty("value");
+                      var edate1 = aItems[i].getAggregation("cells")[6].getProperty("value");
+                      var status1 = aItems[i].getAggregation("cells")[7].getProperty("value");
+
+
+                       var Payload = {};
+                
+                Payload.Pid = sid;
+                Payload.Eid = eid;
+                Payload.Name = name;
+                Payload.Projectname = pname;
+                Payload.Projectdetails = pdeta; 
+                Payload.Startdate = sdate1;
+                Payload.Enddate = edate1;
+                Payload.Status = status1;
+
+
+                var oModel10 = this.getOwnerComponent().getModel();
+                oModel10.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
+                oModel10.setUseBatch(true);
+
+                            
+                oModel10.setDeferredGroups(["myGroupId"]); 
+                var group =  oModel10.getDeferredGroups();
+                            
+                oModel10.setDeferredGroups(oModel10.getDeferredGroups().concat(["myGroupId"]));
+                                
+                var mParameters = {groupId:"myGroupId",success:function(odata, resp){
+                                    console.log(resp);
+                                    
+
+                for(var x = 0; x < aItems.length; x++){
+                    var edit = aItems[x].getAggregation("cells")[0].getProperty("editable");
+                     if(aItems[x].getAggregation("cells")[0].getProperty("editable")==edit){
+                        //  aArray.push(aItems[i].getAggregation("cells")[1].getProperty("value"));
+                        // aItems[i].getAggregation("cells")[0].setEditable(true);
+                        aItems[x].getAggregation("cells")[1].setEditable(false);
+                        aItems[x].getAggregation("cells")[2].setEditable(false);
+                        aItems[x].getAggregation("cells")[3].setEditable(false);
+                        aItems[x].getAggregation("cells")[4].setEditable(false);
+                        aItems[x].getAggregation("cells")[5].setEditable(false);
+                        aItems[x].getAggregation("cells")[6].setEditable(false);
+                        aItems[x].getAggregation("cells")[7].setEditable(false);
+                     }
+                    }
+                },
+                 error: function(odata, resp) {
+
+                                       console.log(resp);
+                        }};
+
+                oModel10.update("/PROJECTSet('" + sid + "')", Payload, mParameters);
+
+
+
+
+
+
+
+                     }
+
+                     
+
+                     }
+
+                     oModel10.submitChanges(mParameters);
+                    sap.m.MessageBox.success("Updated Succesfully");
+                     this.getView().byId("saveid").setVisible(false);
+
+
+                 },
+
+                 
+                  // On Delete Project
+                  onDelete:function(){
+                     debugger;
+                     var oTable1 = this.byId("idListItem");
+                         var oView = this.getView();
+                        
+                
+                          var aArray = [];
+                        
+                       
+                         var aItems = oTable1.getSelectedItems();
+                          for(var i = 0; i < aItems.length; i++){
+                    var edit = aItems[i].getAggregation("cells")[0].getProperty("editable");
+                     if(aItems[i].getAggregation("cells")[0].getProperty("editable")==edit){
+                        var sid = aItems[i].getAggregation("cells")[0].getProperty("value");
+                   
+                
+                
+
+
+                var oModel10 = this.getOwnerComponent().getModel();
+                oModel10.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
+                oModel10.setUseBatch(true);
+
+                            
+                oModel10.setDeferredGroups(["myGroupId"]); 
+                var group =  oModel10.getDeferredGroups();
+                            
+                oModel10.setDeferredGroups(oModel10.getDeferredGroups().concat(["myGroupId"]));
+                                
+                var mParameters = {groupId:"myGroupId",success:function(odata, resp){
+                                    console.log(resp);
+                                   
+
+               
+                },
+                 error: function(odata, resp) {
+
+                                       console.log(resp);
+                        }};
+
+                oModel10.remove("/PROJECTSet('" + sid + "')",  mParameters);
+
+
+
+
+
+
+
+                     }
+
+                     
+
+                     }
+
+                     oModel10.submitChanges(mParameters);
+                    sap.m.MessageBox.success("Deleted Succesfully");
+                    //  this.getView().byId("saveid").setVisible(false);
+
+
+                 },
+
+                 
+
+       
               
         
             

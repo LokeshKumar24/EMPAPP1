@@ -31,6 +31,11 @@ sap.ui.define([
             onTimeSheetSubmit:function(oEvent){
                 debugger
   var oFileUpload = this.getView().byId("timesheet");
-            }
-		});
+            },
+            onUpLoad:function(){
+                debugger;
+                
+            }		
+        
+        });
 	});
