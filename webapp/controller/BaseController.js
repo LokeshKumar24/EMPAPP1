@@ -198,6 +198,13 @@ sap.ui.define([
                      success: function(data) {
                      alert("success");
                     sap.m.MessageToast.show("FILE UPDATED Succesfully");
+                     },
+                     error: function(e) {
+                      alert("error");
+                    }
+                 })
+                },
+
 
             CreateProject:function(Payload){
                 debugger;
@@ -214,7 +221,7 @@ sap.ui.define([
                       alert("error");
                     }
                  })
-                });
+               
 
 
             }
