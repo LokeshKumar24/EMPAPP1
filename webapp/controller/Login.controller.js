@@ -26,7 +26,7 @@ sap.ui.define([
  
         
             onLogin:function(){
-              //  debugger;
+               debugger;
                 var id = this.getView().getModel("Login").getProperty("/id");
                 var password = this.getView().getModel("Login").getProperty("/password");
                 if(id&&password){

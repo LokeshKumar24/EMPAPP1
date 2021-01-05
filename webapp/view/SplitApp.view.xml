@@ -16,8 +16,8 @@
 								<Title text="{i18n>EmployeeApp}" titleStyle="H2"/>
 							</contentMiddle>
 							<contentRight>
-                                 <Button icon="sap-icon://message-popup" type="Emphasized" id="popOver" ></Button>
-                                 <Button   icon="sap-icon://bell" press="onOpenNoti"></Button>
+                                 <Button icon="sap-icon://bell" type="Emphasized" id="popOver" press="openMsgList"></Button>
+                                 <!-- <Button   icon="sap-icon://bell" press="onOpenNoti"></Button> -->
                                  
 								<Button   icon="sap-icon://log" press="onLogout" text="Logout"></Button>
 							</contentRight>

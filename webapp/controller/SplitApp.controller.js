@@ -2,14 +2,30 @@ sap.ui.define([
          "EA/EmployeeApp2/controller/BaseController",
         "sap/ui/model/json/JSONModel",
         "sap/base/Log",
-        "sap/ui/core/Fragment"
+        "sap/ui/core/Fragment",
+         'sap/m/MessagePopover',
+  'sap/m/MessagePopoverItem',
 	],
 	/**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-	function (BaseController,JSONModel,Log,Fragment) {
-		"use strict";
+	function (BaseController,JSONModel,Log,Fragment,MessagePopover,MessagePopoverItem) {
+        "use strict";
+        
 
+         var oMessagePopover = new MessagePopover({
+    items: {
+      path: "requestModel>/request",
+      template: new sap.m.StandardListItem({
+        description: "{requestModel>Reason}",
+        type: "{requestModel>Name}",
+        title: "{requestModel>Rid}"
+      })
+    }
+  });
+
+// oMessagePopover.setModel(sap.ui.getCore().getMessageManager().getMessageModel(), "requestModel");
+oMessagePopover.setModel("requestModel");
 		return BaseController.extend("EA.EmployeeApp2.controller.SplitApp", {
 			onInit: function () {
                // debugger;
@@ -23,14 +39,47 @@ sap.ui.define([
             
             
         },
+    //      openMsgList: function(oEvent) {
+    //          debugger;
+    //       oMessagePopover.openBy(oEvent.getSource());
+
+        
+    // },
+    openMsgList: function (oEvent) {
+        debugger;
+
+        
+
+   if (!this._oPopover) {
+    this._oPopover = sap.ui.xmlfragment("EA.EmployeeApp2.view.create", this);
+    this.getView().addDependent(this._oPopover);
+   }  
+   this._oPopover.openBy(oEvent.getSource());
+  },
+  onClosePopover:function(){
+      debugger;
+      this._oPopover.close();
+
+  },
     
         //to get the profile id
         getId: function (oEvent) {
-            // debugger
+            debugger
             var path = oEvent.getParameter("arguments").ID;
             this.Id=path
             // this.addProfileData();
              console.log(path)
+
+             var oRModel = this.getOwnerComponent().getModel("requestModel").getProperty("/request");
+             for (var x= 0; x<oRModel.length; x++){
+                 if(oRModel[x].Rid == path){
+                     var id = oRModel[x].Rid;
+                     var name = oRModel[x].Name;
+                     var reason = oRModel[x].Reason;
+
+                     var i= this.getView().byId("text1").getText();
+                 }
+             }
         },
 
         

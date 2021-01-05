@@ -107,7 +107,7 @@ sap.ui.define([
                     // debugger;
                     
                      console.log(data.results)
-            //   that.getOwnerComponent().setModel(new JSONModel({request:data.results}),"requestModel");
+             that.getOwnerComponent().setModel(new JSONModel({request:data.results}),"requestModel");
                     // that.getDataT(data);
                     
                                    
