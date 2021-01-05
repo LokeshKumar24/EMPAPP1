@@ -59,15 +59,15 @@ xmlns:sf="sap.ui.layout.form" 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 			<IconTabFilter text="Leave Request" key="Leave Request">
                   <sf:SimpleForm editable="true">
 				<Label text=""></Label>
-				<Input placeholder="Enter Emp Id" value="{Rqst>/RId}"  id="lid"></Input>
+				<Input placeholder="Enter Emp Id" value=""  id="lid"></Input>
 				<Label text=""></Label>
-				<Input  placeholder="Enter Emp Name" value="{Rqst>/name}" id="lname"></Input>
+				<Input  placeholder="Enter Emp Name" value="" id="lname"></Input>
                 <Label text="" labelFor="lDP1"/>
 		<DatePicker
 			id="lDP1"
 			placeholder="Enter Date"
 			change="handleChange"
-			class="sapUiSmallMarginBottom"  value="{Rqst>/RDate}"/>
+			class="sapUiSmallMarginBottom"  value=""/>
 
             <Label text="" ></Label>
 				<!-- <Label text="DateTimePicker with given Value and Formatter" labelFor="DTP2"/>
@@ -78,7 +78,7 @@ xmlns:sf="sap.ui.layout.form" 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 			class="sapUiSmallMarginBottom"/>
 				 -->
 				<Label text=""></Label>
-				<Input id="lReason" type="Text" placeholder="Enter Reason" value="{Rqst>/RLeave}"></Input>
+				<Input id="lReason" type="Text" placeholder="Enter Reason" value=""></Input>
 				
 				<Label></Label>
 				<Button text="Submit" type="Emphasized" press="onLeave"></Button>
@@ -90,16 +90,16 @@ xmlns:sf="sap.ui.layout.form" 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 
             <sf:SimpleForm>
             <Label text=""></Label>
-            <Input id="InputId1" placeholder="Enter Your Id" value="{Asst>/AEid}"></Input>
+            <Input id="InputId1" placeholder="Enter Your Id" value=""></Input>
             <Label text=""></Label>
-            <Input id="InputName2" placeholder="Enter Your Name" value="{Asst>/AName}"></Input>
+            <Input id="InputName2" placeholder="Enter Your Name" value=""></Input>
             <Label text="" ></Label>
             <Label text=""></Label>
-            <DatePicker id="date3" value="{Asst>/ADate}" ></DatePicker>
+            <DatePicker id="date3" value="" ></DatePicker>
             <Label text=""></Label>
-				<Input id="InputAssets" type="Text" placeholder="Enter Assets" value="{Asst>/AAst}"></Input>
+				<Input id="InputAssets" type="Text" placeholder="Enter Assets" value=""></Input>
                 <Label text=""></Label>
-				<Input id="InputAssetsReason" type="Text" placeholder="Enter Reason" value="{Rqst>/AReason}"></Input>
+				<Input id="InputAssetsReason" type="Text" placeholder="Enter Reason" value=""></Input>
                 <Label></Label>
 				<Button text="Submit" type="Emphasized" press="onAssets"></Button>
                  <Button text="close" icon="sap-icon://decline" press="onClose" type="Reject"></Button>

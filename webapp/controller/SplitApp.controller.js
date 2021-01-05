@@ -5,11 +5,12 @@ sap.ui.define([
         "sap/ui/core/Fragment",
          'sap/m/MessagePopover',
   'sap/m/MessagePopoverItem',
+  'sap/m/MessageToast'
 	],
 	/**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-	function (BaseController,JSONModel,Log,Fragment,MessagePopover,MessagePopoverItem) {
+	function (BaseController,JSONModel,Log,Fragment,MessagePopover,MessagePopoverItem,MessageToast) {
         "use strict";
         
 
@@ -145,14 +146,63 @@ oMessagePopover.setModel("requestModel");
                  onLeave:function(){
                      debugger;
 
-                var Lid = this.getView().getModel("Rqst").getProperty("/RId");
-                var Lname = this.getView().getModel("Rqst").getProperty("/name");
-                var Ldate =  this.getView().getModel("Rqst").getProperty("/RDate");
+                // var Lid = this.getView().getModel("Rqst").getProperty("/RId");
+                var Lid = this.getView().byId("lid").getValue();
+                var Lname = this.getView().byId("lname").getValue();
+                var Ldate =  this.getView().byId("lDP1").getValue();
                 
-                var Lreason = this.getView().getModel("Rqst").getProperty("/RLeave");
+                var Lreason = this.getView().byId("lReason").getValue();
                 var Lassets = "No";
                 var ltype = "LEAVE";
-   
+
+                 var nameV = /^[A-Z]{1}[a-z]+/;
+
+                 if (Lid == "" && Lname == "" && Ldate ==""  && Lreason== "") {
+				MessageToast.show("Please Fill all fields");
+				this.getView().byId("lid").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("lname").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("lDP1").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("lReason").setValueState(sap.ui.core.ValueState.Error);
+				
+
+			} else if ( Lid == "") {
+
+				this.getView().byId("lid").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("lid").setValueStateText("Please Enter Employee Id");
+
+			} else if ( Lname == "") {
+
+				this.getView().byId("lname").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("lname").setValueStateText("Please Enter Employee Name");
+
+			} else if ( Ldate == "") {
+
+				this.getView().byId("lDP1").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("lDP1").setValueStateText("Please Enter Date");
+
+			}else if ( Lreason == "") {
+
+				this.getView().byId("lReason").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("lReason").setValueStateText("Please Enter Leave Reason");
+
+			}else if (!nameV.test(Lname)) {
+
+				this.getView().byId("lname").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("lname").setValueStateText("Name Must Start with Uppercase Letters");
+
+			}
+
+
+
+
+
+              else{
+
+                this.getView().byId("lid").setValueState(sap.ui.core.ValueState.None);
+				this.getView().byId("lname").setValueState(sap.ui.core.ValueState.None);
+				this.getView().byId("lDP1").setValueState(sap.ui.core.ValueState.None);
+				this.getView().byId("lReason").setValueState(sap.ui.core.ValueState.None);
+
                 var Payload = {};
                 
                 Payload.Rid = Lid;
@@ -164,25 +214,83 @@ oMessagePopover.setModel("requestModel");
                 
                 
                 this.updateRequest(Payload);
-                this.getView().getModel("Rqst").setProperty("/RId","");
-                this.getView().getModel("Rqst").setProperty("/name", "");
-                this.getView().getModel("Rqst").setProperty("/RDate","");
-                this.getView().getModel("Rqst").setProperty("/RLeave", "");
+
+                this.getView().byId("lid").setValue("");
+                this.getView().byId("lname").setValue("");
+                this.getView().byId("lDP1").setValue("");
+                this.getView().byId("lReason").setValue("");
+
+               
                 
-                 
+              }   
 
                },
 
                  onAssets:function(){
                      debugger;
-
-                var Aid = this.getView().getModel("Asst").getProperty("/AEid");
-                var Aname = this.getView().getModel("Asst").getProperty("/AName");
-                var Adate =  this.getView().getModel("Asst").getProperty("/ADate");
+                var Aid = this.getView().byId("InputId1").getValue();
+                var Aname = this.getView().byId("InputName2").getValue();
+                var Adate =  this.getView().byId("date3").getValue();
                 
-                var Areason = this.getView().getModel("Asst").getProperty("/AReason");
-                var Aassets = this.getView().getModel("Asst").getProperty("/AAst");
+                var Areason = this.getView().byId("InputAssetsReason").getValue();
+                var Aassets = this.getView().byId("InputAssets").getValue();
                 var ltype = "Assets";
+                 var nameV = /^[A-Z]{1}[a-z]+/;
+
+                
+
+                
+                   if (Aid == "" && Aname == "" && Adate ==""  && Areason== "" && Aassets == "") {
+				MessageToast.show("Please Fill all fields");
+				this.getView().byId("InputId1").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("InputName2").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("date3").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("InputAssetsReason").setValueState(sap.ui.core.ValueState.Error);
+                this.getView().byId("InputAssets").setValueState(sap.ui.core.ValueState.Error);
+				
+                
+
+			} else if ( Aid == "") {
+
+				this.getView().byId("InputId1").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("InputId1").setValueStateText("Please Enter Employee Id");
+
+			} else if ( Aname == "") {
+
+				this.getView().byId("InputName2").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("InputName2").setValueStateText("Please Enter Employee Name");
+
+			} else if ( Adate == "") {
+
+				this.getView().byId("date3").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("date3").setValueStateText("Please Enter Date");
+
+			}else if ( Areason == "") {
+
+				this.getView().byId("InputAssetsReason").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("InputAssetsReason").setValueStateText("Please Enter Leave Reason");
+
+            }else if ( Aassets == "") {
+
+				this.getView().byId("InputAssets").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("InputAssets").setValueStateText("Please Enter Leave Reason");
+
+			}
+            else if (!nameV.test(Aname)) {
+
+				this.getView().byId("InputName2").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("InputName2").setValueStateText("Name Must Start with Uppercase Letters");
+
+			}
+
+
+         else{
+
+                this.getView().byId("InputId1").setValueState(sap.ui.core.ValueState.None);
+				this.getView().byId("InputName2").setValueState(sap.ui.core.ValueState.None);
+				this.getView().byId("date3").setValueState(sap.ui.core.ValueState.None);
+				this.getView().byId("InputAssetsReason").setValueState(sap.ui.core.ValueState.None);
+                this.getView().byId("InputAssets").setValueState(sap.ui.core.ValueState.None);
 
              var Payload = {};
 
@@ -201,7 +309,7 @@ oMessagePopover.setModel("requestModel");
                  this.getView().getModel("Asst").setProperty("/AAst","");
                 this.getView().getModel("Asst").setProperty("/AReason", "");
                
-                
+         }
 
                  },
 
@@ -272,9 +380,90 @@ oMessagePopover.setModel("requestModel");
                var IntAdress = this.getView().byId("addInput").getValue();
                var IntCity = this.getView().byId("cityInput").getValue();
 
+
+             var IDM = /^[A-Z]{2}[0-9]{4}$/;
+			 var nameV = /^[A-Z]{1}[a-z]+/;
+			 var mobilevalidation = /^[0-9]{10}$/;
+			 var mobile2 = /^[789]\d{9}$/;
+             var re = /(?=.*[a-z])(?=.*[!@#$%^&*])(?=.*\d).{9,}/;
+
+             if (IntName == "" && IntPno == "" && IntAge =="" && IntAdress== "" && IntCity == "") {
+				MessageToast.show("Please Fill all fields");
+				this.getView().byId("idInput").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("nameInput").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("noInput").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("ageInput").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("addInput").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("cityInput").setValueState(sap.ui.core.ValueState.Error);
+				
+
+			} else if ( IntName === "") {
+
+				this.getView().byId("nameInput").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("nameInput").setValueStateText("Please Enter Employee Name");
+
+			}else if (IntPno === "") {
+
+				this.getView().byId("noInput").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("noInput").setValueStateText("Please Enter Employee Contact No");
+
+			} else if (IntAge  === "") {
+
+				this.getView().byId("ageInput").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("ageInput").setValueStateText("Please Enter Employee Age");
+
+			} else if (IntAdress === "") {
+
+				this.getView().byId("addInput").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("addInput").setValueStateText("Please Enter Employee Address");
+
+			} else if( IntCity === ""){
+              this.getView().byId("cityInput").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("cityInput").setValueStateText("Please Enter Employee Address");
+
+            } else if (!nameV.test(IntName)) {
+
+				this.getView().byId("nameInput").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("nameInput").setValueStateText("Name Must Start with Uppercase Letters");
+
+			}else if (!mobilevalidation.test(IntPno)) {
+
+				this.getView().byId("noInput").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("noInput").setValueStateText("Number Must Be 10 Digits");
+
+			} else if (!mobile2.test(IntPno)) {
+
+				this.getView().byId("noInput").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("noInput").setValueStateText("Please Enter Valid Number");
+
+			} else if (IntAge < 18 || IntAge > 55) {
+
+				this.getView().byId("ageInput").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("ageInput").setValueStateText("Age Must Be Greater Than 18  and Less than 55");
+
+			}
+
+
+
+
+
+
+            
+
+
                
                
-               
+             else{  
+                 this.getView().byId("idInput").setValueState(sap.ui.core.ValueState.None);
+				this.getView().byId("nameInput").setValueState(sap.ui.core.ValueState.None);
+				this.getView().byId("noInput").setValueState(sap.ui.core.ValueState.None);
+				this.getView().byId("ageInput").setValueState(sap.ui.core.ValueState.None);
+				this.getView().byId("addInput").setValueState(sap.ui.core.ValueState.None);
+				this.getView().byId("cityInput").setValueState(sap.ui.core.ValueState.None);
+
+
+
+
                var Payload = {};
                
                Payload.Eid = IntId;
@@ -298,6 +487,8 @@ oMessagePopover.setModel("requestModel");
                   this.getView().byId("edit").setVisible(true);
                  this.getView().byId("save").setVisible(false);
                  this.getView().byId("cancel").setVisible(false);
+
+             }
     
            }
 

@@ -99,13 +99,13 @@
 				<Input id="nameInput" value="{profileModel>Fullname}" />
                
                 <Label text="Employee No"/>
-				<Input id="noInput"  value="{profileModel>Phoneno}"/>
+				<Input id="noInput"  value="{profileModel>Phoneno}"  maxLength="10"/>
 				<Label text="Age"/>
-				<Input  id="ageInput" value="{profileModel>Age}"/>
+				<Input  id="ageInput" value="{profileModel>Age}" maxLength="2"/>
                 <Label text="Adress"/>
 				<Input   id="addInput" value="{profileModel>Address}"/>
                 <Label text="City"/>
-				<Input  id="cityInput" value="{profileModel>City}"/>
+				<Input  id="cityInput" value="{profileModel>City}" type="Text"/>
 				
 
 				
