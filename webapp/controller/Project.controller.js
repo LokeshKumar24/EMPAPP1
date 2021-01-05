@@ -42,6 +42,11 @@ sap.ui.define([
 			this.getView().byId("DialogCreateProject").close();
 
         },
+
+        onProjectOpen3:function(){
+            debugger;
+            this.getView().byId("SimpleFormChange353").setVisible(true);
+        },
          
 
         //Create new Data for Project
@@ -89,7 +94,7 @@ sap.ui.define([
                 sap.m.MessageToast.show("New Project Added Succesfully!!!"); 
             }
 
-
+                this.getView().byId("SimpleFormChange353").setVisible(false);
 
         },
         // edit project details
