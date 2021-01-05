@@ -49,6 +49,32 @@ sap.ui.define([
 
             },
 
+            //update login
+             updateLogin:function(id,npass){
+                 debugger
+                var that = this;
+                var Payload={
+                    Eid:id,
+                    Password:npass
+                }
+              var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
+
+             var oJModel =  new sap.ui.model.odata.ODataModel(serviceurl);
+      
+            var data=oJModel.update("/LOGINSet('"+Payload.Eid+"')",Payload, {
+                method:"PUT",
+                success:function(data){
+                  that.getLogin();  
+                                   
+                },
+                error:function(){
+                    alert("Login data is not updated");
+                }
+            });
+
+            },
+
+
             //home data
             getHome:function(){
                 // debugger
@@ -189,7 +215,7 @@ sap.ui.define([
                     Filecontent:vContent
 
                 }
-
+                  var that = this;
                   var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
                 
                 var oModel =  new sap.ui.model.odata.ODataModel(serviceurl);
@@ -198,13 +224,41 @@ sap.ui.define([
                      success: function(data) {
                      alert("success");
                     sap.m.MessageToast.show("FILE UPDATED Succesfully");
+                       // that.createFile(eid,fileName)
                      },
                      error: function(e) {
                       alert("error");
                     }
                  })
                 },
+                createFile:function(eid,fileName){
+                  
+                 debugger
+                var payLoad={
+                    Eid:eid,
+                    Filename:fileName,
+                }
+                  
+                  var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
+                
+                var oModel =  new sap.ui.model.odata.ODataModel(serviceurl);
+                oModel.update("/FILESet('"+payLoad.Filename+"')",payLoad,{
+                    method:"PUT",
+                    success:function(odata){
+              sap.m.MessageToast.show("eid UPDATED Succesfully");
+                    },
+                    error:function(error){
 
+                    }
+                });
+                },
+
+
+                    
+
+                
+                     
+            
 
             CreateProject:function(Payload){
                 debugger;
@@ -220,7 +274,9 @@ sap.ui.define([
                      error: function(e) {
                       alert("error");
                     }
-                 })
+                 });
+                
+                 
                
 
 

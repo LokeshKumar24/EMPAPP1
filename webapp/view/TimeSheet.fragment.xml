@@ -12,6 +12,8 @@ xmlns:core="sap.ui.core">
 			placeholder="Enter Date"
 			change="handleChange"
 			class="sapUiSmallMarginBottom"/>
+            <Label text="FileName"></Label>
+				<Input id="TSFileName" type="Text" placeholder="Enter File Name "></Input>
                 <Label text=""></Label>
                 <Label text="File Uploader"></Label>
 				<ui:FileUploader id="fileUploaderTS"/>

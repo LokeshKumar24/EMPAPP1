@@ -2,7 +2,7 @@
 	<!-- <Shell id="shell"> -->
 		<App id="app">
 			<pages>
-				<Page id="page" title="{i18n>title}" showHeader="false">
+				<Page id="page" title="{i18n>title}" showHeader="false" class="myBackgroundStyle">
 					<content>
                      <!-- <tnt:ToolHeader>
 						<ToolbarSpacer/>
@@ -13,13 +13,13 @@
                     <sf:SimpleForm editable="true">
 								<VBox alignContent="Center" justifyContent="Center">
 									<HBox alignContent="Center" justifyContent="Center">
-										<Input  placeholder="Enter Your Employee" width="20rem" fieldWidth="30rem" value="{Login>/id}" id="userId" ></Input>
+										<Input  placeholder="Enter Your Employee ID" width="20rem" fieldWidth="30rem" value="{Login>/id}" id="userId" ></Input>
 									</HBox>
 									<HBox alignContent="Center" justifyContent="Center">
 										<Input placeholder="Enter Your Password" width="20rem" value="{Login>/password}" id="userPassword" ></Input>
 									</HBox>
                                     <HBox>
-                                    <Link text="Forgot Password ?" press="changePassword" ></Link>
+                                    <Link text="Forgot Password ?" press="changePassword"  class="FPClass" ></Link>
                                     <!-- <Text text="Forgot Password ?" ></Text> -->
                                     </HBox>
 									<HBox alignContent="Center" justifyContent="Center">

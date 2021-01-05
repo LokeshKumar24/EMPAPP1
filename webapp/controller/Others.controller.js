@@ -28,7 +28,7 @@ sap.ui.define([
                 var domRef = oFileUpload.getFocusDomRef();
                 var file = domRef.files[0];
                 var that = this;
-                this.fileName = file.name;
+                this.fileName = this.getView().byId("TSFileName").getValue();
                 this.fileType = file.type;
                 var reader = new FileReader();
                 reader.onload = function (e) {
@@ -40,10 +40,11 @@ sap.ui.define([
             onUploadFile:function(oEvent){
                  debugger
               var oFileUpload = this.getView().byId("fileUploaderFS");
+
                 var domRef = oFileUpload.getFocusDomRef();
                 var file = domRef.files[0];
                 var that = this;
-                this.fileName = file.name;
+                this.fileName = this.getView().byId("FileName").getValue();
                 this.fileType = file.type;
                 var reader = new FileReader();
                 reader.onload = function (e) {

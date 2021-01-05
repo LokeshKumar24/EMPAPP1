@@ -8,28 +8,31 @@
 			<pages>
 				<Page id="page" title="{i18n>project}" showHeader="false">
 					<content>
-                    
-                     
-              <!-- <Table items="{/PROJECTSet}" id="idListItem" width="100%" mode="MultiSelect">
-              <headerToolbar>
-					<OverflowToolbar id="otbSubheader">
-						<Title text="Project Details" level="H2" />
-						<ToolbarSpacer />
-                        <Button id="createButton" text="Create" type="Transparent"
-							press="onProjectOpen" />
-						<Button id="editButton" text="Edit" type="Transparent"
-							press="onEdit" />
-                        
-                        <Button id="deleteButton" text="Delete" type="Transparent"
-							press="onDelete" />        
-						<Button id="saveButton" text="Save" type="Transparent"
-							press="onSave" visible="false" />
-						<Button id="cancelButton" text="Cancel" type="Transparent"
-							press="onCancel" visible="false" />
-					</OverflowToolbar>
-				</headerToolbar>
-			<columns>
-				<Column  minScreenWidth="Small">
+   
+            <smartTable:SmartTable id="SmartTable12" entitySet="PROJECTSet"
+                          tableType="ResponsiveTable" 
+                          
+                        requestAtLeastFields="Pid,Eid,Name,Projectname,Projectdetails,Status,Startdate,Enddate"
+                            useTablePersonalisation="true" 
+                          header="EMPLOYEE DETAILS" showRowCount="true" 
+                          persistencyKey="SmartTableAnalytical_Explored" 
+                          enableAutoBinding="true" class="sapUiResponsiveContentPadding" >
+                          	<smartTable:customToolbar>
+			<OverflowToolbar design="Transparent">
+				<ToolbarSpacer/>
+				<!-- <OverflowToolbarButton text="Test"/> -->
+				<OverflowToolbarButton icon="sap-icon://create" tooltip="Create" text="Create" press="onProjectOpen"/>
+				<OverflowToolbarButton icon="sap-icon://edit" tooltip="Edit" text="Edit" press="onEdit"/>
+				<OverflowToolbarButton icon="sap-icon://delete" tooltip="Delete" text="Delete" press="onDelete"/>
+				<!-- <OverflowToolbarButton icon="sap-icon://action-settings" tooltip="Column Settings" text="Column Settings" press="onColumns"/> -->
+			</OverflowToolbar>
+		</smartTable:customToolbar>
+
+                          <!--  Table integration -->
+    <Table mode="MultiSelect" growingThreshold="100" growing="true" id="idListItem"
+     growingScrollToLoad="true">
+        <columns>
+        <Column  minScreenWidth="Small">
 					<Label text="S.No"></Label>
 				</Column>
 				<Column>
@@ -53,9 +56,9 @@
 				<Column>
 					<Label text="Status"></Label>
 				</Column>
-			</columns>
-			<items>
-				<ColumnListItem>
+        </columns>
+        <items>
+        <ColumnListItem>
 					<cells>
 						<Input value="{Pid}" editable="false"/>
 						<Input value="{Eid}" editable="false"/>
@@ -67,27 +70,17 @@
                         <Input value="{Status}" editable="false" />
 						
 					</cells>
-				</ColumnListItem>
-			</items>
-		</Table>     -->
-            <smartTable:SmartTable id="SmartTable" entitySet="PROJECTSet"
-                          tableType="ResponsiveTable" 
-                         initiallyVisibleFields="Pid,Eid,Name,Projectname,Status"
-                         requestAtLeastFields="Pid,Eid,Name,Projectname,Status"
-                            useTablePersonalisation="true" 
-                          header="EMPLOYEE DETAILS" showRowCount="true" 
-                          persistencyKey="SmartTableAnalytical_Explored" 
-                          enableAutoBinding="true" class="sapUiResponsiveContentPadding" >
+				</ColumnListItem> 
+        </items>
+     </Table>
+<!--  EndTable integration -->
                           </smartTable:SmartTable>
                     </content>
                     <footer>
 			<OverflowToolbar id="otbFooter">
 				<ToolbarSpacer />
 				<Button text="Save" press="onSaveP" type="Emphasized" visible="false" id="saveid">
-					<!-- <layoutData>
-						<OverflowToolbarLayoutData
-							moveToOverflow="false" />
-					</layoutData> -->
+				
 				</Button>
 			</OverflowToolbar>
 		</footer>

@@ -1,1 +1,16 @@
 /* Enter your custom styles here */
+.myBackgroundStyle{
+/*background-image:url("https://cdn.hipwallpaper.com/i/62/26/HKoPzd.jpg");*/
+/*background-image:url("https://unity.trustradius.com/wp-content/uploads/2019/11/istock-1047823928-1024x648.jpg");*/
+/* background-image:url("https://advancesystems.ie/wp-content/uploads/2016/09/Best-Employee-Management-Software-for-My-Business.jpg"); */ */
+background-repeat:no-repeat;
+background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB4Wa02suZqWA7WM10Uixm_CddksrBZHPeLg&usqp=CAU");
+background-size: cover;
+overflow-y: hidden;
+
+font-size: 20px;
+
+},
+.FPClass{
+   color:white; 
+}

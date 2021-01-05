@@ -60,7 +60,7 @@ sap.ui.define([
 			var newPass = this.getView().getModel("ch").getProperty("/newPass");
             var confPass = this.getView().getModel("ch").getProperty("/confPass");
             if(newPass === confPass){
-                this.loginUpdate(id,newPass)
+                this.updateLogin(id,newPass)
                 MessageToast.show("Password updated Successfully");
 
             }
