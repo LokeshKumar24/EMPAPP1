@@ -70,7 +70,7 @@
 				</ColumnListItem>
 			</items>
 		</Table>     -->
-            <smartTable:SmartTable id="SmartTable" entitySet="PROJECTSet"
+            <smartTable:SmartTable id="SmartTable1" entitySet="PROJECTSet"
                           tableType="ResponsiveTable" 
                           
                         requestAtLeastFields="Pid,Eid,Name,Projectname,Projectdetails,Status,Startdate,Enddate"
