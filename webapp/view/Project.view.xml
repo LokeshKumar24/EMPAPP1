@@ -9,6 +9,62 @@
 				<Page id="page" title="{i18n>project}" showHeader="false">
 					<content>
    
+                    <VBox class="sapUiSmallMargin">
+		<sf:SimpleForm id="SimpleFormChange353"
+			editable="true"
+            visible="false"
+			layout="ResponsiveGridLayout"
+			title="Create New Project "
+			labelSpanXL="3"
+			labelSpanL="3"
+			labelSpanM="3"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="4"
+			emptySpanL="4"
+			emptySpanM="4"
+			emptySpanS="0"
+			columnsXL="1"
+			columnsL="1"
+			columnsM="1"
+			singleContainerFullSize="false" >
+			<sf:content>
+				<Label text=""/> 
+				<Input id="Pid" value=""  placeholder="Enter Project ID"  />
+                <Label text=""/> 
+				<Input id="eid" value=""  placeholder="Enter Emp ID"  />
+                <Label text=""/> 
+				<Input id="name" value=""  placeholder="Enter Your Name"  />
+                <Label text="" />
+				<Input id="Pname" value=""  placeholder="Enter your Projectname"/>
+                <Label text=""/>
+				<Input id="pdetails" value="" placeholder="Projectdetails"/>
+                <Label text=""/>
+                
+		<DatePicker
+			id="PSDP"
+			placeholder="Enter StartDate"
+			change="handleChange"
+			class="sapUiSmallMarginBottom" />
+				
+                <Label text=""/>
+                <DatePicker
+			id="PEDP"
+			placeholder="Enter EndDate"
+			change="handleChange"
+			class="sapUiSmallMarginBottom"/>
+				
+				
+				<Label text=""/>
+				<Input id="pstatus" value="" placeholder="Status"/>
+				
+                <Label></Label>
+				<Button text="Save" type="Emphasized" press="onCreate"></Button>
+                 </sf:content>
+		</sf:SimpleForm>
+	</VBox>
+            
+
             <smartTable:SmartTable id="SmartTable12" entitySet="PROJECTSet"
                           tableType="ResponsiveTable" 
                           
@@ -21,7 +77,7 @@
 			<OverflowToolbar design="Transparent">
 				<ToolbarSpacer/>
 				<!-- <OverflowToolbarButton text="Test"/> -->
-				<OverflowToolbarButton icon="sap-icon://create" tooltip="Create" text="Create" press="onProjectOpen"/>
+				<OverflowToolbarButton icon="sap-icon://create" tooltip="Create" text="Create" press="onProjectOpen3"/>
 				<OverflowToolbarButton icon="sap-icon://edit" tooltip="Edit" text="Edit" press="onEdit"/>
 				<OverflowToolbarButton icon="sap-icon://delete" tooltip="Delete" text="Delete" press="onDelete"/>
 				<!-- <OverflowToolbarButton icon="sap-icon://action-settings" tooltip="Column Settings" text="Column Settings" press="onColumns"/> -->
@@ -33,9 +89,9 @@
      growingScrollToLoad="true">
         <columns>
         <Column  minScreenWidth="Small">
-					<Label text="S.No"></Label>
+					<Label text="PID"></Label>
 				</Column>
-				<Column>
+				<Column visible="false">
 					<Label text="EID"></Label>
 				</Column>
 				<Column>
