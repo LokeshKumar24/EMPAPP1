@@ -10,7 +10,7 @@
 					<content>
                     
                      
-              <Table items="{/PROJECTSet}" id="idListItem" width="100%" mode="MultiSelect">
+              <!-- <Table items="{/PROJECTSet}" id="idListItem" width="100%" mode="MultiSelect">
               <headerToolbar>
 					<OverflowToolbar id="otbSubheader">
 						<Title text="Project Details" level="H2" />
@@ -69,8 +69,8 @@
 					</cells>
 				</ColumnListItem>
 			</items>
-		</Table>    
-            <!-- <smartTable:SmartTable id="SmartTable" entitySet="PROJECTSet"
+		</Table>     -->
+            <smartTable:SmartTable id="SmartTable" entitySet="PROJECTSet"
                           tableType="ResponsiveTable" 
                          initiallyVisibleFields="Pid,Eid,Name,Projectname,Status"
                          requestAtLeastFields="Pid,Eid,Name,Projectname,Status"
@@ -78,7 +78,7 @@
                           header="EMPLOYEE DETAILS" showRowCount="true" 
                           persistencyKey="SmartTableAnalytical_Explored" 
                           enableAutoBinding="true" class="sapUiResponsiveContentPadding" >
-                          </smartTable:SmartTable> -->
+                          </smartTable:SmartTable>
                     </content>
                     <footer>
 			<OverflowToolbar id="otbFooter">
