@@ -44,13 +44,10 @@ sap.ui.define([
                     this.getView().byId("userPassword").setValueState("Error");
                      this.getView().byId("userPassword").setValueStateText("Please Enter Your Password");
                 }
-<<<<<<< HEAD
                 
                 
-=======
                
                
->>>>>>> 77084bef1032232b870fce0b21164b6c53f50dac
                  else if(id==undefined ){
                        this.getView().byId("userId").setValueState("Error");
                        this.getView().byId("userId").setValueStateText("Please Enter Your Id");
