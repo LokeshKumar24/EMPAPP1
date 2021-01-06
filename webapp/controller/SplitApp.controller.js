@@ -14,19 +14,7 @@ sap.ui.define([
         "use strict";
         
 
-         var oMessagePopover = new MessagePopover({
-    items: {
-      path: "requestModel>/request",
-      template: new sap.m.StandardListItem({
-        description: "{requestModel>Reason}",
-        type: "{requestModel>Name}",
-        title: "{requestModel>Rid}"
-      })
-    }
-  });
-
-// oMessagePopover.setModel(sap.ui.getCore().getMessageManager().getMessageModel(), "requestModel");
-oMessagePopover.setModel("requestModel");
+    
 		return BaseController.extend("EA.EmployeeApp2.controller.SplitApp", {
 			onInit: function () {
                // debugger;
@@ -40,19 +28,17 @@ oMessagePopover.setModel("requestModel");
             
             
         },
-    //      openMsgList: function(oEvent) {
-    //          debugger;
-    //       oMessagePopover.openBy(oEvent.getSource());
+   
 
         
-    // },
+    
     openMsgList: function (oEvent) {
         debugger;
 
         
 
    if (!this._oPopover) {
-    this._oPopover = sap.ui.xmlfragment("EA.EmployeeApp2.view.create", this);
+    this._oPopover = sap.ui.xmlfragment("EA.EmployeeApp2.view.Notification", this);
     this.getView().addDependent(this._oPopover);
    }  
    this._oPopover.openBy(oEvent.getSource());
@@ -65,7 +51,7 @@ oMessagePopover.setModel("requestModel");
     
         //to get the profile id
         getId: function (oEvent) {
-            debugger
+           // debugger
             var path = oEvent.getParameter("arguments").ID;
             this.Id=path
             // this.addProfileData();
@@ -78,7 +64,7 @@ oMessagePopover.setModel("requestModel");
                      var name = oRModel[x].Name;
                      var reason = oRModel[x].Reason;
 
-                     var i= this.getView().byId("text1").getText();
+                     //var i= this.getView().byId("text1").getText();
                  }
              }
         },
