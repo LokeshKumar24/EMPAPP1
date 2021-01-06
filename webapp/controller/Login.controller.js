@@ -27,90 +27,53 @@ sap.ui.define([
  
         
             onLogin:function(){
-               debugger;
+              // debugger;
                 var id = this.getView().getModel("Login").getProperty("/id");
                 var password = this.getView().getModel("Login").getProperty("/password");
 
-                var IDM = /^[A-Z]{2}[0-9]{3}$/;
-                var re = /(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*\d).{6,}/;
-                var IDE;
-                var PWE;
+                // var IDM = /^[A-Z]{2}[0-9]{3}$/;
+                // var re = /(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*\d).{6,}/;
+                 var IDE;
+                // var PWE;
 
                 var oLModel = this.getOwnerComponent().getModel("loginModel").getProperty("/login");
-                for (var x=0; x<oLModel.length;x++){
-                   if(id == oLModel[x].Eid){
-                       IDE = true;
-                   }else{
-                       IDE = false;
-                   }
-                }
-
-                 for (var x=0; x<oLModel.length;x++){
-                   if(password == oLModel[x].Password){
-                       PWE = true;
-                   }else{
-                       PWE = false;
-                   }
-                }
-
-                
-                
-                
-
-
-
+ 
                 if(id==undefined && password== undefined){
                     this.getView().byId("userId").setValueState("Error");
                      this.getView().byId("userId").setValueStateText("Please Enter Your Id");
                     this.getView().byId("userPassword").setValueState("Error");
                      this.getView().byId("userPassword").setValueStateText("Please Enter Your Password");
                 }
-                else if (IDE === false) {
-
-				this.getView().byId("userId").setValueState(sap.ui.core.ValueState.Error);
-				this.getView().byId("userId").setValueStateText("Employee ID is Incorrect");
-                }
-                else if (PWE === false) {
-
-				this.getView().byId("userPassword").setValueState(sap.ui.core.ValueState.Error);
-				this.getView().byId("userPassword").setValueStateText("Employee Password is Wrong");
-			    }
+               
+               
                  else if(id==undefined ){
                        this.getView().byId("userId").setValueState("Error");
                        this.getView().byId("userId").setValueStateText("Please Enter Your Id");
                 } else if(password== undefined){
                      this.getView().byId("userPassword").setValueState("Error");
                      this.getView().byId("userPassword").setValueStateText("Please Enter Your Password");
-                }else if (!IDM.test(id)) {
-
-				this.getView().byId("userId").setValueState(sap.ui.core.ValueState.Error);
-				this.getView().byId("userId").setValueStateText("ID Must Contain 5 characters (2 Uppercase Letters and 3 digits )");
-
-			}else if (!re.test(password)) {
-
-				this.getView().byId("userPassword").setValueState(sap.ui.core.ValueState.Error);
-				this.getView().byId("userPassword").setValueStateText(
-					"Password Must Contain atleast 6 characters , Uppercase letters, Special Characters,digits");
-
-			} 
+                }
 
                 else{
 
-                   this.getView().byId("userId").setValueState("None");
-				   this.getView().byId("userPassword").setValueState("None");
+                    for (let i = 0; i < oLModel.length; i++) {
+                        if(oLModel[i].Eid=== id && oLModel[i].Password===password){
+                            this.getView().byId("userId").setValueState("None");
+                                this.getView().byId("userPassword").setValueState("None");
+                                sap.m.MessageToast.show("Your are successfully logged in")
+                                 this.oRouter.navTo("SplitApp",{ID:id});
+                                 break;
+                        }
+                        else{
+                             sap.m.MessageToast.show("Your are not a valid user")
+                        this.getView().byId("userId").setValueState("Error");
+                        this.getView().byId("userPassword").setValueState("Error");
+                        }
+                        
+                    }
 
-                if(id&&password){
-
-                    this.Eid = id;
-                    this.checkLogin(id,password);
-                   //  this.getProfile(id);
-                this.getView().byId("userId").setValueState("None");
-				this.getView().byId("userPassword").setValueState("None");
-                } 
-                // else{
-                //     this.getView().byId("userId").setValueState("Error");
-				// this.getView().byId("userPassword").setValueState("Error");
-                // } 
+                        
+                        this.Eid = id;
 
             }
                 

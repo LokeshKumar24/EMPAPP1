@@ -20,6 +20,7 @@
                                  <!-- <Button   icon="sap-icon://bell" press="onOpenNoti"></Button> -->
                                  
 								<Button   icon="sap-icon://log" press="onLogout" text="Logout"></Button>
+                                
 							</contentRight>
 						</Bar>
 					</tnt:ToolHeader>

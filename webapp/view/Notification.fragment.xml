@@ -1,7 +1,30 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
-<Dialog  title="Notification"  >
+<!-- <Dialog  title="Notification"  >
 	<Text text="Hi You Have Requsted For Leave Request!!!"></Text>
     <Button press="onCloseN" text="Close" ></Button>
-    </Dialog>
+    </Dialog> -->
+  
+
+			<NotificationListGroup
+				title="{requestModel>request/Name}"
+				showCloseButton="true"
+				collapsed="true"
+				close=".onItemClose">
+				
+				<NotificationListItem
+					title="{requestModel>request/Reason}"
+					description="{} "
+					showCloseButton="true"
+					datetime="1 hour"
+					unread="true"
+					priority="None"
+					close=".onItemClose"
+					press=".onListItemPress"
+					/>
+				
+
+			
+			</NotificationListGroup>
+
 	
 </core:FragmentDefinition>
