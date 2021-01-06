@@ -19,7 +19,7 @@
 										<Input placeholder="Enter Your Password" width="20rem" value="{Login>/password}" id="userPassword" ></Input>
 									</HBox>
                                     <HBox>
-                                    <Link text="Forgot Password ?" press="changePassword"  class="FPClass" ></Link>
+                                    <Link text="Forgot Password ?" press="changePassword"  class="FPClass" emphasized="true" ></Link>
                                     <!-- <Text text="Forgot Password ?" ></Text> -->
                                     </HBox>
 									<HBox alignContent="Center" justifyContent="Center">

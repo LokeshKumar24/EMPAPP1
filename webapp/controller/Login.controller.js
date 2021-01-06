@@ -65,16 +65,8 @@ sap.ui.define([
                     this.getView().byId("userPassword").setValueState("Error");
                      this.getView().byId("userPassword").setValueStateText("Please Enter Your Password");
                 }
-                else if (IDE === false) {
-
-				this.getView().byId("userId").setValueState(sap.ui.core.ValueState.Error);
-				this.getView().byId("userId").setValueStateText("Employee ID is Incorrect");
-                }
-                else if (PWE === false) {
-
-				this.getView().byId("userPassword").setValueState(sap.ui.core.ValueState.Error);
-				this.getView().byId("userPassword").setValueStateText("Employee Password is Wrong");
-			    }
+                
+                
                  else if(id==undefined ){
                        this.getView().byId("userId").setValueState("Error");
                        this.getView().byId("userId").setValueStateText("Please Enter Your Id");
