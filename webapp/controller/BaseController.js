@@ -30,6 +30,7 @@ sap.ui.define([
                     // debugger;
                      that.loginDetails = data.results;
                      console.log(that.loginDetails)
+                      that.getOwnerComponent().setModel(new JSONModel({login:data.results}),"loginModel");  
                                    
                 },
                 error:function(){

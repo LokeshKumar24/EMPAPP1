@@ -60,11 +60,101 @@ sap.ui.define([
             var sdate = this.getView().byId("PSDP").getValue();
             var edate = this.getView().byId("PEDP").getValue();
             var status = this.getView().byId("pstatus").getValue();
+
+             var nameV = /^[A-Z]{1}[a-z]+/;
           
-            if(pid==""||undefined && eid==""||undefined && name==""||undefined && pname==""||undefined &&pdetails==""||undefined &&
-            sdate==""||undefined && edate==""||undefined && status==""||undefined ){
+            if(pid=="" && eid=="" && name=="" && pname=="" &&pdetails=="" &&
+            sdate=="" && edate=="" && status=="" ){
                 sap.m.MessageToast.show("Please Enter All the Fields");
-            }else{
+                this.getView().byId("Pid").setValueState(sap.ui.core.ValueState.Error);
+                this.getView().byId("Pid").setValueStateText("Please Enter Priject Id");
+                this.getView().byId("eid").setValueState(sap.ui.core.ValueState.Error);
+                 this.getView().byId("eid").setValueStateText("Please Enter Your Employee ID");
+                this.getView().byId("name").setValueState(sap.ui.core.ValueState.Error);
+                this.getView().byId("name").setValueStateText("Please Enter Your  Name");
+                this.getView().byId("Pname").setValueState(sap.ui.core.ValueState.Error);
+                this.getView().byId("Pname").setValueStateText("Please Enter Project Name");
+                this.getView().byId("pdetails").setValueState(sap.ui.core.ValueState.Error);
+                this.getView().byId("pdetails").setValueStateText("Please Enter Project Details");
+                this.getView().byId("PSDP").setValueState(sap.ui.core.ValueState.Error);
+                this.getView().byId("PSDP").setValueStateText("Please Enter Start Date");
+                this.getView().byId("PEDP").setValueState(sap.ui.core.ValueState.Error);
+                this.getView().byId("PEDP").setValueStateText("Please Enter End Date");
+                this.getView().byId("pstatus").setValueState(sap.ui.core.ValueState.Error);
+                this.getView().byId("pstatus").setValueStateText("Please Enter Status of your Project");
+                
+
+            }else if ( pid == "") {
+
+				this.getView().byId("pid").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("pid").setValueStateText("Please Enter Employee Id");
+
+			} else if ( eid == "") {
+
+				this.getView().byId("eid").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("eid").setValueStateText("Please Enter Employee Name");
+
+            } else if ( name  == "") {
+
+				this.getView().byId("name").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("name").setValueStateText("Please Enter Project Name");
+
+			} 
+            else if ( pname  == "") {
+
+				this.getView().byId("Pname").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("Pname").setValueStateText("Please Enter Date");
+
+			}else if ( pdetails == "") {
+
+				this.getView().byId("pdetails").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("pdetails").setValueStateText("Please Enter Project Details");
+
+            }else if ( sdate  == "") {
+
+				this.getView().byId("PSDP").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("PSDP").setValueStateText("Please Enter Start Date");
+
+            }
+            else if ( edate == "") {
+
+				this.getView().byId("PEDP").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("PEDP").setValueStateText("Please Enter Due Date");
+
+            }
+            else if ( status == "") {
+
+				this.getView().byId("pstatus").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("pstatus").setValueStateText("Please Enter Status of your Project");
+
+			}
+            else if (!nameV.test(name )) {
+
+				this.getView().byId("name").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("name").setValueStateText("Name Must Start with Uppercase Letters");
+
+			} else if (!nameV.test(pname )) {
+
+				this.getView().byId("Pname").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("Pname").setValueStateText("Start with Uppercase Letters");
+
+			}
+            
+            
+            
+            
+            
+            
+            else{
+
+                this.getView().byId("Pid").setValueState(sap.ui.core.ValueState.None);
+				this.getView().byId("eid").setValueState(sap.ui.core.ValueState.None);
+				this.getView().byId("name").setValueState(sap.ui.core.ValueState.None);
+                this.getView().byId("Pname").setValueState(sap.ui.core.ValueState.None);
+                this.getView().byId("pdetails").setValueState(sap.ui.core.ValueState.None);
+				this.getView().byId("PSDP").setValueState(sap.ui.core.ValueState.None);
+				this.getView().byId("PEDP").setValueState(sap.ui.core.ValueState.None);
+				this.getView().byId("pstatus").setValueState(sap.ui.core.ValueState.None);
                
                 var Payload = {};
                 
@@ -92,9 +182,11 @@ sap.ui.define([
 
 
                 sap.m.MessageToast.show("New Project Added Succesfully!!!"); 
-            }
 
                 this.getView().byId("SimpleFormChange353").setVisible(false);
+            }
+
+                
 
         },
         // edit project details

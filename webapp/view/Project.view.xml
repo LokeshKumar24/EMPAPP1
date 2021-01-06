@@ -30,7 +30,7 @@
 			singleContainerFullSize="false" >
 			<sf:content>
 				<Label text=""/> 
-				<Input id="Pid" value=""  placeholder="Enter Project ID"  />
+				<Input id="Pid" value=""  placeholder="Enter Project ID"   />
                 <Label text=""/> 
 				<Input id="eid" value=""  placeholder="Enter Emp ID"  />
                 <Label text=""/> 

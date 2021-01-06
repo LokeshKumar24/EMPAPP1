@@ -1,3 +1,4 @@
+
 <edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
 <edmx:DataServices m:DataServiceVersion="2.0">
 <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZAPP_EMP1_SRV" xml:lang="en" sap:schema-version="1">
@@ -10,6 +11,14 @@
 <Property Name="Filecontent" Type="Edm.Binary" Nullable="false" sap:unicode="false" sap:label="Binary String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 <Property Name="Filetype" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Char20" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 <Property Name="Creationdate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Current Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+</EntityType>
+<EntityType Name="FILEASSOCATE" sap:content-version="1">
+<Key>
+<PropertyRef Name="Filename"/>
+</Key>
+<Property Name="Filename" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Char20" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Eid" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field Length = 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<NavigationProperty Name="TOFILE" Relationship="ZAPP_EMP1_SRV.FILEASSDB" FromRole="FromRole_FILEASSDB" ToRole="ToRole_FILEASSDB" sap:label="NAVIGATE TO FILE"/>
 </EntityType>
 <EntityType Name="PROFILE" sap:content-version="1">
 <Key>
@@ -71,13 +80,22 @@
 <Property Name="Eid" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Employee ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 <Property Name="Password" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Password" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 </EntityType>
+<Association Name="FILEASSDB" sap:content-version="1">
+<End Type="ZAPP_EMP1_SRV.FILEASSOCATE" Multiplicity="*" Role="FromRole_FILEASSDB"/>
+<End Type="ZAPP_EMP1_SRV.FILE" Multiplicity="*" Role="ToRole_FILEASSDB"/>
+</Association>
 <EntityContainer Name="ZAPP_EMP1_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
 <EntitySet Name="FILESet" EntityType="ZAPP_EMP1_SRV.FILE" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+<EntitySet Name="FILEASSOCATESet" EntityType="ZAPP_EMP1_SRV.FILEASSOCATE" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
 <EntitySet Name="PROFILESet" EntityType="ZAPP_EMP1_SRV.PROFILE" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
 <EntitySet Name="HOMESet" EntityType="ZAPP_EMP1_SRV.HOME" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
 <EntitySet Name="PROJECTSet" EntityType="ZAPP_EMP1_SRV.PROJECT" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
 <EntitySet Name="REQUESTSet" EntityType="ZAPP_EMP1_SRV.REQUEST" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
 <EntitySet Name="LOGINSet" EntityType="ZAPP_EMP1_SRV.LOGIN" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+<AssociationSet Name="FILEASSDBSet" Association="ZAPP_EMP1_SRV.FILEASSDB" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="FILEASSOCATESet" Role="FromRole_FILEASSDB"/>
+<End EntitySet="FILESet" Role="ToRole_FILEASSDB"/>
+</AssociationSet>
 </EntityContainer>
 <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="http://183.82.98.9:8057/sap/opu/odata/sap/ZAPP_EMP1_SRV/$metadata"/>
 <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="http://183.82.98.9:8057/sap/opu/odata/sap/ZAPP_EMP1_SRV/$metadata"/>
