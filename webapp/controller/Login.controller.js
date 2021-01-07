@@ -20,7 +20,7 @@ sap.ui.define([
                  // this.getProfile();
                  this.getLogin();
                  this.getRequest();
-                    this.getOthers();
+                    //this.getOthers();
                     this.getFileData();
                       this.getProject();
                         this.getHome();
@@ -53,6 +53,7 @@ sap.ui.define([
                        this.getView().byId("userId").setValueState("Error");
                        this.getView().byId("userId").setValueStateText("Please Enter Your Id");
                 } else if(password== undefined){
+                     this.getView().byId("userId").setValueState("None");
                      this.getView().byId("userPassword").setValueState("Error");
                      this.getView().byId("userPassword").setValueStateText("Please Enter Your Password");
                 }
@@ -81,16 +82,7 @@ sap.ui.define([
             }
                 
          },
-            // changePass:null,
-            // changePassword:function(){
-            //    // debugger;
-            //     if(!this.changePass){
-            //         this.changePass = new sap.ui.xmlfragment("EA.EmployeeApp2.view.changePassword",this);
-            //         this.getView().addDependent(this.changePass);
-            //     }
-            //     this.changePass.open();
-
-            // },
+           
               changePassword:function() {
 		          //	debugger;
 			var oView = this.getView();
@@ -122,21 +114,11 @@ sap.ui.define([
              var id = this.getView().getModel("ch").getProperty("/id");
 			var newPass = this.getView().getModel("ch").getProperty("/newPass");
             var confPass = this.getView().getModel("ch").getProperty("/confPass");
-            // var fragmentId = this.getView().createId("fr1");
-            //  var itab = Fragment.byId(fragmentId, "Cid");
+           
 
              var re = /(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*\d).{6,}/;
-             var IDC;
-
-               var oLModel = this.getOwnerComponent().getModel("loginModel").getProperty("/login");
-                for (var x=0; x<oLModel.length;x++){
-                   if(id == oLModel[x].Eid){
-                       IDC = true;
-                   }else{
-                       IDC = false;
-                   }
-                }
-
+            
+               
             
 
            if(id ==undefined && newPass ==undefined && confPass == undefined){
@@ -151,11 +133,8 @@ sap.ui.define([
            else if(id ==undefined){
                       this.getView().byId("Cid").setValueState("Error");
                     this.getView().byId("Cid").setValueStateText("Please Enter Your Id");
-           } else if (IDC === false) {
-
-				this.getView().byId("Cid").setValueState(sap.ui.core.ValueState.Error);
-				this.getView().byId("Cid").setValueStateText("Employee ID is Incorrect");
-           }else if(newPass !== confPass){
+           }
+           else if(newPass !== confPass){
                    this.getView().byId("Cpass").setValueState("Error");
                      this.getView().byId("Cpass").setValueStateText("Password is not Matched");
                      this.getView().byId("Cnpass").setValueState("Error");
@@ -164,9 +143,11 @@ sap.ui.define([
 
            }
            else if(newPass ==undefined){
+                this.getView().byId("Cid").setValueState("None");
                      this.getView().byId("Cpass").setValueState("Error");
                      this.getView().byId("Cpass").setValueStateText("Please Enter Your Password");
            }else if(confPass == undefined){
+                this.getView().byId("Cid").setValueState("None");
                 this.getView().byId("Cnpass").setValueState("Error");
                      this.getView().byId("Cnpass").setValueStateText("Please Enter Your Confirm Password");
            }else if (!re.test(newPass )) {
@@ -177,13 +158,13 @@ sap.ui.define([
 
 			} 
            else{
-                      this.getView().byId("Cid").setValueState("None");
-                   
-                    this.getView().byId("Cpass").setValueState("None");
-                    
-                      this.getView().byId("Cnpass").setValueState("None");
-                    
-            if(newPass === confPass){
+               
+               if(newPass === confPass){
+                this.getView().byId("Cid").setValueState("None");
+             
+              this.getView().byId("Cpass").setValueState("None");
+              
+                this.getView().byId("Cnpass").setValueState("None");
                 this.updateLogin(id,newPass)
                 MessageToast.show("Password Changed SuccesFully! ");
 

@@ -26,9 +26,7 @@ xmlns:sf="sap.ui.layout.form" 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 				<Column>
 					<Label text="Type"></Label>
 				</Column>
-				<Column width="8em">
-					<Label text="Assets"></Label>
-				</Column>
+				
 				<Column>
 					<Label text="Reason"></Label>
 				</Column>
@@ -40,8 +38,10 @@ xmlns:sf="sap.ui.layout.form" 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 						<Text text="{Name}"></Text>
 						<Text text="{Rdate}"></Text>
 						<Text text="{Type}"></Text>
-                        <Text text="{Assets}"></Text>
-						<Text text="{Reason}"></Text>
+                        	<ObjectIdentifier
+						title="{Reason}"
+						text="{Assets}"/>
+                       
 						
 					</cells>
 				</ColumnListItem>

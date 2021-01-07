@@ -143,17 +143,7 @@ sap.ui.define([
 				this.getView().byId("lReason").setValueState(sap.ui.core.ValueState.Error);
 				
 
-			} else if ( Lid == "") {
-
-				this.getView().byId("lid").setValueState(sap.ui.core.ValueState.Error);
-				this.getView().byId("lid").setValueStateText("Please Enter Employee Id");
-
-			} else if ( Lname == "") {
-
-				this.getView().byId("lname").setValueState(sap.ui.core.ValueState.Error);
-				this.getView().byId("lname").setValueStateText("Please Enter Employee Name");
-
-			} else if ( Ldate == "") {
+			}else if ( Ldate == "") {
 
 				this.getView().byId("lDP1").setValueState(sap.ui.core.ValueState.Error);
 				this.getView().byId("lDP1").setValueStateText("Please Enter Date");
@@ -163,38 +153,26 @@ sap.ui.define([
 				this.getView().byId("lReason").setValueState(sap.ui.core.ValueState.Error);
 				this.getView().byId("lReason").setValueStateText("Please Enter Leave Reason");
 
-			}else if (!nameV.test(Lname)) {
-
-				this.getView().byId("lname").setValueState(sap.ui.core.ValueState.Error);
-				this.getView().byId("lname").setValueStateText("Name Must Start with Uppercase Letters");
-
 			}
-
-
-
 
 
               else{
 
-                this.getView().byId("lid").setValueState(sap.ui.core.ValueState.None);
-				this.getView().byId("lname").setValueState(sap.ui.core.ValueState.None);
 				this.getView().byId("lDP1").setValueState(sap.ui.core.ValueState.None);
 				this.getView().byId("lReason").setValueState(sap.ui.core.ValueState.None);
 
                 var Payload = {};
-                
-                Payload.Rid = Lid;
+                var random= Math.floor((Math.random() * 100000) + 1)
+                Payload.Eid = Lid;
                 Payload.Rdate = Ldate;
                 Payload.Name = Lname;
                 Payload.Reason = Lreason;
                 Payload.Assets = Lassets;
                 Payload.Type = ltype 
+                Payload.Rid= Lid+random;
                 
                 
                 this.updateRequest(Payload);
-
-                this.getView().byId("lid").setValue("");
-                this.getView().byId("lname").setValue("");
                 this.getView().byId("lDP1").setValue("");
                 this.getView().byId("lReason").setValue("");
 
@@ -220,25 +198,14 @@ sap.ui.define([
                 
                    if (Aid == "" && Aname == "" && Adate ==""  && Areason== "" && Aassets == "") {
 				MessageToast.show("Please Fill all fields");
-				this.getView().byId("InputId1").setValueState(sap.ui.core.ValueState.Error);
-				this.getView().byId("InputName2").setValueState(sap.ui.core.ValueState.Error);
+				
 				this.getView().byId("date3").setValueState(sap.ui.core.ValueState.Error);
 				this.getView().byId("InputAssetsReason").setValueState(sap.ui.core.ValueState.Error);
                 this.getView().byId("InputAssets").setValueState(sap.ui.core.ValueState.Error);
 				
                 
 
-			} else if ( Aid == "") {
-
-				this.getView().byId("InputId1").setValueState(sap.ui.core.ValueState.Error);
-				this.getView().byId("InputId1").setValueStateText("Please Enter Employee Id");
-
-			} else if ( Aname == "") {
-
-				this.getView().byId("InputName2").setValueState(sap.ui.core.ValueState.Error);
-				this.getView().byId("InputName2").setValueStateText("Please Enter Employee Name");
-
-			} else if ( Adate == "") {
+			}else if ( Adate == "") {
 
 				this.getView().byId("date3").setValueState(sap.ui.core.ValueState.Error);
 				this.getView().byId("date3").setValueStateText("Please Enter Date");
@@ -254,35 +221,26 @@ sap.ui.define([
 				this.getView().byId("InputAssets").setValueStateText("Please Enter Leave Reason");
 
 			}
-            else if (!nameV.test(Aname)) {
-
-				this.getView().byId("InputName2").setValueState(sap.ui.core.ValueState.Error);
-				this.getView().byId("InputName2").setValueStateText("Name Must Start with Uppercase Letters");
-
-			}
 
 
          else{
 
-                this.getView().byId("InputId1").setValueState(sap.ui.core.ValueState.None);
-				this.getView().byId("InputName2").setValueState(sap.ui.core.ValueState.None);
 				this.getView().byId("date3").setValueState(sap.ui.core.ValueState.None);
 				this.getView().byId("InputAssetsReason").setValueState(sap.ui.core.ValueState.None);
                 this.getView().byId("InputAssets").setValueState(sap.ui.core.ValueState.None);
 
              var Payload = {};
-
-             Payload.Rid = Aid;
+                var random= Math.floor((Math.random() * 100000) + 1)
+             Payload.Eid = Aid;
              Payload.Rdate = Adate;
              Payload.Name = Aname ;
              Payload.Reason = Areason;
              Payload.Assets = Aassets ;
-             Payload.Type = ltype 
+             Payload.Type = ltype ;
+             Payload.Rid = Aid+random;
 
                     this.updateRequest(Payload);
 
-                this.getView().getModel("Asst").setProperty("/AEid","");
-                this.getView().getModel("Asst").setProperty("/AName", "");
                 this.getView().getModel("Asst").setProperty("/ADate","");
                  this.getView().getModel("Asst").setProperty("/AAst","");
                 this.getView().getModel("Asst").setProperty("/AReason", "");
@@ -291,27 +249,7 @@ sap.ui.define([
 
                  },
 
-            //profile changes
-            
-        // addProfileData:function(){
-        //  //   debugger
-        //  if(this.getOwnerComponent().getModel("profileModel")){
-        //     var id=this.Id;
-        //     var path=null
-        //           var detail = this.getOwnerComponent().getModel("profileModel").getProperty("/profile");
-        //          // console.log(detail)
-        //           detail.map((element,index)=>{
-        //               if(element.Eid===id){
-        //                  // debugger
-        //                 path = index;
-        //             }
-        //             detail[index].Picture = element.Picture.toLowerCase()
-        //           })
-        //           this.getOwnerComponent().setModel(new JSONModel({profile:detail}),"profileModel")
-        //             this.getView().byId("ObjectPageLayout").bindElement("profileModel>/profile/"+path);
-        //         }
-        //     },
-
+        
             onOpenEdit:function(){
                 debugger;
                 var sForm = this.getView().byId("SmForm1");
