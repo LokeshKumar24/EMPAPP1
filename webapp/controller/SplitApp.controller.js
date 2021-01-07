@@ -4,8 +4,8 @@ sap.ui.define([
         "sap/base/Log",
         "sap/ui/core/Fragment",
          'sap/m/MessagePopover',
-  'sap/m/MessagePopoverItem',
-  'sap/m/MessageToast'
+         'sap/m/MessagePopoverItem',
+         'sap/m/MessageToast'
 	],
 	/**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
@@ -46,7 +46,7 @@ sap.ui.define([
 //   },
 
     openMsgList: function () {
-			debugger;
+			// debugger;
             var oView = this.getView();
             
               
@@ -69,7 +69,7 @@ sap.ui.define([
 
         },
   onClosePopover:function(){
-      debugger;
+    //   debugger;
     //   this.oPopover.close();
       this.getView().byId("NotifDialog").close();
 
@@ -89,7 +89,7 @@ sap.ui.define([
         
 
              onRequest: function () {
-			debugger;
+			// debugger;
             var oView = this.getView();
              var data=    this.getOwnerComponent().getModel("requestModel").getProperty("/request");
              var ndata=[]
@@ -130,7 +130,7 @@ sap.ui.define([
 
 			this.byId("SplitApp").toDetail(this.createId(sToPageId));
         },
-
+         // To Open Request Fragment
         notif:null,
             onOpenNoti:function(){
                // debugger;
@@ -142,7 +142,7 @@ sap.ui.define([
 
             },
 
-            
+            // To Close Fragment
             onCloseN:function(){
                 this.notif.close();
             },
@@ -154,6 +154,7 @@ sap.ui.define([
                         oRouter.navTo("RouteLogin");
            
             },
+             // For Leave Request
                  onLeave:function(){
                      debugger;
 
@@ -218,7 +219,7 @@ sap.ui.define([
               }   
 
                },
-
+                // For Assets Request
                  onAssets:function(){
                      debugger;
                 var Aid = this.getView().byId("InputId1").getValue();
@@ -276,58 +277,42 @@ sap.ui.define([
              Payload.Type = ltype ;
              Payload.Rid = Aid+random;
 
-                    this.updateRequest(Payload);
+            this.updateRequest(Payload);
 
-                this.getView().getModel("Asst").setProperty("/ADate","");
-                 this.getView().getModel("Asst").setProperty("/AAst","");
-                this.getView().getModel("Asst").setProperty("/AReason", "");
-                 MessageToast.show("Assets Request Send SuccesFully!");
+            this.getView().getModel("Asst").setProperty("/ADate","");
+            this.getView().getModel("Asst").setProperty("/AAst","");
+            this.getView().getModel("Asst").setProperty("/AReason", "");
+            MessageToast.show("Assets Request Send SuccesFully!");
                 
-                // this.byId("idListItem").getBinding("items").refresh();
-                // this. getRequest();
-               
-         }
+            }
 
-                 },
+        },
 
         
+           // For Open Editable Form In Profile View
             onOpenEdit:function(){
                 debugger;
-                var sForm = this.getView().byId("SmForm1");
-                sForm.setVisible(false);
+                this.getView().byId("section1").setVisible(false);
+                this.getView().byId("section2").setVisible(false);
+                this.getView().byId("section3").setVisible(true);
 
-                 this.getView().byId("SmForm6").setVisible(false);
-
-                var form = this.getView().byId("SimpleFormChange354");
-                form.setVisible(true);
-
-
-                var edit = this.getView().byId("edit");
-                edit.setVisible(false);
-
+                this.getView().byId("edit").setVisible(false);
                 this.getView().byId("save").setVisible(true);
                 this.getView().byId("cancel").setVisible(true);
-           
-           },
 
+             },
+            // For Cancel Profile Edit Form
            handleCancelPress:function(){
                debugger;
+                this.getView().byId("section1").setVisible(true);
+                this.getView().byId("section2").setVisible(true);
+                this.getView().byId("section3").setVisible(false);
 
-               var form = this.getView().byId("SimpleFormChange354");
-                form.setVisible(false);
-
-                var sForm = this.getView().byId("SmForm1");
-                sForm.setVisible(true);
-
-                 var edit = this.getView().byId("edit");
-                edit.setVisible(true);
-
+                this.getView().byId("edit").setVisible(true);
                 this.getView().byId("save").setVisible(false);
                 this.getView().byId("cancel").setVisible(false);
 
-                 this.getView().byId("SmForm6").setVisible(true);
-
-           },
+            },
            handleSavePress:function(){
                debugger;
                var IntId = this.getView().byId("idInput").getValue();
@@ -336,6 +321,9 @@ sap.ui.define([
                var IntAge = this.getView().byId("ageInput").getValue();
                var IntAdress = this.getView().byId("addInput").getValue();
                var IntCity = this.getView().byId("cityInput").getValue();
+               var IntCompLocation = this.getView().byId("compLoct").getValue();
+               var IntProject = this.getView().byId("projectId").getValue();
+
 
 
              var IDM = /^[A-Z]{2}[0-9]{4}$/;
@@ -344,14 +332,16 @@ sap.ui.define([
 			 var mobile2 = /^[789]\d{9}$/;
              var re = /(?=.*[a-z])(?=.*[!@#$%^&*])(?=.*\d).{9,}/;
 
-             if (IntName == "" && IntPno == "" && IntAge =="" && IntAdress== "" && IntCity == "") {
+             if (IntName == "" && IntPno == "" && IntAge =="" && IntAdress== "" && IntCity == "" && IntCompLocation =="" && IntProject == "") {
 				MessageToast.show("Please Fill all fields");
 				this.getView().byId("idInput").setValueState(sap.ui.core.ValueState.Error);
 				this.getView().byId("nameInput").setValueState(sap.ui.core.ValueState.Error);
 				this.getView().byId("noInput").setValueState(sap.ui.core.ValueState.Error);
 				this.getView().byId("ageInput").setValueState(sap.ui.core.ValueState.Error);
 				this.getView().byId("addInput").setValueState(sap.ui.core.ValueState.Error);
-				this.getView().byId("cityInput").setValueState(sap.ui.core.ValueState.Error);
+                this.getView().byId("cityInput").setValueState(sap.ui.core.ValueState.Error);
+                this.getView().byId("compLoct").setValueState(sap.ui.core.ValueState.Error);
+                this.getView().byId("projectId").setValueState(sap.ui.core.ValueState.Error);
 				
 
 			} else if ( IntName === "") {
@@ -376,7 +366,7 @@ sap.ui.define([
 
 			} else if( IntCity === ""){
               this.getView().byId("cityInput").setValueState(sap.ui.core.ValueState.Error);
-				this.getView().byId("cityInput").setValueStateText("Please Enter Employee Address");
+				this.getView().byId("cityInput").setValueStateText("Please Enter City");
 
             } else if (!nameV.test(IntName)) {
 
@@ -398,25 +388,27 @@ sap.ui.define([
 				this.getView().byId("ageInput").setValueState(sap.ui.core.ValueState.Error);
 				this.getView().byId("ageInput").setValueStateText("Age Must Be Greater Than 18  and Less than 55");
 
-			}
+            }
+            else if( IntCompLocation  === ""){
+              this.getView().byId("compLoct").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("compLoct").setValueStateText("Please Enter Employee Address");
 
+            } 
+            else if( IntProject === ""){
+              this.getView().byId("projectId").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("projectId").setValueStateText("Please Enter Employee Address");
 
+            } 
 
-
-
-
-            
-
-
-               
-               
-             else{  
-                 this.getView().byId("idInput").setValueState(sap.ui.core.ValueState.None);
+            else{  
+                this.getView().byId("idInput").setValueState(sap.ui.core.ValueState.None);
 				this.getView().byId("nameInput").setValueState(sap.ui.core.ValueState.None);
 				this.getView().byId("noInput").setValueState(sap.ui.core.ValueState.None);
 				this.getView().byId("ageInput").setValueState(sap.ui.core.ValueState.None);
 				this.getView().byId("addInput").setValueState(sap.ui.core.ValueState.None);
-				this.getView().byId("cityInput").setValueState(sap.ui.core.ValueState.None);
+                this.getView().byId("cityInput").setValueState(sap.ui.core.ValueState.None);
+                this.getView().byId("compLoct").setValueState(sap.ui.core.ValueState.None);
+                this.getView().byId("projectId").setValueState(sap.ui.core.ValueState.None);
 
 
 
@@ -429,25 +421,127 @@ sap.ui.define([
                Payload.Age = IntAge;
                Payload.Address = IntAdress;
                Payload.City = IntCity ;
+               Payload.Complocation = IntCompLocation;
+               Payload.Project = IntProject;
                
-            this.profileUpdate(Payload)
+                this.profileUpdate(Payload)
 
-              
-                this.getView().byId("SmForm1").setVisible(true);
-
-                this.getView().byId("SimpleFormChange354").setVisible(false);
-                
-
-                 this.getView().byId("SmForm6").setVisible(true);
+                this.getView().byId("section1").setVisible(true);
+                this.getView().byId("section2").setVisible(true);
+                this.getView().byId("section3").setVisible(false);
 
                   
-                  this.getView().byId("edit").setVisible(true);
-                 this.getView().byId("save").setVisible(false);
-                 this.getView().byId("cancel").setVisible(false);
+                this.getView().byId("edit").setVisible(true);
+                this.getView().byId("save").setVisible(false);
+                this.getView().byId("cancel").setVisible(false);
 
              }
     
            },
+
+           onChangeName:function(){
+               debugger;
+               var name = this.getView().byId("nameInput").getValue();
+                if (name =="") {
+                 
+                  this.getView().byId("nameInput").setValueState(sap.ui.core.ValueState.Error);  // if the field is empty after change, it will go red
+                  this.getView().byId("nameInput").setValueStateText("Please Enter Employee Name");
+            }
+              else {
+                 
+                  this.getView().byId("nameInput").setValueState(sap.ui.core.ValueState.None); // if the field is not empty after change, the value state (if any) is removed
+            }
+           },
+
+            onChangeNumber:function(){
+               debugger;
+               var CNO = this.getView().byId("noInput").getValue();
+                if (CNO=="") {
+                 
+                  this.getView().byId("noInput").setValueState(sap.ui.core.ValueState.Error); 
+                  this.getView().byId("noInput").setValueStateText("Please Enter Employee Contact No");
+ 
+            }
+              else {
+                 
+                  this.getView().byId("noInput").setValueState(sap.ui.core.ValueState.None); 
+            }
+           },
+
+            onChangeAge:function(){
+               debugger;
+               var Cage = this.getView().byId("ageInput").getValue();
+                if (Cage =="") {
+                 
+                  this.getView().byId("ageInput").setValueState(sap.ui.core.ValueState.Error); 
+                  this.getView().byId("ageInput").setValueStateText("Please Enter Employee Age");
+ 
+            }
+              else {
+                 
+                  this.getView().byId("ageInput").setValueState(sap.ui.core.ValueState.None);  
+            }
+           },
+           onChangeAdrees:function(){
+               debugger;
+               var Cage = this.getView().byId("addInput").getValue();
+                if (Cage =="") {
+                 
+                  this.getView().byId("addInput").setValueState(sap.ui.core.ValueState.Error); 
+                  this.getView().byId("addInput").setValueStateText("Please Enter Adress");
+ 
+            }
+              else {
+                 
+                  this.getView().byId("addInput").setValueState(sap.ui.core.ValueState.None);  
+            }
+           },
+           onChangeCity:function(){
+               debugger;
+                var City = this.getView().byId("cityInput").getValue();
+                if (City =="") {
+                 
+                  this.getView().byId("cityInput").setValueState(sap.ui.core.ValueState.Error); 
+                  this.getView().byId("cityInput").setValueStateText("Please Enter City");
+ 
+            }
+              else {
+                 
+                  this.getView().byId("cityInput").setValueState(sap.ui.core.ValueState.None);  
+            }
+           },
+
+           onChangeComp:function(){
+               debugger;
+                var CL = this.getView().byId("compLoct").getValue();
+                if (CL =="") {
+                 
+                  this.getView().byId("compLoct").setValueState(sap.ui.core.ValueState.Error); 
+                  this.getView().byId("compLoct").setValueStateText("Please Enter Company Location");
+ 
+            }
+              else {
+                 
+                  this.getView().byId("compLoct").setValueState(sap.ui.core.ValueState.None);  
+            }
+           },
+
+           onChangeProject:function(){
+               debugger;
+                var CPR = this.getView().byId("projectId").getValue();
+                if (CPR =="") {
+                 
+                  this.getView().byId("projectId").setValueState(sap.ui.core.ValueState.Error); 
+                  this.getView().byId("projectId").setValueStateText("Please Enter Project Name");
+ 
+            }
+              else {
+                 
+                  this.getView().byId("projectId").setValueState(sap.ui.core.ValueState.None);  
+            }
+           }
+
+
         //    onChange: function () {
 		// 	debugger;
 		// 	var today = today = new Date();

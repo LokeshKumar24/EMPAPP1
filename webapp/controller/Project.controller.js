@@ -262,6 +262,7 @@ sap.ui.define([
                      sap.m.MessageToast.show("Updated Succesfully");
                     // sap.m.MessageBox.success("Updated Succesfully");
                      this.getView().byId("saveid").setVisible(false);
+                     this.getView().byId("idProjectListItem").removeSelections(true) 
 
 
                  },
@@ -315,6 +316,8 @@ sap.ui.define([
                      oModel10.submitChanges(mParameters);
                     sap.m.MessageToast.show("Deleted Succesfully");
                     //  this.getView().byId("saveid").setVisible(false);
+                    this.getView().byId("idProjectListItem").removeSelections(true) 
+
                     
                       this.byId("idProjectListItem").getBinding("items").refresh();
 

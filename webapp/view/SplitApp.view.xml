@@ -19,7 +19,7 @@
                                  <Button icon="sap-icon://bell" type="Emphasized" id="popOver" press="openMsgList"></Button>
                                  <!-- <Button   icon="sap-icon://bell" press="onOpenNoti"></Button> -->
                                  
-								<Button   icon="sap-icon://log" press="onLogout" text="Logout"></Button>
+								<Button   icon="sap-icon://log" press="onLogout"></Button>
                                 
 							</contentRight>
 						</Bar>

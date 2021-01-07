@@ -257,7 +257,7 @@ sap.ui.define([
                      success: function(data) {
                     //   alert("success");
                     that.getProfile();
-                    sap.m.MessageToast.show("Profile Updated Succesfully");
+                    sap.m.MessageToast.show("Profile Data Updated Succesfully!");
                     },
                      error: function(e) {
                       alert("error");

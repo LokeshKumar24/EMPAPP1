@@ -48,11 +48,11 @@
 			</FlexBox>
 		</uxap:headerContent>
 		<uxap:sections>
-			<uxap:ObjectPageSection title="About Me" importance="Medium">
+        <uxap:ObjectPageSection title="About Me" importance="Medium" visible="true" id="section1">
 				<uxap:subSections>
-					<uxap:ObjectPageSubSection title="About Me">
+					<uxap:ObjectPageSubSection title="Personal Details">
 						<uxap:blocks>
-							<form:SimpleForm  id="SmForm1" layout="ColumnLayout" width="100%" labelSpanL="3" labelSpanM="3" labelSpanS="3" emptySpanL="0" emptySpanM="0"
+							<form:SimpleForm  id="SmForm17" layout="ColumnLayout" width="100%" labelSpanL="3" labelSpanM="3" labelSpanS="3" emptySpanL="0" emptySpanM="0"
 								emptySpanS="0" maxContainerCols="2">
 								<core:Title text=""/>
 								<Label text="Employee Id"/>
@@ -72,55 +72,12 @@
                                
 							</form:SimpleForm>
 
-                            <VBox class="sapUiSmallMargin">
-		<form:SimpleForm id ="SimpleFormChange354"
-			editable="true"
-            visible="false"
-			layout="ResponsiveGridLayout"
-			title="Edit Details"
-			labelSpanXL="3"
-			labelSpanL="3"
-			labelSpanM="3"
-			labelSpanS="12"
-			adjustLabelSpan="false"
-			emptySpanXL="4"
-			emptySpanL="4"
-			emptySpanM="4"
-			emptySpanS="0"
-			columnsXL="1"
-			columnsL="1"
-			columnsM="1"
-			singleContainerFullSize="false" >
-			<form:content>
-				
-                <Label text="Employee Id"/>
-				<Input id="idInput" value="{profileModel>Eid}" editable="false" />
-                <Label text="Name" />
-				<Input id="nameInput" value="{profileModel>Fullname}" />
-               
-                <Label text="Employee No"/>
-				<Input id="noInput"  value="{profileModel>Phoneno}"  maxLength="10"/>
-				<Label text="Age"/>
-				<Input  id="ageInput" value="{profileModel>Age}" maxLength="2"/>
-                <Label text="Adress"/>
-				<Input   id="addInput" value="{profileModel>Address}"/>
-                <Label text="City"/>
-				<Input  id="cityInput" value="{profileModel>City}" type="Text"/>
-				
-
-				
-				
-				
-				
-			</form:content>
-		</form:SimpleForm>
-	</VBox>
-						</uxap:blocks>
+                           	</uxap:blocks>
 					</uxap:ObjectPageSubSection>
 
-                    <uxap:ObjectPageSubSection id="personalSectionSS2" title="Adress Details" titleUppercase="false">
+                    <uxap:ObjectPageSubSection id="personalSectionSS27" title="Adress Details" titleUppercase="false" visible="true">
 						<uxap:blocks>
-							<form:SimpleForm  id="SmForm6" layout="ColumnLayout" width="100%" labelSpanL="3" labelSpanM="3" labelSpanS="3" emptySpanL="0" emptySpanM="0"
+							<form:SimpleForm  id="SmForm67" layout="ColumnLayout" width="100%" labelSpanL="3" labelSpanM="3" labelSpanS="3" emptySpanL="0" emptySpanM="0"
 								emptySpanS="0" maxContainerCols="2">
 								<core:Title text=""/>
 								<Label text="Employee Id"/>
@@ -143,7 +100,8 @@
 					
 				</uxap:subSections>
 			</uxap:ObjectPageSection>
-			<uxap:ObjectPageSection title="Work Details">
+			
+			<uxap:ObjectPageSection title="Work Details" id="section2" visible="true">
 				<uxap:subSections>
 					<uxap:ObjectPageSubSection title=" Work Details">
 						<uxap:blocks>
@@ -174,15 +132,100 @@
 					</uxap:ObjectPageSubSection>
 				</uxap:subSections>
 			</uxap:ObjectPageSection>
-		
-		</uxap:sections>
-		<uxap:footer>
+            <uxap:ObjectPageSection title="Edit Details" importance="Medium" visible="false" id="section3">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection title="Edit Personal Details">
+						<uxap:blocks>
+							
+                            <VBox class="sapUiSmallMargin">
+		<form:SimpleForm id ="SimpleFormChange354"
+			editable="true"
+            visible="true"
+			layout="ResponsiveGridLayout"
+			title=""
+			labelSpanXL="3"
+			labelSpanL="3"
+			labelSpanM="3"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="4"
+			emptySpanL="4"
+			emptySpanM="4"
+			emptySpanS="0"
+			columnsXL="1"
+			columnsL="1"
+			columnsM="1"
+			singleContainerFullSize="false" >
+			<form:content>
+				
+                <Label text="Employee Id"/>
+				<Input id="idInput" value="{profileModel>Eid}" editable="false" />
+                <Label text="Name" />
+				<Input id="nameInput" value="{profileModel>Fullname}" required="true" liveChange="onChangeName"/>
+               
+                <Label text="Employee No"/>
+				<Input id="noInput"  value="{profileModel>Phoneno}"  maxLength="10" required="true" liveChange=" onChangeNumber"/>
+				<Label text="Age"/>
+				<Input  id="ageInput" value="{profileModel>Age}" maxLength="2" required="true" liveChange="onChangeAge"/>
+                <Label text="Adress"/>
+				<Input   id="addInput" value="{profileModel>Address}" required="true" liveChange="onChangeAdrees"/>
+                <Label text="City"/>
+				<Input  id="cityInput" value="{profileModel>City}" type="Text" required="true" liveChange="onChangeCity"/>
+				
+
+				
+				
+				
+				
+			</form:content>
+		</form:SimpleForm>
+	</VBox>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+
+                    <uxap:ObjectPageSubSection id="personalSectionSS2" title="Edit Work Details" titleUppercase="false">
+						<uxap:blocks>
+							 <VBox class="sapUiSmallMargin">
+		<form:SimpleForm id ="SimpleFormChange3547"
+			editable="true"
+            visible="true"
+			layout="ResponsiveGridLayout"
+			title=""
+			labelSpanXL="3"
+			labelSpanL="3"
+			labelSpanM="3"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="4"
+			emptySpanL="4"
+			emptySpanM="4"
+			emptySpanS="0"
+			columnsXL="1"
+			columnsL="1"
+			columnsM="1"
+			singleContainerFullSize="false" >
+			<form:content>
+				
+                <Label text="Employee Id"/>
+				<Input id="idInput7" value="{profileModel>Eid}" editable="false" />
+                
+               
+                <Label text="Compnany Adress"/>
+				<Input id="compLoct"  value="{profileModel>Complocation}"  maxLength="10" required="true" liveChange="onChangeComp"/>
+				<Label text="Project Name"/>
+				<Input  id="projectId" value="{profileModel>Project}" type="Text" required="true" liveChange="onChangeProject"/>
+                </form:content>
+		</form:SimpleForm>
+	</VBox>
+		</uxap:blocks>
+		</uxap:ObjectPageSubSection>
+	  </uxap:subSections>
+	</uxap:ObjectPageSection>
+	</uxap:sections>
+	<uxap:footer>
 			<OverflowToolbar>
 				<ToolbarSpacer/>
-                <!-- <Button id="save" text="Save" type="Emphasized" visible="false" press="handleSavePress" />
-				<Button id="cancel" text="Cancel" visible="false" press="handleCancelPress" /> -->
-				<!-- <Button type="Emphasized" text="Send" icon="sap-icon://email" press="onRequest"/>
-				<Button type="Default" visible="false"/> -->
+               
 			</OverflowToolbar>
 		</uxap:footer>
 	</uxap:ObjectPageLayout>
