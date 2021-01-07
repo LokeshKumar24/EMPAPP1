@@ -152,7 +152,7 @@ sap.ui.define([
         onEdit:function(){
             debugger;
             
-                         var oTable1 = this.byId("idListItem");
+                         var oTable1 = this.byId("idProjectListItem");
                          var oView = this.getView();
                         
                 
@@ -185,7 +185,7 @@ sap.ui.define([
                   // On Save Edit details of Project
                   onSaveP:function(){
                      debugger;
-                     var oTable1 = this.byId("idListItem");
+                     var oTable1 = this.byId("idProjectListItem");
                          var oView = this.getView();
                         
                 
@@ -259,7 +259,8 @@ sap.ui.define([
                      }
 
                      oModel10.submitChanges(mParameters);
-                    sap.m.MessageBox.success("Updated Succesfully");
+                     sap.m.MessageToast.show("Updated Succesfully");
+                    // sap.m.MessageBox.success("Updated Succesfully");
                      this.getView().byId("saveid").setVisible(false);
 
 

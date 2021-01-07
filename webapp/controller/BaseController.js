@@ -329,7 +329,7 @@ sap.ui.define([
                  oPRModel .create("/PROJECTSet", Payload, {
                      method: "POST",
                      success: function(data) {
-                     alert("success");
+                    //  alert("success");
                      that.getProject();
                     sap.m.MessageToast.show("New Project Added Succesfully!!!");
                     },
