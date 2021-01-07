@@ -16,11 +16,10 @@
 <Key>
 <PropertyRef Name="Filename"/>
 </Key>
-<Property Name="Creationdate" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Current Date" sap:unicode="false" Nullable="false" Type="Edm.DateTime" Precision="7"/>
 <Property Name="Filename" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Char20" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 <Property Name="Eid" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field Length = 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 <Property Name="Employeename" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Char20" sap:unicode="false" MaxLength="20" Nullable="false" Type="Edm.String"/>
-<Property Name="Creationtime" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Time" sap:unicode="false" Nullable="false" Type="Edm.Time" Precision="0"/>
+<Property Name="Creationdate" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="30 Characters" sap:unicode="false" MaxLength="30" Nullable="false" Type="Edm.String"/>
 <NavigationProperty Name="TOFILE" Relationship="ZAPP_EMP1_SRV.FILEASSDB" FromRole="FromRole_FILEASSDB" ToRole="ToRole_FILEASSDB" sap:label="NAVIGATE TO FILE"/>
 </EntityType>
 <EntityType Name="PROFILE" sap:content-version="1">
