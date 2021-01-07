@@ -18,6 +18,18 @@ sap.ui.define([
                 this.getProfile();
 
             },
+              //birthday
+            getBirthDay:function(){
+                 var date= new Date();
+           var data=   this.getOwnerComponent().getModel("profileModel").getProperty("/profile");
+           data.map((element=>{
+               if(element.Dob[9] === date.getDate() ){
+                   debugger
+             this.getOwnerComponent().setModel(new JSONModel({birthay:[{name:"Wish you happy BirthDay "+element.Fullname}]}),"birth");
+               }
+           }))
+           
+            },
                //profile data
               getProfile:function(){
                 // debugger
@@ -32,7 +44,8 @@ sap.ui.define([
                     //  debugger;
                      console.log(data.results)
                     that.getOwnerComponent().setModel(new JSONModel({profile:data.results}),"profileModel");
-                       that.addProfileData()             
+                       that.addProfileData()
+                        that.getBirthDay()                
                 },
                 error:function(){
                     alert("Profile data is not received");

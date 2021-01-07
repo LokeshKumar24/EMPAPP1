@@ -48,9 +48,11 @@ sap.ui.define([
                 this.fileType = file.type;
                 var reader = new FileReader();
                 reader.onload = function (e) {
-                    var vContent = e.currentTarget.result.replace( file.type );
+                    var vContent = e.currentTarget.result.replace("data:"+file.type+ ";base64,","");
+                    debugger
                 that.updateFile(that.Eid, that.fileName, that.fileType, vContent);
                 }
+                 reader.readAsDataURL(file);
         
     }	,
     downloadFile:function(oEvent){

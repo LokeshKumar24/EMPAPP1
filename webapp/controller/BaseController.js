@@ -89,13 +89,26 @@ sap.ui.define([
                    // debugger;
                     
                      console.log(data.results)
-                that.getOwnerComponent().setModel(new JSONModel({home:data.results}),"homeModel");            
+                that.getOwnerComponent().setModel(new JSONModel({home:data.results}),"homeModel");  
+                      
                 },
                 error:function(){
                     alert("Home data is not received");
                 }
             });
 
+            },
+            //birthday
+            getBirthDay:function(){
+                 var date= new Date();
+           var data=   this.getOwnerComponent().getModel("profileModel").getProperty("/profile");
+           data.map((element=>{
+               if(element.Dob[9] === date.getDate() ){
+                   debugger
+             this.getOwnerComponent().setModel(new JSONModel({birthay:[{name:"Wish you happy BirthDay "+element.Fullname}]}),"birth");
+               }
+           }))
+           
             },
              //profile data
               getProfile:function(){
@@ -111,7 +124,8 @@ sap.ui.define([
                     //  debugger;
                      console.log(data.results)
                     that.getOwnerComponent().setModel(new JSONModel({profile:data.results}),"profileModel");
-                       that.addProfileData()             
+                       that.addProfileData() 
+                         that.getBirthDay()              
                 },
                 error:function(){
                     alert("Profile data is not received");
@@ -236,7 +250,39 @@ sap.ui.define([
                  oModel .read("/FILESet('"+fileName+"')/$value",{
                      method: "GET",
                      success: function(data) {
-                     alert("success");
+                    // alert("success");
+                     console.log(data)
+                     var fName=data.Filename
+                     var fType=data.Filetype
+                     var fContent=null;
+                     if(fType==="image/png"){
+                        fContent= data.Filecontent
+                     }
+                     else{
+
+                         var ndata= data.Filecontent.split(",");
+                                     ndata=ndata[1];
+                          fContent=atob(ndata);
+                     }
+                     if(fType==="text/plain" || fType===""){
+                     sap.ui.core.util.File.save(fContent,fName.replace(".txt",""),"txt",fType,"utf-8",true)
+                //    var tab=  window.open("_blank");
+                //    tab.document.write("<p>"+fContent+"</p>");
+                //    tab.document.close();
+                //  var url=URL.createObjectURL(fContent)
+                //          window.open(url,"_blank");
+                    }
+                     else{
+                         var byteNumbers= new Array(fContent.length);
+                         for (let index = 0; index < fContent.length; index++) {
+                             byteNumbers[index]=fContent.charCodeAt(index)
+                             
+                         }
+                         var byteArray= new Uint8Array(byteNumbers)
+                         var blob= new Blob([byteArray],{type:fType});
+                         var url=URL.createObjectURL(blob)
+                         window.open(url,"_blank");
+                     }
                     sap.m.MessageToast.show("FILE Downloaded Succesfully");
                        // that.createFile(eid,fileName)
                      },
