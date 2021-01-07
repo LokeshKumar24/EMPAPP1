@@ -60,6 +60,7 @@
 				
                 <Label></Label>
 				<Button text="Save" type="Emphasized" press="onCreate"></Button>
+                <Button text="Close" type="Reject" press="onCloseProject"></Button>
                  </sf:content>
 		</sf:SimpleForm>
 	</VBox>
