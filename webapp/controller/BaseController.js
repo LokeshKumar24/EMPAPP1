@@ -329,7 +329,7 @@ sap.ui.define([
 
             },
             dateFormat:function(){
-                debugger
+               // debugger
            var data=    this.getOwnerComponent().getModel("fileNameModel").getProperty("/request");
                 data.map((element,index)=>{
                     data[index].Creationdate= element.Creationdate.slice(0,10)
