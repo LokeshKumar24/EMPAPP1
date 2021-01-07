@@ -57,16 +57,7 @@ sap.ui.define([
             // this.addProfileData();
              console.log(path)
 
-             var oRModel = this.getOwnerComponent().getModel("requestModel").getProperty("/request");
-             for (var x= 0; x<oRModel.length; x++){
-                 if(oRModel[x].Rid == path){
-                     var id = oRModel[x].Rid;
-                     var name = oRModel[x].Name;
-                     var reason = oRModel[x].Reason;
 
-                     //var i= this.getView().byId("text1").getText();
-                 }
-             }
         },
 
         

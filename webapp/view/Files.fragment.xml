@@ -1,17 +1,17 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:sf="sap.ui.layout.form" xmlns:ui="sap.ui.unified" xmlns:core="sap.ui.core">
 
 <sf:SimpleForm editable="true">
-				<Label text=""></Label>
-				<Input id="InputIdFS" placeholder="Enter Emp Id"></Input>
-				<Label text=""></Label>
-				<Input id="InputNameFS" type="Text" placeholder="Enter Emp Name "></Input>
+				<Label text="EmployeeId"></Label>
+				<Input id="InputIdFS" placeholder="Enter Emp Id" value="{emp>/data/0/id}" editable="false"></Input>
+				<Label text="EmployeeName"></Label>
+				<Input id="InputNameFS" type="Text" placeholder="Enter Emp Name " value="{emp>/data/0/name}" editable="false"></Input>
                  <Label text=""></Label>
-                  <Label text="Enter Date" labelFor="DPFS"/>
+                  <!-- <Label text="Enter Date" labelFor="DPFS"/>
 		<DatePicker
 			id="DPFS"
 			placeholder="Enter Date"
 			change="handleChange"
-			class="sapUiSmallMarginBottom"/>
+			class="sapUiSmallMarginBottom"/> -->
         
                    <Label text=""></Label>
 				<Input id="FileName" type="Text" placeholder="Enter File Name "></Input>

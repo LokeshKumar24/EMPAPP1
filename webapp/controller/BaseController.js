@@ -111,7 +111,7 @@ sap.ui.define([
                    //  debugger;
                     
                      console.log(data.results)
-                // that.getOwnerComponent().setModel(new JSONModel({project:data.results}),"projectModel");                    
+             that.getOwnerComponent().setModel(new JSONModel({project:data.results}),"projectModel");                    
                 },
                 error:function(){
                     alert("Project data is not received");
@@ -170,7 +170,50 @@ sap.ui.define([
             });
 
             },
+            // file data
+             getFileData:function(){
+               // debugger
+                  var that = this;
+                  
+              var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
 
+             var oJModel =  new sap.ui.model.odata.ODataModel(serviceurl);
+      
+            var data=oJModel.read("/FILEASSOCATESet", {
+                success:function(data){
+                    // debugger;
+                     console.log("data")
+                     console.log(data.results)
+              that.getOwnerComponent().setModel(new JSONModel({request:data.results}),"fileNameModel");
+                    // that.getDataT(data);
+                    
+                                   
+                },
+                error:function(){
+                    alert("files data is not received");
+                }
+            });
+
+            },
+            // get specific file data
+              getFile:function(fileName){
+               debugger;
+                  var that = this;
+                  var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
+                
+                var oModel =  new sap.ui.model.odata.ODataModel(serviceurl);
+                 oModel .read("/FILESet('"+fileName+"')/$value",{
+                    
+                     success: function(data) {
+                     alert("success");
+                    sap.m.MessageToast.show("FILE Downloaded Succesfully");
+                       // that.createFile(eid,fileName)
+                     },
+                     error: function(e) {
+                      alert("error");
+                    }
+                 })
+                },
              
             //profile update
             profileUpdate(Payload){

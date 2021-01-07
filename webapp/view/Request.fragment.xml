@@ -12,7 +12,7 @@ xmlns:sf="sap.ui.layout.form" 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 		<Button  icon="sap-icon://decline" press="onClose" type="Reject"></Button>
             </VBox>
 	
-		<!-- <Table items="{/REQUESTSet}" id="idListItem" width="50rem">
+		<Table items="{/REQUESTSet}" id="idListItem" width="50rem">
 			<columns>
 				<Column width="10em" minScreenWidth="Small">
 					<Label text="S.No"></Label>
@@ -46,22 +46,22 @@ xmlns:sf="sap.ui.layout.form" 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 					</cells>
 				</ColumnListItem>
 			</items>
-		</Table> -->
-         <smartTable:SmartTable entitySet="REQUESTSet"
+		</Table>
+         <!-- <smartTable:SmartTable entitySet="REQUESTSet"
                          initiallyVisibleFields="Name,Rdate,Type,Assets,Reason"
                          requestAtLeastFields="Name,Rdate,Type,Assets,Reason"
 			tableType="ResponsiveTable" useExportToExcel="true" beforeExport="onBeforeExport"
 			useVariantManagement="false" useTablePersonalisation="true" header="Line Items"
 			showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true"
-			demandPopin="true" class="sapUiResponsiveContentPadding"/>
+			demandPopin="true" class="sapUiResponsiveContentPadding"/> -->
             
 			</IconTabFilter>
 			<IconTabFilter text="Leave Request" key="Leave Request">
                   <sf:SimpleForm editable="true">
-				<Label text=""></Label>
-				<Input placeholder="Enter Emp Id" value=""  id="lid"></Input>
-				<Label text=""></Label>
-				<Input  placeholder="Enter Emp Name" value="" id="lname"></Input>
+				<Label text="EmployeeId"></Label>
+				<Input  value="{emp>/data/0/id}" editable="false"  id="lid"></Input>
+				<Label text="EmployeeName"></Label>
+				<Input   value="{emp>/data/0/name}" editable="false" id="lname"></Input>
                 <Label text="" labelFor="lDP1"/>
 		<DatePicker
 			id="lDP1"
@@ -90,12 +90,12 @@ xmlns:sf="sap.ui.layout.form" 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 
             <sf:SimpleForm>
             <Label text=""></Label>
-            <Input id="InputId1" placeholder="Enter Your Id" value=""></Input>
+            <Input id="InputId1" value="{emp>/data/0/id}" editable="false"></Input>
             <Label text=""></Label>
-            <Input id="InputName2" placeholder="Enter Your Name" value=""></Input>
+            <Input id="InputName2" value="{emp>/data/0/name}" editable="false"></Input>
             <Label text="" ></Label>
             <Label text=""></Label>
-            <DatePicker id="date3" value="" ></DatePicker>
+            <DatePicker id="date3" value="Date" ></DatePicker>
             <Label text=""></Label>
 				<Input id="InputAssets" type="Text" placeholder="Enter Assets" value=""></Input>
                 <Label text=""></Label>

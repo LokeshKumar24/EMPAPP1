@@ -60,6 +60,15 @@ sap.ui.define([
                       if(element.Eid===id){
                          // debugger
                         path = index;
+
+                    var data1={
+                            id:id,
+                            name:element.Fullname                        
+                    }
+                    var data2={
+                        data:[data1]
+                    }
+                      this.getOwnerComponent().setModel(new JSONModel(data2), "emp");
                     }
                     detail[index].Picture = element.Picture.toLowerCase()
                   })

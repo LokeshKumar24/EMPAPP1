@@ -21,6 +21,7 @@ sap.ui.define([
                  this.getLogin();
                  this.getRequest();
                     this.getOthers();
+                    this.getFileData();
                       this.getProject();
                         this.getHome();
             },

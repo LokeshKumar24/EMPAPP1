@@ -51,10 +51,13 @@ sap.ui.define([
                     var vContent = e.currentTarget.result.replace( file.type );
                 that.updateFile(that.Eid, that.fileName, that.fileType, vContent);
                 }
-            
-	
-            
-    }	
+        
+    }	,
+    downloadFile:function(oEvent){
+       debugger;
+       var fileName =oEvent.getSource().oParent.mAggregations.cells[2].mProperties.text;
+       this.getFile(fileName);
+    }
         
         });
 	});

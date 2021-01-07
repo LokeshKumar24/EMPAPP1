@@ -13,15 +13,48 @@
 		class="sapUiResponsiveContentPadding">
 		<items>
            <IconTabFilter text="Files Data" icon="sap-icon://table-view" key="Files">
+
+           <Table items="{fileNameModel>/request}" id="idListItem" width="50rem">
+			<columns>
+				<Column width="10em" minScreenWidth="Small">
+					<Label text="EmployeeId"></Label>
+				</Column>
+				<Column>
+					<Label text="EmployeeName"></Label>
+				</Column>
+				<Column>
+					<Label text="FileName"></Label>
+				</Column>
+				<Column>
+					<Label text="Date"></Label>
+				</Column>
+				
+				<Column>
+					<Label text="Files to Download"></Label>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{fileNameModel>Eid}"></Text>
+						<Text text="{fileNameModel>Employeename}"></Text>
+						<Text text="{fileNameModel>Filename}"></Text>
+						<Text text="{fileNameModel>Creationdate}"></Text>
+                        <Button text="Download" press="downloadFile"></Button>
+						
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
 				
                 	
-		<smartTable:SmartTable entitySet="REQUESTSet" 
-        initiallyVisibleFields="Name,Rdate,Reason"
+		<!-- <smartTable:SmartTable entitySet="FILEASSOCATESet" 
+        initiallyVisibleFields="Filename,Eid,Creationdate,Creationtime"
        
 			tableType="ResponsiveTable" useExportToExcel="true" beforeExport="onBeforeExport"
 			useVariantManagement="false" useTablePersonalisation="true" header="Line Items"
 			showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true"
-			demandPopin="true" class="sapUiResponsiveContentPadding"></smartTable:SmartTable>
+			demandPopin="true" class="sapUiResponsiveContentPadding"></smartTable:SmartTable> -->
 
 			</IconTabFilter>
             
