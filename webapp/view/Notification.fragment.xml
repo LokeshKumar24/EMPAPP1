@@ -1,21 +1,29 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
 <Dialog  title="Notification"  id="NotifDialog">
-	<Text text="Hi You Have Requsted For Leave Request!!!"></Text>
-    <!-- <Label text=""></Label>
-    <Label text="Reason:" ></Label>
-    <Text text=""></Text>
-    -->
-  
+   
 
-			<!-- <NotificationListGroup
-				title="{requestModel>request/Name}"
+    	<Table items="{requestModel>/request}" id="idListItem" width="50rem">
+			<columns>				
+				<Column>
+					<Label text="Hi Your  Requests !!!"></Label>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+                        	<!-- <ObjectIdentifier
+						title="{requestModel>Reason}"
+						text="{requestModel>Assets}"/> -->
+                        
+			<NotificationListGroup
+				title="{requestModel>Reason}"
 				showCloseButton="true"
 				collapsed="true"
 				close=".onItemClose">
 				
 				<NotificationListItem
-					title="{requestModel>request/Reason}"
-					description="{} "
+					title="{requestModel>Reason}"
+					description="{requestModel>Reason} "
 					showCloseButton="true"
 					datetime="1 hour"
 					unread="true"
@@ -26,7 +34,19 @@
 				
 
 			
-			</NotificationListGroup> -->
+			</NotificationListGroup>
+                       
+						
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+    <!-- <Label text=""></Label>
+    <Label text="Reason:" ></Label>
+    <Text text=""></Text>
+    -->
+  
+
             <beginButton>
 			
             <Button press="onClosePopover" text="Close" ></Button>
