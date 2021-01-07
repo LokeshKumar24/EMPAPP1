@@ -185,7 +185,7 @@ sap.ui.define([
 
                 this.getView().byId("SimpleFormChange353").setVisible(false);
                 // this.byId("idListItem").getBinding("items").refresh();
-                this. getProject();
+                // this. getProject();
                
             }
 

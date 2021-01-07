@@ -1,11 +1,13 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
-<Dialog  title="Notification"  >
-	<!-- <Text text="Hi You Have Requsted For Leave Request!!!"></Text>
-    <Button press="onCloseN" text="Close" ></Button> -->
-  
+<Dialog  title="Notification"  id="NotifDialog">
+	<Text text="Hi You Have Requsted For Leave Request!!!"></Text>
+    <!-- <Label text=""></Label>
+    <Label text="Reason:" ></Label>
+    <Text text=""></Text>
+    -->
   
 
-			<NotificationListGroup
+			<!-- <NotificationListGroup
 				title="{requestModel>request/Name}"
 				showCloseButton="true"
 				collapsed="true"
@@ -24,8 +26,14 @@
 				
 
 			
-			</NotificationListGroup>
+			</NotificationListGroup> -->
+            <beginButton>
+			
+            <Button press="onClosePopover" text="Close" ></Button>
+		</beginButton>
+            
               </Dialog> 
-
+ 
+  
 	
 </core:FragmentDefinition>

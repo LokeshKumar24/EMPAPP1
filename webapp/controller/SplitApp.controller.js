@@ -32,21 +32,46 @@ sap.ui.define([
 
         
     
-    openMsgList: function () {
-        debugger;
+//     openMsgList: function () {
+//         debugger;
 
         
 
-   if (!this.oPopover) {
-    this.oPopover = sap.ui.xmlfragment("EA.EmployeeApp2.view.Notification", this);
-    this.getView().addDependent(this.oPopover);
-   }  
-//    this._oPopover.openBy(oEvent.getSource());
-          this.oPopover.open();
-  },
+//    if (!this.oPopover) {
+//     this.oPopover = sap.ui.xmlfragment("EA.EmployeeApp2.view.Notification", this);
+//     this.getView().addDependent(this.oPopover);
+//    }  
+// //    this._oPopover.openBy(oEvent.getSource());
+//           this.oPopover.open();
+//   },
+
+    openMsgList: function () {
+			debugger;
+            var oView = this.getView();
+            
+              
+
+			if (!this.byId("NotifDialog")) {
+				Fragment.load({
+                    id: oView.getId(),
+                    
+					name: "EA.EmployeeApp2.view.Notification",
+					controller: this
+
+				}).then(function (oDialog) {
+					oView.addDependent(oDialog);
+                    oDialog.open();
+                    
+				});
+			} else {
+				this.byId("NotifDialog").open();
+			}
+
+        },
   onClosePopover:function(){
       debugger;
-      this.oPopover.close();
+    //   this.oPopover.close();
+      this.getView().byId("NotifDialog").close();
 
   },
     
@@ -64,8 +89,16 @@ sap.ui.define([
         
 
              onRequest: function () {
-		//	debugger;
-			var oView = this.getView();
+			debugger;
+            var oView = this.getView();
+             var data=    this.getOwnerComponent().getModel("requestModel").getProperty("/request");
+             var ndata=[]
+             data.map((element,index)=>{
+                if(element.Eid===this.Id){
+                    ndata.push(element);
+                }
+             });
+               this.getOwnerComponent().setModel(new JSONModel({request:ndata}),"requestModel");
 
 			if (!this.byId("helloDialog")) {
 				Fragment.load({
@@ -130,7 +163,7 @@ sap.ui.define([
                 var Ldate =  this.getView().byId("lDP1").getValue();
                 
                 var Lreason = this.getView().byId("lReason").getValue();
-                var Lassets = "No";
+                var Lassets = "No Assets";
                 var ltype = "LEAVE";
 
                  var nameV = /^[A-Z]{1}[a-z]+/;
@@ -250,8 +283,8 @@ sap.ui.define([
                 this.getView().getModel("Asst").setProperty("/AReason", "");
                  MessageToast.show("Assets Request Send SuccesFully!");
                 
-                this.byId("idListItem").getBinding("items").refresh();
-                this. getRequest();
+                // this.byId("idListItem").getBinding("items").refresh();
+                // this. getRequest();
                
          }
 

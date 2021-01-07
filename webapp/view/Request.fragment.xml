@@ -12,11 +12,12 @@ xmlns:sf="sap.ui.layout.form" 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 		<Button  icon="sap-icon://decline" press="onClose" type="Reject"></Button>
             </VBox>
 	
-		<Table items="{/REQUESTSet}" id="idListItem" width="50rem">
+		<Table items="{requestModel>/request}" id="idListItem" width="50rem">
 			<columns>
-				<Column width="10em" minScreenWidth="Small">
-					<Label text="S.No"></Label>
+            <Column>
+					<Label text="Eid"></Label>
 				</Column>
+				
 				<Column>
 					<Label text="Name"></Label>
 				</Column>
@@ -34,13 +35,13 @@ xmlns:sf="sap.ui.layout.form" 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 			<items>
 				<ColumnListItem>
 					<cells>
-						<Text text="{Rid}"></Text>
-						<Text text="{Name}"></Text>
-						<Text text="{Rdate}"></Text>
-						<Text text="{Type}"></Text>
+						<Text text="{requestModel>Eid}"></Text>
+						<Text text="{requestModel>Name}"></Text>
+						<Text text="{requestModel>Rdate}"></Text>
+						<Text text="{requestModel>Type}"></Text>
                         	<ObjectIdentifier
-						title="{Reason}"
-						text="{Assets}"/>
+						title="{requestModel>Reason}"
+						text="{requestModel>Assets}"/>
                        
 						
 					</cells>
