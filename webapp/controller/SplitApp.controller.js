@@ -32,20 +32,21 @@ sap.ui.define([
 
         
     
-    openMsgList: function (oEvent) {
+    openMsgList: function () {
         debugger;
 
         
 
-   if (!this._oPopover) {
-    this._oPopover = sap.ui.xmlfragment("EA.EmployeeApp2.view.Notification", this);
-    this.getView().addDependent(this._oPopover);
+   if (!this.oPopover) {
+    this.oPopover = sap.ui.xmlfragment("EA.EmployeeApp2.view.Notification", this);
+    this.getView().addDependent(this.oPopover);
    }  
-   this._oPopover.openBy(oEvent.getSource());
+//    this._oPopover.openBy(oEvent.getSource());
+          this.oPopover.open();
   },
   onClosePopover:function(){
       debugger;
-      this._oPopover.close();
+      this.oPopover.close();
 
   },
     
