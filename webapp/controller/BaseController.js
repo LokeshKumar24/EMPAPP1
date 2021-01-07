@@ -146,30 +146,30 @@ sap.ui.define([
 
             },
               //get others data
-            getOthers:function(){
-               // debugger
-                  var that = this;
+            // getOthers:function(){
+            //    // debugger
+            //       var that = this;
                   
-              var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
+            //   var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
 
-             var oJModel =  new sap.ui.model.odata.ODataModel(serviceurl);
+            //  var oJModel =  new sap.ui.model.odata.ODataModel(serviceurl);
       
-            var data=oJModel.read("/FILESet", {
-                success:function(data){
-                    // debugger;
+            // var data=oJModel.read("/FILESet", {
+            //     success:function(data){
+            //         // debugger;
                     
-                     console.log(data.results)
-              that.getOwnerComponent().setModel(new JSONModel({request:data.results}),"fileModel");
-                    // that.getDataT(data);
+            //          console.log(data.results)
+            //   that.getOwnerComponent().setModel(new JSONModel({request:data.results}),"fileModel");
+            //         // that.getDataT(data);
                     
                                    
-                },
-                error:function(){
-                    alert("files data is not received");
-                }
-            });
+            //     },
+            //     error:function(){
+            //         alert("files data is not received");
+            //     }
+            // });
 
-            },
+            // },
             // file data
              getFileData:function(){
                // debugger
@@ -186,6 +186,7 @@ sap.ui.define([
                      console.log(data.results)
               that.getOwnerComponent().setModel(new JSONModel({request:data.results}),"fileNameModel");
                     // that.getDataT(data);
+                    that.dateFormat();
                     
                                    
                 },
@@ -198,20 +199,22 @@ sap.ui.define([
             // get specific file data
               getFile:function(fileName){
                debugger;
+              fileName= fileName.toLowerCase()
                   var that = this;
                   var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
                 
                 var oModel =  new sap.ui.model.odata.ODataModel(serviceurl);
                  oModel .read("/FILESet('"+fileName+"')/$value",{
-                    
+                     method: "GET",
                      success: function(data) {
                      alert("success");
                     sap.m.MessageToast.show("FILE Downloaded Succesfully");
                        // that.createFile(eid,fileName)
                      },
                      error: function(e) {
+                         console.log(e)
                       alert("error");
-                    }
+                    } 
                  })
                 },
              
@@ -324,6 +327,14 @@ sap.ui.define([
                
 
 
+            },
+            dateFormat:function(){
+                debugger
+           var data=    this.getOwnerComponent().getModel("fileNameModel").getProperty("/request");
+                data.map((element,index)=>{
+                    data[index].Creationdate= element.Creationdate.slice(0,10)
+                });
+                this.getOwnerComponent().setModel(new JSONModel({request:data}),"fileNameModel");
             }
 		});
 	});
