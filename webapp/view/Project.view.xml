@@ -29,17 +29,17 @@
 			columnsM="1"
 			singleContainerFullSize="false" >
 			<sf:content>
-				<Label text=""/> 
+				<Label text="ProjectId"/> 
 				<Input id="Pid" value=""  placeholder="Enter Project ID"   />
-                <Label text=""/> 
-				<Input id="eid" value=""  placeholder="Enter Emp ID"  />
-                <Label text=""/> 
-				<Input id="name" value=""  placeholder="Enter Your Name"  />
-                <Label text="" />
+                <Label text="EmployeeId"/> 
+				<Input id="eid"  value="{emp>/data/0/id}" editable="false"  />
+                <Label text="EmployeeName"/> 
+				<Input id="name"  value="{emp>/data/0/name}" editable="false" />
+                <Label text="ProjectName" />
 				<Input id="Pname" value=""  placeholder="Enter your Projectname"/>
-                <Label text=""/>
+                <Label text="ProjectDetails"/>
 				<Input id="pdetails" value="" placeholder="Projectdetails"/>
-                <Label text=""/>
+                <Label text="Project Start Date"/>
                 
 		<DatePicker
 			id="PSDP"
@@ -47,7 +47,7 @@
 			change="handleChange"
 			class="sapUiSmallMarginBottom" />
 				
-                <Label text=""/>
+                <Label text="Project End Date"/>
                 <DatePicker
 			id="PEDP"
 			placeholder="Enter EndDate"
@@ -55,7 +55,7 @@
 			class="sapUiSmallMarginBottom"/>
 				
 				
-				<Label text=""/>
+				<Label text="Project Status"/>
 				<Input id="pstatus" value="" placeholder="Status"/>
 				
                 <Label></Label>
@@ -64,16 +64,6 @@
 		</sf:SimpleForm>
 	</VBox>
             
-
-            <smartTable:SmartTable id="SmartTable12" entitySet="PROJECTSet"
-                          tableType="ResponsiveTable" 
-                          
-                        requestAtLeastFields="Pid,Eid,Name,Projectname,Projectdetails,Status,Startdate,Enddate"
-                            useTablePersonalisation="true" 
-                          header="EMPLOYEE DETAILS" showRowCount="true" 
-                          persistencyKey="SmartTableAnalytical_Explored" 
-                          enableAutoBinding="true" class="sapUiResponsiveContentPadding" >
-                          	<smartTable:customToolbar>
 			<OverflowToolbar design="Transparent">
 				<ToolbarSpacer/>
 				<!-- <OverflowToolbarButton text="Test"/> -->
@@ -82,11 +72,10 @@
 				<OverflowToolbarButton icon="sap-icon://delete" tooltip="Delete" text="Delete" press="onDelete"/>
 				<!-- <OverflowToolbarButton icon="sap-icon://action-settings" tooltip="Column Settings" text="Column Settings" press="onColumns"/> -->
 			</OverflowToolbar>
-		</smartTable:customToolbar>
 
                           <!--  Table integration -->
-    <Table mode="MultiSelect" growingThreshold="100" growing="true" id="idListItem"
-     growingScrollToLoad="true">
+    <Table mode="MultiSelect" growingThreshold="100" growing="true" id="idProjectListItem"
+     growingScrollToLoad="true" items="{projectModel>/project}">
         <columns>
         <Column  minScreenWidth="Small">
 					<Label text="PID"></Label>
@@ -116,21 +105,20 @@
         <items>
         <ColumnListItem>
 					<cells>
-						<Input value="{Pid}" editable="false"/>
-						<Input value="{Eid}" editable="false"/>
-						<Input value="{Name}" editable="false"/>
-						<Input value="{Projectname}" editable="false"/>
-                        <Input value="{Projectdetails}" editable="false"/>
-						<Input value="{Startdate}" editable="false" />
-                        <Input value="{Enddate}" editable="false" />
-                        <Input value="{Status}" editable="false" />
+						<Input value="{projectModel>Pid}" editable="false"/>
+						<Input value="{projectModel>Eid}" editable="false"/>
+						<Input value="{projectModel>Name}" editable="false"/>
+						<Input value="{projectModel>Projectname}" editable="false"/>
+                        <Input value="{projectModel>Projectdetails}" editable="false"/>
+						<Input value="{projectModel>Startdate}" editable="false" />
+                        <Input value="{projectModel>Enddate}" editable="false" />
+                        <Input value="{projectModel>Status}" editable="false" />
 						
 					</cells>
 				</ColumnListItem> 
         </items>
      </Table>
 <!--  EndTable integration -->
-                          </smartTable:SmartTable>
                     </content>
                     <footer>
 			<OverflowToolbar id="otbFooter">

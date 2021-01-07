@@ -61,43 +61,12 @@ sap.ui.define([
             var edate = this.getView().byId("PEDP").getValue();
             var status = this.getView().byId("pstatus").getValue();
 
-             var nameV = /^[A-Z]{1}[a-z]+/;
+            // var nameV = /^[A-Z]{1}[a-z]+/;
           
-            if(pid=="" && eid=="" && name=="" && pname=="" &&pdetails=="" &&
-            sdate=="" && edate=="" && status=="" ){
-                sap.m.MessageToast.show("Please Enter All the Fields");
-                this.getView().byId("Pid").setValueState(sap.ui.core.ValueState.Error);
-                this.getView().byId("Pid").setValueStateText("Please Enter Priject Id");
-                this.getView().byId("eid").setValueState(sap.ui.core.ValueState.Error);
-                 this.getView().byId("eid").setValueStateText("Please Enter Your Employee ID");
-                this.getView().byId("name").setValueState(sap.ui.core.ValueState.Error);
-                this.getView().byId("name").setValueStateText("Please Enter Your  Name");
-                this.getView().byId("Pname").setValueState(sap.ui.core.ValueState.Error);
-                this.getView().byId("Pname").setValueStateText("Please Enter Project Name");
-                this.getView().byId("pdetails").setValueState(sap.ui.core.ValueState.Error);
-                this.getView().byId("pdetails").setValueStateText("Please Enter Project Details");
-                this.getView().byId("PSDP").setValueState(sap.ui.core.ValueState.Error);
-                this.getView().byId("PSDP").setValueStateText("Please Enter Start Date");
-                this.getView().byId("PEDP").setValueState(sap.ui.core.ValueState.Error);
-                this.getView().byId("PEDP").setValueStateText("Please Enter End Date");
-                this.getView().byId("pstatus").setValueState(sap.ui.core.ValueState.Error);
-                this.getView().byId("pstatus").setValueStateText("Please Enter Status of your Project");
-                
+           if ( pid == "") {
 
-            }else if ( pid == "") {
-
-				this.getView().byId("pid").setValueState(sap.ui.core.ValueState.Error);
-				this.getView().byId("pid").setValueStateText("Please Enter Employee Id");
-
-			} else if ( eid == "") {
-
-				this.getView().byId("eid").setValueState(sap.ui.core.ValueState.Error);
-				this.getView().byId("eid").setValueStateText("Please Enter Employee Name");
-
-            } else if ( name  == "") {
-
-				this.getView().byId("name").setValueState(sap.ui.core.ValueState.Error);
-				this.getView().byId("name").setValueStateText("Please Enter Project Name");
+				this.getView().byId("Pid").setValueState(sap.ui.core.ValueState.Error);
+				this.getView().byId("Pid").setValueStateText("Please Enter Employee Id");
 
 			} 
             else if ( pname  == "") {
@@ -128,22 +97,8 @@ sap.ui.define([
 				this.getView().byId("pstatus").setValueStateText("Please Enter Status of your Project");
 
 			}
-            else if (!nameV.test(name )) {
+           
 
-				this.getView().byId("name").setValueState(sap.ui.core.ValueState.Error);
-				this.getView().byId("name").setValueStateText("Name Must Start with Uppercase Letters");
-
-			} else if (!nameV.test(pname )) {
-
-				this.getView().byId("Pname").setValueState(sap.ui.core.ValueState.Error);
-				this.getView().byId("Pname").setValueStateText("Start with Uppercase Letters");
-
-			}
-            
-            
-            
-            
-            
             
             else{
 
@@ -171,17 +126,13 @@ sap.ui.define([
                 this.CreateProject(Payload);
 
                 this.getView().byId("Pid").setValue("");
-                 this.getView().byId("eid").setValue("");
-                  this.getView().byId("name").setValue("");
+                //  this.getView().byId("eid").setValue("");
+                //   this.getView().byId("name").setValue("");
                   this.getView().byId("Pname").setValue("");
             this.getView().byId("pdetails").setValue("");
             this.getView().byId("PSDP").setValue("");
             this.getView().byId("PEDP").setValue("");
             this.getView().byId("pstatus").setValue("");
-
-
-
-                sap.m.MessageToast.show("New Project Added Succesfully!!!"); 
 
                 this.getView().byId("SimpleFormChange353").setVisible(false);
                 // this.byId("idListItem").getBinding("items").refresh();
@@ -298,15 +249,7 @@ sap.ui.define([
 
                 oModel10.update("/PROJECTSet('" + sid + "')", Payload, mParameters);
 
-
-
-
-
-
-
                      }
-
-                     
 
                      }
 
@@ -321,9 +264,9 @@ sap.ui.define([
                   // On Delete Project
                   onDelete:function(){
                      debugger;
-                     var oTable1 = this.byId("idListItem");
+                     var oTable1 = this.byId("idProjectListItem");
                          var oView = this.getView();
-                        
+                        var that=this;
                 
                           var aArray = [];
                         
@@ -334,10 +277,6 @@ sap.ui.define([
                      if(aItems[i].getAggregation("cells")[0].getProperty("editable")==edit){
                         var sid = aItems[i].getAggregation("cells")[0].getProperty("value");
                    
-                
-                
-
-
                 var oModel10 = this.getOwnerComponent().getModel();
                 oModel10.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
                 oModel10.setUseBatch(true);
@@ -348,10 +287,10 @@ sap.ui.define([
                             
                 oModel10.setDeferredGroups(oModel10.getDeferredGroups().concat(["myGroupId"]));
                                 
-                var mParameters = {groupId:"myGroupId",success:function(odata, resp){
-                                    console.log(resp);
-                                   
-
+                var mParameters = {groupId:"myGroupId",
+                success:function(odata, resp){
+                    that.getProject();
+                      console.log(resp);
                
                 },
                  error: function(odata, resp) {
@@ -361,21 +300,17 @@ sap.ui.define([
 
                 oModel10.remove("/PROJECTSet('" + sid + "')",  mParameters);
 
-
-
-
-
-
-
-                     }
+                    }
 
                      
 
                      }
 
                      oModel10.submitChanges(mParameters);
-                    sap.m.MessageBox.success("Deleted Succesfully");
+                    sap.m.MessageToast.show("Deleted Succesfully");
                     //  this.getView().byId("saveid").setVisible(false);
+                    
+                      this.byId("idProjectListItem").getBinding("items").refresh();
 
 
                  },

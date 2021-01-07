@@ -97,6 +97,28 @@ sap.ui.define([
             });
 
             },
+             //profile data
+              getProfile:function(){
+                // debugger
+                  var that = this;
+                //  var id= this.Eid;
+              var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
+
+             var oJModel =  new sap.ui.model.odata.ODataModel(serviceurl);
+      
+            var data=oJModel.read("/PROFILESet", {
+                success:function(data){
+                    //  debugger;
+                     console.log(data.results)
+                    that.getOwnerComponent().setModel(new JSONModel({profile:data.results}),"profileModel");
+                       that.addProfileData()             
+                },
+                error:function(){
+                    alert("Profile data is not received");
+                }
+            });
+
+            },
 
             // project data
             getProject:function(){
@@ -145,31 +167,7 @@ sap.ui.define([
             });
 
             },
-              //get others data
-            // getOthers:function(){
-            //    // debugger
-            //       var that = this;
-                  
-            //   var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
-
-            //  var oJModel =  new sap.ui.model.odata.ODataModel(serviceurl);
-      
-            // var data=oJModel.read("/FILESet", {
-            //     success:function(data){
-            //         // debugger;
-                    
-            //          console.log(data.results)
-            //   that.getOwnerComponent().setModel(new JSONModel({request:data.results}),"fileModel");
-            //         // that.getDataT(data);
-                    
-                                   
-            //     },
-            //     error:function(){
-            //         alert("files data is not received");
-            //     }
-            // });
-
-            // },
+           
             // file data
              getFileData:function(){
                // debugger
@@ -186,7 +184,6 @@ sap.ui.define([
                      console.log(data.results)
               that.getOwnerComponent().setModel(new JSONModel({request:data.results}),"fileNameModel");
                     // that.getDataT(data);
-                    that.dateFormat();
                     
                                    
                 },
@@ -195,6 +192,38 @@ sap.ui.define([
                 }
             });
 
+            },
+            updateFileAssociate(fileName){
+                debugger
+                    var that = this;
+                    var payLoad={};
+                    var date= new Date();
+
+                    payLoad.Eid= this.getOwnerComponent().getModel("emp").getProperty("/data/0/id");
+                    payLoad.Employeename=this.getOwnerComponent().getModel("emp").getProperty("/data/0/name");
+                    payLoad.Filename=fileName;
+                     payLoad.Creationdate= date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+                    
+                  
+              var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
+
+             var oJModel =  new sap.ui.model.odata.ODataModel(serviceurl);
+      
+            var data=oJModel.create("/FILEASSOCATESet",payLoad, {
+                method:"POST",
+                success:function(data){
+                    // debugger;
+                     console.log("data")
+                     console.log(data.results)
+             
+                    that.getFileData();
+                    
+                                   
+                },
+                error:function(){
+                    alert("files data is not received");
+                }
+            });
             },
             // get specific file data
               getFile:function(fileName){
@@ -221,12 +250,13 @@ sap.ui.define([
             //profile update
             profileUpdate(Payload){
                  var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
-  
+                var that=this;
                var oPModel =  new sap.ui.model.odata.ODataModel(serviceurl);
               oPModel .update("/PROFILESet('"+Payload.Eid+"')", Payload, {
                      method: "PUT",
                      success: function(data) {
                     //   alert("success");
+                    that.getProfile();
                     sap.m.MessageToast.show("Profile Updated Succesfully");
                     },
                      error: function(e) {
@@ -240,11 +270,12 @@ sap.ui.define([
             updateRequest:function(Payload){
                 
                 var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
-                
+                var that =this;
                 var oLModel =  new sap.ui.model.odata.ODataModel(serviceurl);
                  oLModel .create("/REQUESTSet", Payload, {
                      method: "POST",
                      success: function(data) {
+                         that.getRequest();
                      alert("success");
                     sap.m.MessageToast.show("Request Send Succesfully");
                     },
@@ -253,6 +284,8 @@ sap.ui.define([
                     }
                 });
             },
+
+            // new and upate a file
             updateFile:function(eid,fileName, fileType, vContent){
                 debugger
                 var payLoad={
@@ -270,6 +303,8 @@ sap.ui.define([
                      method: "PUT",
                      success: function(data) {
                      alert("success");
+                     that.getFileData();
+                     that.updateFileAssociate(fileName);
                     sap.m.MessageToast.show("FILE UPDATED Succesfully");
                        // that.createFile(eid,fileName)
                      },
@@ -278,44 +313,24 @@ sap.ui.define([
                     }
                  })
                 },
-                createFile:function(eid,fileName){
-                  
-                 debugger
-                var payLoad={
-                    Eid:eid,
-                    Filename:fileName,
-                }
-                  
-                  var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
-                
-                var oModel =  new sap.ui.model.odata.ODataModel(serviceurl);
-                oModel.update("/FILESet('"+payLoad.Filename+"')",payLoad,{
-                    method:"PUT",
-                    success:function(odata){
-              sap.m.MessageToast.show("eid UPDATED Succesfully");
-                    },
-                    error:function(error){
-
-                    }
-                });
-                },
-
+              
 
                     
 
                 
                      
-            
+            // new project
 
             CreateProject:function(Payload){
                 debugger;
                 var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
-                
+                var that=this;
                 var oPRModel =  new sap.ui.model.odata.ODataModel(serviceurl);
                  oPRModel .create("/PROJECTSet", Payload, {
                      method: "POST",
                      success: function(data) {
                      alert("success");
+                     that.getProject();
                     sap.m.MessageToast.show("New Project Added Succesfully!!!");
                     },
                      error: function(e) {
