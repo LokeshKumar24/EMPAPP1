@@ -175,6 +175,10 @@ sap.ui.define([
                 this.updateRequest(Payload);
                 this.getView().byId("lDP1").setValue("");
                 this.getView().byId("lReason").setValue("");
+                MessageToast.show("Leave Request Send SuccesFully!");
+                
+                this.byId("idListItem").getBinding("items").refresh();
+                this. getRequest();
 
                
                 
@@ -244,6 +248,10 @@ sap.ui.define([
                 this.getView().getModel("Asst").setProperty("/ADate","");
                  this.getView().getModel("Asst").setProperty("/AAst","");
                 this.getView().getModel("Asst").setProperty("/AReason", "");
+                 MessageToast.show("Assets Request Send SuccesFully!");
+                
+                this.byId("idListItem").getBinding("items").refresh();
+                this. getRequest();
                
          }
 

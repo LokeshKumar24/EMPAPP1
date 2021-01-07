@@ -184,6 +184,9 @@ sap.ui.define([
                 sap.m.MessageToast.show("New Project Added Succesfully!!!"); 
 
                 this.getView().byId("SimpleFormChange353").setVisible(false);
+                // this.byId("idListItem").getBinding("items").refresh();
+                this. getProject();
+               
             }
 
                 
