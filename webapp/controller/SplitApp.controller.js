@@ -414,7 +414,26 @@ sap.ui.define([
 
              }
     
-           }
+           },
+        //    onChange: function () {
+		// 	debugger;
+		// 	var today = today = new Date();
+		// 	var day = today.getDate(),
+		// 		month = today.getMonth() + 1; //January is 0
+		// 	var year = today.getFullYear();
+
+		// 	if (day < 10) {
+		// 		day = "0" + day;
+		// 	}
+		// 	if (month < 10) {
+		// 		month = "0" + month;
+		// 	}
+		// 	today = day + "-" + month + "-" + year;
+
+		// 	this.byId("lDP1").setMinDate(new Date());
+
+		// }
+           
 
             
 		});

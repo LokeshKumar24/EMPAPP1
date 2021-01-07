@@ -72,7 +72,7 @@
 <Property Name="Rid" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="RID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 <Property Name="Eid" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Character Field Length = 10" sap:unicode="false" MaxLength="10" Nullable="false" Type="Edm.String"/>
 <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="NAME" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-<Property Name="Rdate" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="RDATE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Rdate" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="RDATE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 <Property Name="Reason" Type="Edm.String" Nullable="false" MaxLength="90" sap:unicode="false" sap:label="REASON" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 <Property Name="Assets" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="ASSETS" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="TYPE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>

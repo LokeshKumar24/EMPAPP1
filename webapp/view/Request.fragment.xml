@@ -64,20 +64,15 @@ xmlns:sf="sap.ui.layout.form" 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 				<Label text="EmployeeName"></Label>
 				<Input   value="{emp>/data/0/name}" editable="false" id="lname"></Input>
                 <Label text="" labelFor="lDP1"/>
-		<DatePicker
+		<!-- <DatePicker
 			id="lDP1"
 			placeholder="Enter Date"
 			change="handleChange"
 			class="sapUiSmallMarginBottom"  value=""/>
 
-            <Label text="" ></Label>
-				<!-- <Label text="DateTimePicker with given Value and Formatter" labelFor="DTP2"/>
-		<DateTimePicker
-			id="DTP2"
-			value="{Rqst>/RDate2}" valueFormat="yyyy-MM-dd-HH-mm-ss" displayFormat="long"
-			change="handleChange"
-			class="sapUiSmallMarginBottom"/>
-				 -->
+            <Label text="" ></Label> -->
+            <DateRangeSelection id="lDP1" change="onChange"/>
+			
 				<Label text=""></Label>
 				<Input id="lReason" type="Text" placeholder="Enter Reason" value=""></Input>
 				
