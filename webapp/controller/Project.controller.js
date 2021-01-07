@@ -143,6 +143,11 @@ sap.ui.define([
                 
 
         },
+        onCloseProject:function(){
+            debugger;
+            this.getView().byId("SimpleFormChange353").setVisible(false);
+
+        },
         // edit project details
         onEdit:function(){
             debugger;
