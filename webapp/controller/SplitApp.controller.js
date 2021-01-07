@@ -32,46 +32,46 @@ sap.ui.define([
 
         
     
-//     openMsgList: function () {
-//         debugger;
+    openMsgList: function () {
+        debugger;
 
         
 
-//    if (!this.oPopover) {
-//     this.oPopover = sap.ui.xmlfragment("EA.EmployeeApp2.view.Notification", this);
-//     this.getView().addDependent(this.oPopover);
-//    }  
-// //    this._oPopover.openBy(oEvent.getSource());
-//           this.oPopover.open();
-//   },
+   if (!this.oPopover) {
+    this.oPopover = sap.ui.xmlfragment("EA.EmployeeApp2.view.Notification", this);
+    this.getView().addDependent(this.oPopover);
+   }  
+//    this._oPopover.openBy(oEvent.getSource());
+          this.oPopover.open();
+  },
 
-    openMsgList: function () {
-			// debugger;
-            var oView = this.getView();
+    // openMsgList: function () {
+	// 		// debugger;
+    //         var oView = this.getView();
             
               
 
-			if (!this.byId("NotifDialog")) {
-				Fragment.load({
-                    id: oView.getId(),
+	// 		if (!this.byId("NotifDialog")) {
+	// 			Fragment.load({
+    //                 id: oView.getId(),
                     
-					name: "EA.EmployeeApp2.view.Notification",
-					controller: this
+	// 				name: "EA.EmployeeApp2.view.Notification",
+	// 				controller: this
 
-				}).then(function (oDialog) {
-					oView.addDependent(oDialog);
-                    oDialog.open();
+	// 			}).then(function (oDialog) {
+	// 				oView.addDependent(oDialog);
+    //                 oDialog.open();
                     
-				});
-			} else {
-				this.byId("NotifDialog").open();
-			}
+	// 			});
+	// 		} else {
+	// 			this.byId("NotifDialog").open();
+	// 		}
 
-        },
+    //     },
   onClosePopover:function(){
     //   debugger;
-    //   this.oPopover.close();
-      this.getView().byId("NotifDialog").close();
+     this.oPopover.close();
+    //   this.getView().byId("NotifDialog").close();
 
   },
     
@@ -89,7 +89,7 @@ sap.ui.define([
         
 
              onRequest: function () {
-			// debugger;
+			debugger;
             var oView = this.getView();
              var data=    this.getOwnerComponent().getModel("requestModel").getProperty("/request");
              var ndata=[]
