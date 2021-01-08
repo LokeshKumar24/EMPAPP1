@@ -1,10 +1,13 @@
 sap.ui.define([
-         "EA/EmployeeApp2/controller/BaseController"
+         "EA/EmployeeApp2/controller/BaseController",
+         "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator",
+    "sap/ui/model/FilterType"
 	],
 	/**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-	function (BaseController) {
+	function (BaseController,Filter,FilterOperator,FilterType) {
 		"use strict";
 
 		return BaseController.extend("EA.EmployeeApp2.controller.Others", {
@@ -56,9 +59,25 @@ sap.ui.define([
         
     }	,
     downloadFile:function(oEvent){
-       debugger;
+      // debugger;
        var fileName =oEvent.getSource().oParent.mAggregations.cells[2].mProperties.text;
        this.getFile(fileName);
+    },
+    dateFilter:function(oEvent){
+       // debugger;
+     var filterProperty=    oEvent.getParameters().column.mProperties.filterProperty
+     filterProperty = filterProperty.split(">")
+     filterProperty = filterProperty[1];
+     var sQuery1 = oEvent.getParameters().value;
+    // var sQuery2 = sQuery1.toLowerCase();
+     	oEvent.preventDefault();
+     var aFilter=[];
+
+     aFilter.push(new Filter(filterProperty, FilterOperator.EQ, sQuery1));
+      //aFilter.push(new Filter(filterProperty, FilterOperator.StartsWith, sQuery1));
+    var oView= this.getView().byId("idListItem");
+    var binding= oView.getBinding("rows");
+                 binding.filter(aFilter);
     }
         
         });
