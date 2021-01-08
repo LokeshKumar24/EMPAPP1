@@ -1,21 +1,25 @@
 sap.ui.define([
          "EA/EmployeeApp2/controller/SplitApp.controller",
         "sap/ui/model/json/JSONModel",
+        "sap/m/Dialog"
         
         
 	],
 	/**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-	function (SplitAppController,JSONModel) {
+	function (SplitAppController,JSONModel,Dialog) {
 		"use strict";
 
 		return SplitAppController.extend("EA.EmployeeApp2.controller.Profile", {
+          
 			onInit: function () {
                 // debugger;
                   var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
                 oRouter.attachRoutePatternMatched(this.getProfileId, this);
                 this.getProfile();
+                
+                
 
             },
               //birthday
@@ -89,6 +93,114 @@ sap.ui.define([
                     this.getView().byId("ObjectPageLayout").bindElement("profileModel>/profile/"+path);
                 }
             },
+
+            // takePhoto: function() {
+            //     debugger;
+            //     //step1 : Create PopUp Object as a Global Variable
+            //     var that = this;
+            //     this.fixedDialog = new Dialog({
+            //         title:"Click on Capture to take a Picture",
+            //         beginButton:new sap.m.Button({
+            //             text:"Capture Photo",
+            //             press:function(){
+            //                 that.imageVal = document.getElementById("player")
+            //                 that.fixedDialog.close();
+            //             }
+            //         }),
+            //         content:[
+
+            //             new sap.ui.core.HTML({
+            //                 content:"<video id='player' autoplay ></video>"
+            //             }),
+            //             new sap.m.Input({
+            //                 placeholder:'please enter image here',
+            //                 required:true
+            //             })
+            //         ],
+            //         endButton:new sap.m.Button({
+            //             text:"Cancel",
+            //             press:function(){
+            //                  that.fixedDialog.close();
+            //             }                    
+            //         })
+
+            //     }) ;
+
+            //     this.getView().addDepenedent(this.fixedDialog);
+            //   this.fixedDialog.open();  
+
+            //   this.fixedDialog.attachBeforeClose(this.setImage,this);
+
+            //   var handelSuccess:function(stream){
+            //     //   debugger;
+            //       palyer.srcObject = stream;
+
+            //   }
+
+            //   navigator.mediaDevices.getUserMedia({
+            //       video:true
+            //   }).then(handelSuccess)
+            // },
+
+            // setImage:function(){
+            //     debugger;
+            //     var oVbox = this.getView().byId("wow");
+            //     var items = oVbox.getItems();
+            //     var snapId = 'anjum-'+items.length;
+            //     var textId = snapId + '-text';
+            //     var imageval = this.imageVal;
+
+            //     var oCanvas = new sap.ui.core.HTML({
+            //         content:"<canvas id='" + snapId + "'  width='320px' height='320px' " +
+            //         "style='2px solid red'></canvas>" +
+            //         "<label id='" + textId + "'>" + this.attachName + "</label>"'
+            //     })
+
+            //     oVbox.addItem(oCanvas);
+            //     oCanvas.addEventDeleget({
+            //         onAfterRendering :function(){
+            //             var snapShotcanvas = document.getElementById(snapId);
+            //             var oContext = snapShotcanvas.getContext('2d');
+            //             oContext.drawImage(imageval,0,0, snapShotcanvas.width, snapShotcanvas.height);
+            //         }
+            //     });
+                
+            // },
+
+
+        
+         onCapture: function() {
+             debugger;
+        navigator.camera.getPicture(this.onSuccess, this.onFail, {
+            quality: 75,
+            targetWidth: 300,
+            targetHeight: 300,
+            sourceType: navigator.camera.PictureSourceType.CAMERA,
+            destinationType: navigator.camera.DestinationType.FILE_URI
+        });
+    },
+    onSelect: function() {
+        debugger;
+        navigator.camera.getPicture(this.onSuccess, this.onFail, {
+            quality: 75,
+            targetWidth: 300,
+            targetHeight: 300,
+            sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
+            destinationType: navigator.camera.DestinationType.FILE_URI
+        });
+    },
+    onSuccess: function(imageData) {
+        debugger;
+        var imageId = oView.byId("myImage");
+        imageId.setSrc(imageData);
+
+    },
+    onFail: function(message) {
+        debugger;
+        alert("Failed because: " + message);
+    },
+    
+
 
        
              

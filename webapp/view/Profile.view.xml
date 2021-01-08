@@ -18,7 +18,8 @@
 				</uxap:expandedHeading>
 				<uxap:snappedHeading>
 					<FlexBox fitContainer="true" alignItems="Center">
-                        <f:Avatar class="sapUiTinyMarginEnd" src="{profileModel>Picture}" displaySize="L"/>
+                        <!-- <f:Avatar class="sapUiTinyMarginEnd" src="{profileModel>Picture}" displaySize="L"/> -->
+                       
 						<!-- <m:Avatar src="{profileModel>Picture}"  id ="ImageBackend" class="sapUiTinyMarginEnd"/> -->
 						<Title  id="textId" text="{profileModel>Fullname}" wrapping="true"/>
 					</FlexBox>
@@ -27,7 +28,7 @@
 				
 					
 
-
+                     <Button xmlns="sap.m" text="Take Photo" id="idCapture" press="takePhoto" icon="sap-icon://camera"/>
                     <Button id="edit" text="Edit" enabled="true"  press="onOpenEdit"  />
 					<Button id="save" text="Save" type="Emphasized" visible="false" press="handleSavePress" /> 
 					<Button id="cancel" text="Cancel" visible="false" press="handleCancelPress" />
@@ -36,12 +37,20 @@
 		</uxap:headerTitle>
 		<uxap:headerContent>
 			<FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
-				<f:Avatar class="sapUiTinyMarginEnd" src="{profileModel>Picture}" displaySize="L"/>
+				<!-- <f:Avatar class="sapUiTinyMarginEnd" src="{profileModel>Picture}" displaySize="L"/> -->
+                 <!-- <Image width="300px" height="300px" id="myImage"></Image> -->
+                
+                 
+                
+                 
 				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                    <VBox id="wow"></VBox>
+                    <f:Avatar class="sapUiTinyMarginEnd" src="" displaySize="L" visible="true" id="imgfal"/>
 					<Link text="{profileModel>Fullname}"/>
 					<Link text="{profileModel>Phoneno}"/>
 				</layout:VerticalLayout>
 				<layout:HorizontalLayout class="sapUiSmallMarginBeginEnd">
+                         
 					<!-- <m:Image src="{profileModel>Picture}" class="sapUiSmallMarginBegin"/> -->
 				</layout:HorizontalLayout>
 				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd"></layout:VerticalLayout>
