@@ -1,6 +1,7 @@
 <mvc:View controllerName="EA.EmployeeApp2.controller.Others"
  xmlns:mvc="sap.ui.core.mvc" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 	xmlns:sf="sap.ui.layout.form" xmlns:ui="sap.ui.unified" xmlns:core="sap.ui.core"
+    xmlns:table="sap.ui.table"
     xmlns:smartTable="sap.ui.comp.smarttable" displayBlock="true" xmlns="sap.m">
 
 		<App >
@@ -13,50 +14,49 @@
 		class="sapUiResponsiveContentPadding">
 		<items>
            <IconTabFilter text="Files Data" icon="sap-icon://table-view" key="Files">
-
-           <Table items="{fileNameModel>/request}" id="idListItem" width="50rem">
-			<columns>
-				<Column width="10em" minScreenWidth="Small">
+           <table:Table rows="{fileNameModel>/request}" id="idListItem" customFilter="true"
+           filter="dateFilter" enableCellFilter="true" 	selectionMode="Single" selectionBehavior="RowOnly"
+            width="50rem">
+            <table:columns>
+				<table:Column width="10em" >
 					<Label text="EmployeeId"></Label>
-				</Column>
-				<Column>
+                    <table:template>
+                        <Text text="{fileNameModel>Eid}"></Text>	
+                    </table:template>
+				</table:Column>
+				<table:Column filterProperty="fileNameModel>Employeename">
 					<Label text="EmployeeName"></Label>
-				</Column>
-				<Column>
+                     <table:template>               
+						<Text text="{fileNameModel>Employeename}"></Text>	
+                    </table:template>
+				</table:Column>
+				<table:Column filterProperty="fileNameModel>Filename">
 					<Label text="FileName"></Label>
-				</Column>
-				<Column>
-					<Label text="Date"></Label>
-				</Column>
-				
-				<Column>
-					<Label text="Files to Download"></Label>
-				</Column>
-			</columns>
-			<items>
-				<ColumnListItem>
-					<cells>
-						<Text text="{fileNameModel>Eid}"></Text>
-						<Text text="{fileNameModel>Employeename}"></Text>
+                     <table:template>
+                      
 						<Text text="{fileNameModel>Filename}"></Text>
-						<Text text="{fileNameModel>Creationdate}"></Text>
-                        <Button text="Download" press="downloadFile"></Button>
 						
-					</cells>
-				</ColumnListItem>
-			</items>
-		</Table>
+                    </table:template>
+				</table:Column>
+				<table:Column filterType="{type: 'sap.ui.model.type.Date' }"
+                 filterProperty="fileNameModel>Creationdate" 
+                >
+					<Label text="Date"></Label>
+                     <table:template>
+						<Text text="{fileNameModel>Creationdate}"></Text>
+                        <!-- <DatePicker value="{fileNameModel>Creationdate}"></DatePicker> -->
+                    </table:template>
+				</table:Column>
 				
-                	
-		<!-- <smartTable:SmartTable entitySet="FILEASSOCATESet" 
-        initiallyVisibleFields="Filename,Eid,Creationdate,Creationtime"
-       
-			tableType="ResponsiveTable" useExportToExcel="true" beforeExport="onBeforeExport"
-			useVariantManagement="false" useTablePersonalisation="true" header="Line Items"
-			showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true"
-			demandPopin="true" class="sapUiResponsiveContentPadding"></smartTable:SmartTable> -->
-
-			</IconTabFilter>
+				<table:Column>
+					<Label text="Files to Download"></Label>
+                     <table:template>
+                        <Button text="Download" press="downloadFile"></Button>				
+                    </table:template>
+				</table:Column>
+			</table:columns>
+           </table:Table>
+	</IconTabFilter>
             
 			<IconTabFilter  icon="sap-icon://upload" text="Time Sheet Upload" key="Time Sheet Upload">
          <core:Fragment fragmentName="EA.EmployeeApp2.view.TimeSheet" type="XML"/>

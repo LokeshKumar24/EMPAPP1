@@ -1,7 +1,8 @@
 sap.ui.define([      
           "sap/ui/core/mvc/Controller",
           "sap/ui/model/json/JSONModel",
-          "sap/m/MessageToast"
+          "sap/m/MessageToast",
+        //  "sap/ui/core/util"
 	],
 	/**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
@@ -255,22 +256,23 @@ sap.ui.define([
                      var fName=data.Filename
                      var fType=data.Filetype
                      var fContent=null;
+                     debugger;
                      if(fType==="image/png"){
                         fContent= data.Filecontent
+                       // fContent.replace("undefined","")
                      }
                      else{
 
                          var ndata= data.Filecontent.split(",");
                                      ndata=ndata[1];
+                                     //ndata.replace("undefined","");
                           fContent=atob(ndata);
                      }
                      if(fType==="text/plain" || fType===""){
-                     sap.ui.core.util.File.save(fContent,fName.replace(".txt",""),"txt",fType,"utf-8",true)
-                //    var tab=  window.open("_blank");
-                //    tab.document.write("<p>"+fContent+"</p>");
-                //    tab.document.close();
-                //  var url=URL.createObjectURL(fContent)
-                //          window.open(url,"_blank");
+              // File.save(fContent,fName.replace(".txt",""),"txt",fType,"utf-8",true)
+             //  sap.ui.core.util.File.save(fContent, fName, "txt", fType);
+            //  var win = window.open("", "_blank");
+            //             win.document.write("<h4>"+fContent+"</h4>")
                     }
                      else{
                          var byteNumbers= new Array(fContent.length);
@@ -282,9 +284,11 @@ sap.ui.define([
                          var blob= new Blob([byteArray],{type:fType});
                          var url=URL.createObjectURL(blob)
                          window.open(url,"_blank");
+                        //  var ajax = new XMLHttpRequest();
+                        // ajax.open("GET", url, true);
+                        // ajax.responseType = 'blob';
                      }
                     sap.m.MessageToast.show("FILE Downloaded Succesfully");
-                       // that.createFile(eid,fileName)
                      },
                      error: function(e) {
                          console.log(e)
