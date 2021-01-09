@@ -1,5 +1,6 @@
 sap.ui.define([
          "EA/EmployeeApp2/controller/BaseController",
+          "EA/EmployeeApp2/model/formatter",
          "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/ui/model/FilterType"
@@ -7,11 +8,12 @@ sap.ui.define([
 	/**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-	function (BaseController,Filter,FilterOperator,FilterType) {
+	function (BaseController,Formatter,Filter,FilterOperator,FilterType) {
 		"use strict";
 
 		return BaseController.extend("EA.EmployeeApp2.controller.Others", {
             Eid:null,
+            formatter:Formatter,
 			onInit: function () {
                  var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
                 oRouter.attachRoutePatternMatched(this.getProfileId, this);
@@ -35,7 +37,8 @@ sap.ui.define([
                 this.fileType = file.type;
                 var reader = new FileReader();
                 reader.onload = function (e) {
-                    var vContent = e.currentTarget.result.replace("data:"+ file.type+";base64," );
+                    var vContent = e.currentTarget.result.replace("data:"+ file.type+";base64,","");
+                     vContent=vContent.replace("data:application/octet-stream;base64,","");
                 that.updateFile(that.Eid, that.fileName, that.fileType, vContent);
                 }
                 reader.readAsDataURL(file);
@@ -52,7 +55,8 @@ sap.ui.define([
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     var vContent = e.currentTarget.result.replace("data:"+file.type+ ";base64,","");
-                    debugger
+                        vContent=vContent.replace("data:application/octet-stream;base64,","");
+                   // debugger
                 that.updateFile(that.Eid, that.fileName, that.fileType, vContent);
                 }
                  reader.readAsDataURL(file);

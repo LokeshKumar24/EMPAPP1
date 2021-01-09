@@ -34,7 +34,7 @@ sap.ui.define([
         
     
     openMsgList: function () {
-        debugger;
+      //  debugger;
 
         
 
@@ -42,37 +42,13 @@ sap.ui.define([
     this.oPopover = sap.ui.xmlfragment("EA.EmployeeApp2.view.Notification", this);
     this.getView().addDependent(this.oPopover);
    }  
-//    this._oPopover.openBy(oEvent.getSource());
           this.oPopover.open();
   },
 
-    // openMsgList: function () {
-	// 		// debugger;
-    //         var oView = this.getView();
-            
-              
-
-	// 		if (!this.byId("NotifDialog")) {
-	// 			Fragment.load({
-    //                 id: oView.getId(),
-                    
-	// 				name: "EA.EmployeeApp2.view.Notification",
-	// 				controller: this
-
-	// 			}).then(function (oDialog) {
-	// 				oView.addDependent(oDialog);
-    //                 oDialog.open();
-                    
-	// 			});
-	// 		} else {
-	// 			this.byId("NotifDialog").open();
-	// 		}
-
-    //     },
+   
   onClosePopover:function(){
     //   debugger;
      this.oPopover.close();
-    //   this.getView().byId("NotifDialog").close();
 
   },
     

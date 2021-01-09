@@ -2,12 +2,12 @@ sap.ui.define([
           "sap/ui/core/mvc/Controller",
           "sap/ui/model/json/JSONModel",
           "sap/m/MessageToast",
-        //  "sap/ui/core/util"
+          "sap/ui/core/util/File"
 	],
 	/**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-	function (Controller,JSONModel,MessageToast) {
+	function (Controller,JSONModel,MessageToast,File) {
 		"use strict";
 
 		return Controller.extend("EA.EmployeeApp2.controller.BaseController", {
@@ -240,9 +240,10 @@ sap.ui.define([
                 }
             });
             },
+            
             // get specific file data
               getFile:function(fileName){
-               debugger;
+              // debugger;
               fileName= fileName.toLowerCase()
                   var that = this;
                   var serviceurl="/sap/opu/odata/sap/ZAPP_EMP1_SRV/";
@@ -250,29 +251,18 @@ sap.ui.define([
                 var oModel =  new sap.ui.model.odata.ODataModel(serviceurl);
                  oModel .read("/FILESet('"+fileName+"')/$value",{
                      method: "GET",
-                     success: function(data) {
-                    // alert("success");
-                     console.log(data)
-                     var fName=data.Filename
-                     var fType=data.Filetype
-                     var fContent=null;
-                     debugger;
-                     if(fType==="image/png"){
-                        fContent= data.Filecontent
-                       // fContent.replace("undefined","")
-                     }
-                     else{
-
-                         var ndata= data.Filecontent.split(",");
-                                     ndata=ndata[1];
-                                     //ndata.replace("undefined","");
-                          fContent=atob(ndata);
-                     }
+                     success: function(data,response) {
+                         debugger;
+                    
+                    var fName=data.Filename
+                    var fType=data.Filetype
+                    var fContent= atob(data.Filecontent);
+                
+                
+                    console.log(fContent)
                      if(fType==="text/plain" || fType===""){
-              // File.save(fContent,fName.replace(".txt",""),"txt",fType,"utf-8",true)
-             //  sap.ui.core.util.File.save(fContent, fName, "txt", fType);
-            //  var win = window.open("", "_blank");
-            //             win.document.write("<h4>"+fContent+"</h4>")
+                               File.save(fContent, fName, "txt", fType);
+        
                     }
                      else{
                          var byteNumbers= new Array(fContent.length);
@@ -284,9 +274,6 @@ sap.ui.define([
                          var blob= new Blob([byteArray],{type:fType});
                          var url=URL.createObjectURL(blob)
                          window.open(url,"_blank");
-                        //  var ajax = new XMLHttpRequest();
-                        // ajax.open("GET", url, true);
-                        // ajax.responseType = 'blob';
                      }
                     sap.m.MessageToast.show("FILE Downloaded Succesfully");
                      },

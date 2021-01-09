@@ -38,12 +38,12 @@
 						
                     </table:template>
 				</table:Column>
-				<table:Column filterType="{type: 'sap.ui.model.type.Date' }"
+				<table:Column filterType="{type: 'sap.ui.model.type.Date', formatter:'.formatter.date' }"
                  filterProperty="fileNameModel>Creationdate" 
                 >
 					<Label text="Date"></Label>
                      <table:template>
-						<Text text="{fileNameModel>Creationdate}"></Text>
+						<Text text="{path:'fileNameModel>Creationdate'}"></Text>
                         <!-- <DatePicker value="{fileNameModel>Creationdate}"></DatePicker> -->
                     </table:template>
 				</table:Column>
