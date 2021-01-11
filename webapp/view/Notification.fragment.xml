@@ -14,14 +14,14 @@
                         
 			<NotificationListGroup
 				title="{requestModel>Reason}"
-				showCloseButton="true"
+				showCloseButton="false"
 				collapsed="true"
 				close=".onItemClose">
 				
 				<NotificationListItem
 					title="{requestModel>Type}"
 					description="{requestModel>Reason} "
-					showCloseButton="true"
+					showCloseButton="false"
 					datetime="{requestModel>Rdate}"
 					unread="true"
 					priority="None"
