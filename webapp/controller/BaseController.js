@@ -262,20 +262,22 @@ sap.ui.define([
                         fType=data.Filetype
 
                     }
-                    var fContent = null;
+                    var fContent =atob(data.Filecontent);
                     
                     console.log(fContent)
                     if(fType==="text/plain" || fType===""){
-                     fContent= atob(data.Filecontent);
                                File.save(fContent, fName, "txt", fType);
         
                     }
                     else if(fType === "csv"){
-                         fContent= atob(data.Filecontent);
-                          File.save(fContent, fName, "csv", fType,true);
+                        // var base64Str = data.Filecontent;
+
+                        //  base64Str = base64Str.replace(/\\r\\n/g,"");
+                        //  base64Str=atob(base64Str)
+                          File.save(fContent, fName.replace(".csv",""), "csv", fType,true);
                     }
                      else{
-                          fContent= atob(data.Filecontent);
+                          
                          var byteNumbers= new Array(fContent.length);
                          for (let index = 0; index < fContent.length; index++) {
                              byteNumbers[index]=fContent.charCodeAt(index)

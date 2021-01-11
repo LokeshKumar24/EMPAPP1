@@ -73,7 +73,7 @@ sap.ui.define([
                 var domRef = oFileUpload.getFocusDomRef();
                 var file = domRef.files[0];
                 var that = this;
-                 if(file="undefined"){
+                 if(file=== undefined){
                 	sap.m.MessageToast.show("Please select a file")
                 }else{
                 this.fileName = this.getView().byId("FileName").getValue();
