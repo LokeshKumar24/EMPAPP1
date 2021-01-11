@@ -14,9 +14,9 @@
 			class="sapUiSmallMarginBottom"/> -->
         
                    <Label text=""></Label>
-				<Input id="FileName" type="Text" placeholder="Enter File Name "></Input>
+				<Input id="FileName" type="Text" placeholder="Enter File Name" liveChange="onFileNameChange123"></Input>
                 <Label text="File Uploader"></Label>
-				<ui:FileUploader id="fileUploaderFS"/>
+				<ui:FileUploader id="fileUploaderFS" change="onChangeFileUpload123"/>
 				<Button text="Upload" type="Accept" press="onUploadFile"/>
 			</sf:SimpleForm>
 	

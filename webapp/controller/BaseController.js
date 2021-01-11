@@ -270,11 +270,11 @@ sap.ui.define([
         
                     }
                     else if(fType === "csv"){
-                        // var base64Str = data.Filecontent;
+                        var base64Str = data.Filecontent;
 
                         //  base64Str = base64Str.replace(/\\r\\n/g,"");
-                        //  base64Str=atob(base64Str)
-                          File.save(fContent, fName.replace(".csv",""), "csv", fType,true);
+                         base64Str=atob(base64Str)
+                          File.save(base64Str, fName.replace(".csv",""), "xlsx", fType,true);
                     }
                      else{
                           

@@ -26,9 +26,12 @@ sap.ui.define([
             getBirthDay:function(){
                 debugger;
                  var date= new Date();
+                 var today = date.getDate();
+                // today = today.toString()
            var data=   this.getOwnerComponent().getModel("profileModel").getProperty("/profile");
            data.map((element=>{
-               if(element.Dob[9] === date.getDate() ){
+               var birthd =Number( element.Dob.slice(8));
+               if(birthd == today ){
                    debugger
              this.getOwnerComponent().setModel(new JSONModel({birthay:[{name:"Wish you happy BirthDay "+element.Fullname}]}),"birth");
                }

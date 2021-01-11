@@ -11,22 +11,19 @@ displayBlock="true" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:sf="sap.ui.layout.fo
                    <!-- <Text text="Home"></Text> -->
                    	<f:Card class="sapUiMediumMargin" width="300px">
 		<f:header>
-			<card:Header title="BIRTHDAY'S" subtitle="Wishing a happy and prousporus year a head" />
+			<card:Header title="BIRTHDAY'S" subtitle="{birth>/birthay/0/name}" />
 		</f:header>
 		<f:content>
 			<List>
 				<CustomListItem>
 					<HBox alignItems="Center" justifyContent="SpaceBetween">
 						<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
-							<Title level="H3" text="{}" />
-							<Text text="{}" />
+							<!-- <Text text="{birth>/birthay/0/name}" /> -->
        <Image width="300px"
        src="https://www.readersdigest.ca/wp-content/uploads/2019/02/hilarious-birthday-jokes.jpg"/>
 						</VBox>
-						<ObjectStatus
-							class="sapUiTinyMargin sapUiSmallMarginEnd"
-							text="{birth>/bithday/0/name}"
-							state="{}" />
+							<Title level="H3" text="{birth>/birthay/0/name}" />
+						
 					</HBox>
 				</CustomListItem>
 			</List>
