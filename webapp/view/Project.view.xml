@@ -30,33 +30,33 @@
 			singleContainerFullSize="false" >
 			<sf:content>
 				<Label text="ProjectId"/> 
-				<Input id="Pid" value=""  placeholder="Enter Project ID"   />
+				<Input id="Pid" value=""  placeholder="Enter Project ID" liveChange=" onChangePid"  />
                 <Label text="EmployeeId"/> 
 				<Input id="eid"  value="{emp>/data/0/id}" editable="false"  />
                 <Label text="EmployeeName"/> 
 				<Input id="name"  value="{emp>/data/0/name}" editable="false" />
                 <Label text="ProjectName" />
-				<Input id="Pname" value=""  placeholder="Enter your Projectname"/>
+				<Input id="Pname" value=""  placeholder="Enter your Projectname" liveChange="onChangePname"/>
                 <Label text="ProjectDetails"/>
-				<Input id="pdetails" value="" placeholder="Projectdetails"/>
+				<Input id="pdetails" value="" placeholder="Projectdetails" liveChange="onChangePDetails"/>
                 <Label text="Project Start Date"/>
                 
 		<DatePicker
 			id="PSDP"
 			placeholder="Enter StartDate"
-			change="handleChange"
+			change="onChangePs"
 			class="sapUiSmallMarginBottom" />
 				
                 <Label text="Project End Date"/>
                 <DatePicker
 			id="PEDP"
 			placeholder="Enter EndDate"
-			change="handleChange"
+			change="onChangePe"
 			class="sapUiSmallMarginBottom"/>
 				
 				
 				<Label text="Project Status"/>
-				<Input id="pstatus" value="" placeholder="Status"/>
+				<Input id="pstatus" value="" placeholder="Status" liveChange="onChangePstatues"/>
 				
                 <Label></Label>
 				<Button text="Save" type="Emphasized" press="onCreate"></Button>
