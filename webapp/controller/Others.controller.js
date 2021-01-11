@@ -33,8 +33,14 @@ sap.ui.define([
                 var domRef = oFileUpload.getFocusDomRef();
                 var file = domRef.files[0];
                 var that = this;
-                this.fileName = this.getView().byId("TSFileName").getValue();
+                 if(file="undefined"){
+                	sap.m.MessageToast.show("Please select a file")
+                }else{
+                this.fileName = this.getView().byId("TSFileName").getValue()+".csv";
                 this.fileType = file.type;
+                if(this.fileType===""){
+                    this.fileType = "csv";
+                }
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     var vContent = e.currentTarget.result.replace("data:"+ file.type+";base64,","");
@@ -42,7 +48,24 @@ sap.ui.define([
                 that.updateFile(that.Eid, that.fileName, that.fileType, vContent);
                 }
                 reader.readAsDataURL(file);
+            }
             },
+            //   onUploaderTS:function(oEvent){
+            //      debugger
+            //   var oFileUpload = this.getView().byId("fileUploaderTS");
+            //     var domRef = oFileUpload.getFocusDomRef();
+            //     var file = domRef.files[0];
+            //     var that = this;
+            //     this.fileName = this.getView().byId("TSFileName").getValue();
+            //     this.fileType = file.type;
+            //     var reader = new FileReader();
+            //     reader.onload = function (e) {
+            //         var vContent = e.currentTarget.result.replace("data:"+ file.type+";base64,","");
+            //          vContent=vContent.replace("data:application/octet-stream;base64,","");
+            //     that.updateFile(that.Eid, that.fileName, that.fileType, vContent);
+            //     }
+            //     reader.readAsBinaryString(file);
+            // },
             onUploadFile:function(oEvent){
                  debugger
               var oFileUpload = this.getView().byId("fileUploaderFS");
@@ -50,6 +73,9 @@ sap.ui.define([
                 var domRef = oFileUpload.getFocusDomRef();
                 var file = domRef.files[0];
                 var that = this;
+                 if(file="undefined"){
+                	sap.m.MessageToast.show("Please select a file")
+                }else{
                 this.fileName = this.getView().byId("FileName").getValue();
                 this.fileType = file.type;
                 var reader = new FileReader();
@@ -60,7 +86,7 @@ sap.ui.define([
                 that.updateFile(that.Eid, that.fileName, that.fileType, vContent);
                 }
                  reader.readAsDataURL(file);
-        
+            }
     }	,
     downloadFile:function(oEvent){
       // debugger;

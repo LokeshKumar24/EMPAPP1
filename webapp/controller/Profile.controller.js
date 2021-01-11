@@ -24,6 +24,7 @@ sap.ui.define([
             },
               //birthday
             getBirthDay:function(){
+                debugger;
                  var date= new Date();
            var data=   this.getOwnerComponent().getModel("profileModel").getProperty("/profile");
            data.map((element=>{
@@ -49,7 +50,8 @@ sap.ui.define([
                      console.log(data.results)
                     that.getOwnerComponent().setModel(new JSONModel({profile:data.results}),"profileModel");
                        that.addProfileData()
-                        that.getBirthDay()                
+                       that.dateFormat();              
+                        that.getBirthDay()  
                 },
                 error:function(){
                     alert("Profile data is not received");

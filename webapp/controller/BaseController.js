@@ -255,16 +255,27 @@ sap.ui.define([
                          debugger;
                     
                     var fName=data.Filename
-                    var fType=data.Filetype
-                    var fContent= atob(data.Filecontent);
-                
-                
+                    var fType= null;
+                    if(fName.includes(".csv")){
+                        fType="csv";
+                    }else{
+                        fType=data.Filetype
+
+                    }
+                    var fContent = null;
+                    
                     console.log(fContent)
-                     if(fType==="text/plain" || fType===""){
+                    if(fType==="text/plain" || fType===""){
+                     fContent= atob(data.Filecontent);
                                File.save(fContent, fName, "txt", fType);
         
                     }
+                    else if(fType === "csv"){
+                         fContent= atob(data.Filecontent);
+                          File.save(fContent, fName, "csv", fType,true);
+                    }
                      else{
+                          fContent= atob(data.Filecontent);
                          var byteNumbers= new Array(fContent.length);
                          for (let index = 0; index < fContent.length; index++) {
                              byteNumbers[index]=fContent.charCodeAt(index)
@@ -382,11 +393,11 @@ sap.ui.define([
             },
             dateFormat:function(){
                // debugger
-           var data=    this.getOwnerComponent().getModel("fileNameModel").getProperty("/request");
+           var data=    this.getOwnerComponent().getModel("profileModel").getProperty("/profile");
                 data.map((element,index)=>{
-                    data[index].Creationdate= element.Creationdate.slice(0,10)
+                    data[index].Dob= element.Dob.slice(0,10)
                 });
-                this.getOwnerComponent().setModel(new JSONModel({request:data}),"fileNameModel");
+                this.getOwnerComponent().setModel(new JSONModel({profile:data}),"profileModel");
             }
 		});
 	});
