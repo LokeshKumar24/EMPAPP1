@@ -51,16 +51,40 @@ sap.ui.define([
                 
                 this.fileName = this.getView().byId("TSFileName").getValue()+".csv";
                 this.fileType = file.type;
-                if(this.fileType===""){
-                    this.fileType = "csv";
-                }
+                // if(this.fileType===""){
+                //     this.fileType = "csv";
+                // }
                 var reader = new FileReader();
-                reader.onload = function (e) {
-                    var vContent = e.currentTarget.result.replace("data:"+ file.type+";base64,","");
-                     vContent=vContent.replace("data:application/octet-stream;base64,","");
-                that.updateFile(that.Eid, that.fileName, that.fileType, vContent);
-                }
-                reader.readAsDataURL(file);
+                  reader.onload = function(e) {
+      var data = e.target.result;
+      var workbook = XLSX.read(data, {
+        type: 'binary'
+      });
+
+      workbook.SheetNames.forEach(function(sheetName) {
+        // Here is your object
+        var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+        var json_object = JSON.stringify(XL_row_object);
+        console.log(json_object);
+         that.updateFile(that.Eid, that.fileName, that.fileType, json_object);
+
+      })
+
+    };
+
+    reader.onerror = function(ex) {
+      console.log(ex);
+    };
+
+    reader.readAsBinaryString(file);
+
+            //     reader.onload = function (e) {
+            //         var vContent = e.currentTarget.result.replace("data:"+ file.type+";base64,","");
+            //          vContent=vContent.replace("data:application/octet-stream;base64,","");
+            //     that.updateFile(that.Eid, that.fileName, that.fileType, vContent);
+            //     }
+            //    reader.readAsDataURL(file);
+             
             }
         
             },
